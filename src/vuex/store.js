@@ -152,7 +152,7 @@ const state = {
         "type": "todo",
         "data": {
             "isChecked": false,
-            "text": " 图片上传组件"
+            "text": "图片上传组件"
         }
     }, {
         "type": "todo",

@@ -1,12 +1,13 @@
 <template>
   <div class="BulletedList">
+    <!-- 这个符号需要更新 -->
     <span class="left-Symbol">·</span>
     <el-input
       type="textarea"
       autosize
       v-model="mValue.text"
       placeholder="输入列表内容"
-      @keydown.native="addNewTextBlock($event, BlocksIndex)"
+      @keypress.enter.prevent.native="addNewTextBlock($event, BlocksIndex)"
       @keyup.native="nextFocus($event, BlocksIndex)"
     ></el-input>
   </div>
@@ -16,6 +17,8 @@
 import NextFoucsMixin from "@/components/mixin/NextFoucsMixin";
 import ListBlockMixin from "@/components/mixin/ListBlockMixin";
 
+// TODO: 在某个列表下按回车新建列表后再删除，光标位置错误
+// TODO: 在一行头无法直接删除
 export default {
   name: "BulletedList",
   props: ["value", "BlocksIndex"],
@@ -24,7 +27,7 @@ export default {
     return {
       mValue: this.value,
       isEmptyDelete: true,
-      name: this.$options._componentTag,
+      name: this.$options.name,
     };
   },
   watch: {

@@ -4,7 +4,7 @@
     autosize
     v-model="mValue.text"
     :placeholder="placeholder"
-    @keydown.native="addNewTextBlock($event, BlocksIndex)"
+    @keypress.enter.prevent.native="addNewTextBlock($event, BlocksIndex)"
     @keyup.native="nextFocus($event, BlocksIndex)"
     :style="customStyle"
   ></el-input
@@ -42,5 +42,5 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 </style>>

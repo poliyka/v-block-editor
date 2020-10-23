@@ -5,12 +5,14 @@
 
     <div class="header">
       <h1>All-in-one</h1>
-      <p>模块化内容构建编辑器，基于Vue和element的打造</p>
-      <p>以Json格式输出，灵感来自Notion</p>
-      <!-- <el-button href="https://github.com/CedarXi/All-in-one" >GitHub</el-button> -->
+      <p>模块化内容构建编辑器，基于 Vue 和 element 的打造</p>
+      <p>以 JSON 格式输出，灵感来自Notion</p>
+      <el-button href="https://github.com/renmu123/All-in-one"
+        >GitHub</el-button
+      >
       <el-link
         :underline="false"
-        href="https://github.com/CedarXi/All-in-one"
+        href="https://github.com/renmu123/All-in-one"
         class="el-link-btn"
         target="_blank"
       >

@@ -6,7 +6,7 @@
       autosize
       v-model="mValue.text"
       placeholder="输入待办项"
-      @keydown.native="addNewTextBlock($event, BlocksIndex)"
+      @keypress.enter.prevent.native="addNewTextBlock($event, BlocksIndex)"
       @keyup.native="nextFocus($event, BlocksIndex)"
     ></el-input>
   </div>
@@ -16,15 +16,17 @@
 import NextFoucsMixin from "@/components/mixin/NextFoucsMixin";
 import ListBlockMixin from "@/components/mixin/ListBlockMixin";
 
+// TODO: 在某个列表下按回车新建列表后再删除，有bug
+// TODO: 在一行头无法直接删除
 export default {
-  name: "TodoBlock",
+  name: "todo",
   props: ["value", "BlocksIndex"],
   mixins: [NextFoucsMixin, ListBlockMixin],
   data() {
     return {
       mValue: this.value,
       isEmptyDelete: true,
-      name: this.$options._componentTag,
+      name: this.$options.name,
     };
   },
   watch: {
