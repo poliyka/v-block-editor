@@ -173,9 +173,16 @@ const state = {
             "text": "看板组件"
         }
     }, {
-        "type": "text",
+        "type": "todo",
         "data": {
-            "text": ""
+            "isChecked": false,
+            "text": "redo and undo"
+        }
+    }, {
+        "type": "todo",
+        "data": {
+            "isChecked": false,
+            "text": "右键新建block组件"
         }
     }],
 }
