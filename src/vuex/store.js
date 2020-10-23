@@ -188,7 +188,13 @@ const state = {
         "type": "todo",
         "data": {
             "isChecked": false,
-            "text": "重构Heading"
+            "text": "重构"
+        }
+    }, {
+        "type": "todo",
+        "data": {
+            "isChecked": false,
+            "text": "有序列表"
         }
     }],
 }
