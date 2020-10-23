@@ -196,6 +196,18 @@ const state = {
             "isChecked": false,
             "text": "有序列表"
         }
+    }, {
+        "type": "todo",
+        "data": {
+            "isChecked": false,
+            "text": "插入表情"
+        }
+    }, {
+        "type": "todo",
+        "data": {
+            "isChecked": false,
+            "text": "封装成组件发布"
+        }
     }],
 }
 
