@@ -1,47 +1,29 @@
 <template>
   <div class="hint">
     <div class="hint-bg">
-      <el-input
-        type="textarea"
-        autosize
-        v-model="mValue.text"
-        placeholder="输入需要重要提示的内容"
-        @keydown.native="addNewTextBlock($event, BlocksIndex)"
-        @keyup.native="nextFocus($event, BlocksIndex)"
-      ></el-input>
+      <BaseTextBlock
+        :value="value"
+        :BlocksIndex="BlocksIndex"
+        placeholder="输入需要提示的内容"
+      ></BaseTextBlock>
     </div>
   </div>
 </template>
 
 <script>
-import TextBlockMixin from "@/components/mixin/TextBlockMixin";
-import NextFoucsMixin from "@/components/mixin/NextFoucsMixin";
-
+import BaseTextBlock from "@/components/basicBlockComponents/BaseTextBlock";
 export default {
   name: "hint",
   props: ["value", "BlocksIndex"],
-  mixins: [TextBlockMixin, NextFoucsMixin],
+  components: {
+    BaseTextBlock,
+  },
   data() {
-    return {
-      mValue: this.value,
-      isEmptyDelete: true,
-    };
+    return {};
   },
-  watch: {
-    mValue(val) {
-      //本地值改变传给父组件
-      this.$emit("input", val);
-    },
-    value(val) {
-      this.mValue = val;
-    },
-  },
+  watch: {},
   methods: {},
-  computed: {
-    currentPageBlocks() {
-      return this.$store.state.currentPageBlocks;
-    },
-  },
+  computed: {},
 };
 </script>
 

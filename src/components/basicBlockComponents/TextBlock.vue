@@ -34,13 +34,13 @@ export default {
     },
   },
   methods: {
+    // 想想这里如何与BaseTextBlock重构在一起
     addNewTextBlock(event, index) {
       /*这里的keyCode 根据不同的平台或许不同,安卓就是不是8*/
       // 获取光标位置，处理回车时字符串换行问题
       let dom = document.getElementsByTagName("textarea");
       let currInput = dom[index];
       let startPos = currInput.selectionStart;
-      this.cursorStart = startPos;
       if (event.keyCode == 13) {
         event.preventDefault();
 
@@ -68,9 +68,6 @@ export default {
         // 提交数据到vuex
         this.$store.commit("mutationAddCurrentPageBlocks", addBlockInfo);
       }
-      // console.log(currInput)
-      // console.log(dom)
-      // console.log(currInput)
 
       // 如果内容为空的时候，并且按了 '/ '号按钮，就可以唤醒键盘上的添加内容的弹窗
       if (

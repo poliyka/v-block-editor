@@ -18,7 +18,7 @@ export default {
   },
   data() {
     return {
-      placeholder: "标题2",
+      placeholder: "标题3",
     };
   },
 };

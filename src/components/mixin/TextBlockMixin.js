@@ -21,6 +21,8 @@ const TextBlockMixin = {
         let currInput = dom[index];
         let startPos = currInput.selectionStart;
         if (startPos != this.mValue.text.length) {
+          // 如果光标的位置不在最末尾的时候
+          // 对光标之后的内容进行截取，并传递给新建的字符串
           addBlockInfo.blockItem.data.text = this.mValue.text.slice(
             startPos,
             this.mValue.text.length

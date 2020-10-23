@@ -1,49 +1,33 @@
 <template>
   <div class="Heading">
-    <el-input
-      type="textarea"
-      autosize
-      v-model="mValue.text"
+    <BaseTextBlock
+      :value="value"
+      :BlocksIndex="BlocksIndex"
+      :customStyle="customStyle"
       :placeholder="placeholder"
-      @keydown.native="addNewTextBlock($event, BlocksIndex)"
-      @keyup.native="nextFocus($event, BlocksIndex)"
-      :style="customStyle"
-    ></el-input>
+    ></BaseTextBlock>
   </div>
 </template>
 
 <script>
-import TextBlockMixin from "@/components/mixin/TextBlockMixin";
-import NextFoucsMixin from "@/components/mixin/NextFoucsMixin";
+import BaseTextBlock from "@/components/basicBlockComponents/BaseTextBlock";
 
 export default {
   name: "Heading",
   props: ["value", "BlocksIndex", "fontSize", "placeholder"],
-  mixins: [TextBlockMixin, NextFoucsMixin],
+  components: {
+    BaseTextBlock,
+  },
   data() {
     return {
-      mValue: this.value,
-      isEmptyDelete: true,
       customStyle: {
         fontSize: this.fontSize,
       },
     };
   },
-  watch: {
-    mValue(val) {
-      //本地值改变传给父组件
-      this.$emit("input", val);
-    },
-    value(val) {
-      this.mValue = val;
-    },
-  },
+  watch: {},
   methods: {},
-  computed: {
-    currentPageBlocks() {
-      return this.$store.state.currentPageBlocks;
-    },
-  },
+  computed: {},
 };
 </script>
 
