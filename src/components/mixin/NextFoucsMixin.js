@@ -8,10 +8,10 @@ const NextFoucsMixin = {
       let nowPos = currInput.selectionStart;
       let maxPos = currInput.value.length
 
-      if (event.key === "Enter") {
-        event.preventDefault();
-        nextInput.focus();
-      }
+      // if (event.key === "Enter") {
+      //   event.preventDefault();
+      //   nextInput.focus();
+      // }
       if (event.key === "ArrowUp") {
         if (nowPos === 0) {
           lastInput.focus();

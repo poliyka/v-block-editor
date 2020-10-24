@@ -1,7 +1,6 @@
 const ListBlockMixin = {
   methods: {
     addNewTextBlock(event, index) {
-      /*这里的keyCode 根据不同的平台或许不同,安卓就是不是8*/
       // 获取光标位置
       let dom = document.getElementsByTagName("textarea");
       let currInput = dom[index];
@@ -22,7 +21,7 @@ const ListBlockMixin = {
         // 点击了回车，就会先删掉当前的内容块，然后新建一个text内容块
         let lastInput = dom[index - 1];
         lastInput.focus();
-        this.currentPageBlocks.splice(index, 1);
+        this.currentPageBlocks.splice(index, 1); //TODO:这一行可能有问题，直接改变了状态？
       } else {
         addBlockInfo.blockItem.type = this.paremtName
         // 输入的内容不为空的时候
@@ -35,9 +34,9 @@ const ListBlockMixin = {
           );
           this.mValue.text = this.mValue.text.slice(0, startPos);
         }
+        // 提交数据到vuex
+        this.$store.commit("mutationAddCurrentPageBlocks", addBlockInfo);
       }
-      // 提交数据到vuex
-      this.$store.commit("mutationAddCurrentPageBlocks", addBlockInfo);
     },
   },
 }

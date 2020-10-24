@@ -8,6 +8,7 @@
       :placeholder="placeholder"
       @keypress.enter.prevent.native="addNewTextBlock($event, BlocksIndex)"
       @keyup.native="nextFocus($event, BlocksIndex)"
+      @keyup.enter.prevent.native="enterMethod($event, BlocksIndex)"
     ></el-input>
   </div>
 </template>
@@ -38,7 +39,13 @@ export default {
       this.mValue = val;
     },
   },
-  methods: {},
+  methods: {
+    enterMethod(event, index) {
+      let dom = document.getElementsByTagName("textarea");
+      let nextInput = dom[index + 1];
+      nextInput.focus();
+    },
+  },
   computed: {
     currentPageBlocks() {
       return this.$store.state.currentPageBlocks;

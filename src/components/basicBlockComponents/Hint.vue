@@ -5,6 +5,7 @@
         :value="value"
         :BlocksIndex="BlocksIndex"
         placeholder="输入需要提示的内容"
+        :allowNewLine="true"
       ></BaseTextBlock>
     </div>
   </div>
@@ -20,10 +21,22 @@ export default {
     BaseTextBlock,
   },
   data() {
-    return {};
+    return { isLastKeyEnter: false };
   },
   watch: {},
-  methods: {},
+  methods: {
+    enterMethod(event, index) {
+      console.log("dss");
+      if (this.isLastKeyEnter === true) {
+        console.log("sds");
+      }
+      this.isLastKeyEnter = true;
+      // console.log("sds", index, this.currentPageBlocks.length);
+      // let dom = document.getElementsByTagName("textarea");
+      // let nextInput = dom[index + 1];
+      // nextInput.focus();
+    },
+  },
   computed: {},
 };
 </script>

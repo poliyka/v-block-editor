@@ -5,6 +5,7 @@
       :BlocksIndex="BlocksIndex"
       placeholder="点击 Alt 键快速插入内容"
       @keydown.alt.exact.prevent.native="click($event, BlocksIndex)"
+      :allowNewLine="true"
     ></BaseTextBlock>
   </div>
 </template>
