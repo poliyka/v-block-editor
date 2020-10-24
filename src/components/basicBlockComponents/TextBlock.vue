@@ -10,6 +10,7 @@
 </template>
 
 <script>
+// 两次回车才是新建text，一次回车是换行（即不需要prevent）
 import BaseTextBlock from "@/components/basicBlockComponents/BaseTextBlock";
 
 export default {

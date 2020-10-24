@@ -24,18 +24,29 @@ const NextFoucsMixin = {
         }
       }
       if (event.key === "ArrowLeft") {
-        if (nowPos === 0) {
+        if (nowPos === 0 && this.toLastInputFlag === true) {
           lastInput.focus();
+        }
+        if (nowPos === 0) {
+          this.toLastInputFlag = true
+        } else {
+          this.toLastInputFlag = false
         }
       }
       if (event.key === "ArrowRight") {
-        if (nowPos === maxPos) {
+        if (nowPos === maxPos && this.toNextFlag === true) {
           nextInput.setSelectionRange(0, 0);
           nextInput.focus();
+        }
+        if (nowPos === maxPos) {
+          this.toLastInputFlag = true
+        } else {
+          this.toLastInputFlag = false
         }
       }
       if (event.key === "Delete" || event.key === "Backspace") {
         if (
+          currInput.value === "" &&
           this.currentPageBlocks.length > 1 &&
           this.deleteFlag === true
         ) {
@@ -43,10 +54,8 @@ const NextFoucsMixin = {
           lastInput.focus();
         }
       }
-      // 设置当前输入框是否为空，主要控制如果已经输入了内容，再点击删除，会直接删除掉内容
-      // 处理是否为空的时候在删除内容，直接就currInput.value 会伴随着删除按钮的而直接变化掉
-      // 如果已经有内容了，再点击删除按钮会把是否为空删除设置为false，如果直接删除，则是可以的
-      // 逻辑就是要先确定一步是否为空，不能同步进行
+      // 不能直接在 currInput === "" 的时候直接操作，这样会导致删到最后一个字符的时候自动删除这一行
+      // 这是不能出现的事，所以有一个 flag 值来进行判断，上面的代码也是这样
       if (currInput.value === "") {
         this.deleteFlag = true;
       } else {

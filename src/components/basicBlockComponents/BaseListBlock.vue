@@ -25,6 +25,8 @@ export default {
       mValue: this.value,
       deleteFlag: true,
       paremtName: this.$options.parent.$options.name,
+      toLastInputFlag: true,
+      toNextFlag: true,
     };
   },
   watch: {

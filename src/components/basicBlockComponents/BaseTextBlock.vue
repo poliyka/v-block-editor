@@ -22,6 +22,8 @@ export default {
     return {
       mValue: this.value,
       deleteFlag: true,
+      toLastInputFlag: true,
+      toNextFlag: true,
     };
   },
   watch: {
