@@ -5,34 +5,32 @@ const NextFoucsMixin = {
       let currInput = dom[index];
       let nextInput = dom[index + 1];
       let lastInput = dom[index - 1];
-      /*这里的keyCode 根据不同的平台或许不同,安卓就是不是8*/
-      if (event.keyCode == 13) {
+      // console.log(event, dom, currInput, nextInput, lastInput)
+      if (event.key === "Enter") {
         // console.log(nextInput);
         event.preventDefault();
         nextInput.focus();
       }
-      if (event.keyCode == 38) {
+      if (event.key === "ArrowUp") {
         lastInput.setSelectionRange(this.cursorStart, this.cursorStart);
         setTimeout(() => {
           lastInput.focus();
         }, 100);
       }
-      if (event.keyCode == 40) {
+      if (event.key === "ArrowDown") {
         nextInput.setSelectionRange(this.cursorStart, this.cursorStart);
         setTimeout(() => {
           nextInput.focus();
         }, 100);
       }
-      if (event.keyCode == 46 || event.keyCode == 8) {
+      if (event.key === "Delete" || event.key === "Backspace") {
         if (
           currInput.value == "" &&
           this.currentPageBlocks.length > 1 &&
           this.isEmptyDelete == true
         ) {
           this.currentPageBlocks.splice(index, 1);
-          setTimeout(() => {
-            lastInput.focus();
-          }, 300);
+          lastInput.focus();
         }
       }
       // 设置当前输入框是否为空，主要控制如果已经输入了内容，再点击删除，会直接删除掉内容

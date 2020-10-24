@@ -24,7 +24,7 @@ const ListBlockMixin = {
         lastInput.focus();
         this.currentPageBlocks.splice(index, 1);
       } else {
-        addBlockInfo.blockItem.type = this.name
+        addBlockInfo.blockItem.type = this.paremtName
         // 输入的内容不为空的时候
         // 新建text-item到vuex里
         // 获取光标位置，处理回车时字符串换行问题
@@ -41,4 +41,4 @@ const ListBlockMixin = {
     },
   },
 }
-  export default ListBlockMixin
+export default ListBlockMixin
