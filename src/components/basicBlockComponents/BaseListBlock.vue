@@ -23,7 +23,7 @@ export default {
   data() {
     return {
       mValue: this.value,
-      isEmptyDelete: true,
+      deleteFlag: true,
       paremtName: this.$options.parent.$options.name,
     };
   },

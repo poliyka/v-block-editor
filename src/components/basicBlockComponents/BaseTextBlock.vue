@@ -7,8 +7,8 @@
     @keypress.enter.prevent.native="addNewTextBlock($event, BlocksIndex)"
     @keyup.native="nextFocus($event, BlocksIndex)"
     :style="customStyle"
-  ></el-input
-></template>
+  ></el-input>
+</template>
 
 <script>
 import TextBlockMixin from "@/components/mixin/TextBlockMixin";
@@ -21,7 +21,7 @@ export default {
   data() {
     return {
       mValue: this.value,
-      isEmptyDelete: true,
+      deleteFlag: true,
     };
   },
   watch: {
