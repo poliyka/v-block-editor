@@ -148,7 +148,7 @@ export default {
   watch: {
     isShowAddMenu: function (value) {
       if (value == true) {
-        document.addEventListener("click", (e) => {
+        document.addEventListener("click", e => {
           // console.log(event.target.getAttribute("class"))
           if (event.target.getAttribute("class") != "iconfont iconplus") {
             if (event.target.getAttribute("class") != "dropdown-menu") {
@@ -240,6 +240,7 @@ export default {
       this.$store.commit("mutationAddCurrentPageBlocks", addBlockInfo);
 
       // 如果是触发添加内容的面板是从text模块显示的模块添加弹窗页面的，并且内容为空
+      let dom = document.getElementsByTagName("textarea");
       if (
         this.currentPageBlocks[this.currentBlockIndex].type == "text" &&
         this.currentPageBlocks[this.currentBlockIndex].data.text == ""
@@ -247,14 +248,12 @@ export default {
         // 处理光标的显示问题，在当前模块显示
         this.currentPageBlocks.splice(this.currentBlockIndex, 1);
         setTimeout(() => {
-          let dom = document.getElementsByTagName("textarea");
           let currInput = dom[this.currentBlockIndex];
           currInput.focus();
         }, 300);
       } else {
         // 处理光标的显示问题，新建后，光标也到新建栏
         setTimeout(() => {
-          let dom = document.getElementsByTagName("textarea");
           let nextInput = dom[this.currentBlockIndex + 1];
           nextInput.focus();
         }, 300);

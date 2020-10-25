@@ -24,19 +24,7 @@ export default {
     return { isLastKeyEnter: false };
   },
   watch: {},
-  methods: {
-    enterMethod(event, index) {
-      console.log("dss");
-      if (this.isLastKeyEnter === true) {
-        console.log("sds");
-      }
-      this.isLastKeyEnter = true;
-      // console.log("sds", index, this.currentPageBlocks.length);
-      // let dom = document.getElementsByTagName("textarea");
-      // let nextInput = dom[index + 1];
-      // nextInput.focus();
-    },
-  },
+  methods: {},
   computed: {},
 };
 </script>

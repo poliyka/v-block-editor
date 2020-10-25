@@ -14,7 +14,6 @@
 </template>
 
 <script>
-// TODO: 在一行头无法直接删除
 import NextFoucsMixin from "@/components/mixin/NextFoucsMixin";
 import ListBlockMixin from "@/components/mixin/ListBlockMixin";
 export default {

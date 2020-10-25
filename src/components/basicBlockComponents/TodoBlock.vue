@@ -12,7 +12,6 @@
 
 <script>
 import BaseListBlock from "@/components/basicBlockComponents/BaseListBlock";
-// TODO: 在某个列表下按回车新建列表后再删除，有bug
 export default {
   name: "todo",
   props: ["value", "BlocksIndex"],

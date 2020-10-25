@@ -216,15 +216,14 @@ export default {
   },
   watch: {
     readOnly(val) {
+      let textareaDom = document.getElementsByTagName("textarea");
       if (val == true) {
-        let textareaDom = document.getElementsByTagName("textarea");
         for (let index = 0; index < textareaDom.length; index++) {
           const element = textareaDom[index];
           element.readOnly = true;
         }
       }
       if (val == false) {
-        let textareaDom = document.getElementsByTagName("textarea");
         for (let index = 0; index < textareaDom.length; index++) {
           const element = textareaDom[index];
           element.readOnly = false;
