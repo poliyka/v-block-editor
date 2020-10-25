@@ -221,11 +221,14 @@ const mutations = {
     mutationAddMenuContentLayerXY(state, addMenuContentLayerXY) {
         state.addMenuContentLayerXY = addMenuContentLayerXY
         // state.addMenuContentClientXY = {x:0,y:0}
-
     },
     mutationAddCurrentPageBlocks(state, addBlockInfo) {
         let index = addBlockInfo.index + 1
         state.currentPageBlocks.splice(index, 0, addBlockInfo.blockItem)
+        // console.log(state.currentPageBlocks)
+    },
+    mutationUpdateCurrentPageBlocks(state, blocks) {
+        state.currentPageBlocks = blocks
         // console.log(state.currentPageBlocks)
     }
 }

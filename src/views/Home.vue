@@ -32,7 +32,7 @@
     <div class="container-870">
       <draggable
         tag="ul"
-        :list="getCurrentPageBlocks"
+        v-model="getCurrentPageBlocks"
         class="list-group"
         handle=".handle"
       >
@@ -206,9 +206,13 @@ export default {
     isShowAddMenu() {
       return this.$store.state.isShowAddMenu;
     },
-
-    getCurrentPageBlocks() {
-      return this.$store.getters.getterCurrentPageBlocks;
+    getCurrentPageBlocks: {
+      get() {
+        return this.$store.getters.getterCurrentPageBlocks;
+      },
+      set(value) {
+        this.$store.commit("mutationUpdateCurrentPageBlocks", value);
+      },
     },
     getterAddMenuContentLayerXY() {
       return this.$store.getters.getterAddMenuContentLayerXY;
