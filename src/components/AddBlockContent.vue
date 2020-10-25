@@ -31,71 +31,9 @@
   </div>
 </template>
 
-<style lang="less">
-.addBlock-content {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  overflow: auto;
-  margin: 0;
-  .dropdown-menu {
-    background: #ffffff;
-    position: absolute;
-    // margin-left: 58px;
-    z-index: 2002;
-    width: 320px;
-    height: 360px;
-    overflow-y: auto;
-    border: 1px solid #dcdfe6;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 12px 0px;
-    border-radius: 4px;
-
-    .block-type-tip {
-      font-size: 12px;
-      color: #909399;
-      display: block;
-      padding: 10px 20px 5px 20px;
-    }
-    .block-item {
-      padding: 5px 20px 7px 20px;
-      display: flex;
-      align-items: center;
-      background: #ffffff;
-      .block-item-img {
-        width: 45px;
-        height: 45px;
-        background: #ffffff;
-        img {
-          border-radius: 4px;
-          border: 1px solid #dddddd;
-        }
-      }
-      .block-item-intro {
-        h4 {
-          margin: 0;
-          font-size: 14px;
-        }
-        span {
-          font-size: 12px;
-          color: #909399;
-        }
-        margin-left: 10px;
-      }
-    }
-    .block-item:hover {
-      background: #eeeeee;
-      cursor: pointer;
-    }
-  }
-}
-</style>
-
-
 <script>
-// @ is an alias to /src
-
+// TODO: 这里的一些参数需要与vuex解绑
+// TODO: 重构仍需努力
 export default {
   name: "addBlock-content",
   data() {
@@ -174,12 +112,12 @@ export default {
     },
   },
   methods: {
-    addBlock(a) {
+    addBlock(type) {
       let addBlockInfo = {
         index: this.currentBlockIndex,
         blockItem: {},
       };
-      if (a == "text") {
+      if (type == "text") {
         addBlockInfo.blockItem = {
           type: "text",
           data: {
@@ -187,7 +125,7 @@ export default {
           },
         };
       }
-      if (a == "todo") {
+      if (type == "todo") {
         addBlockInfo.blockItem = {
           type: "todo",
           data: {
@@ -196,7 +134,7 @@ export default {
           },
         };
       }
-      if (a == "heading1") {
+      if (type == "heading1") {
         addBlockInfo.blockItem = {
           type: "heading1",
           data: {
@@ -204,7 +142,7 @@ export default {
           },
         };
       }
-      if (a == "heading2") {
+      if (type == "heading2") {
         addBlockInfo.blockItem = {
           type: "heading2",
           data: {
@@ -212,7 +150,7 @@ export default {
           },
         };
       }
-      if (a == "heading3") {
+      if (type == "heading3") {
         addBlockInfo.blockItem = {
           type: "heading3",
           data: {
@@ -220,7 +158,7 @@ export default {
           },
         };
       }
-      if (a == "BulletedList") {
+      if (type == "BulletedList") {
         addBlockInfo.blockItem = {
           type: "BulletedList",
           data: {
@@ -228,7 +166,7 @@ export default {
           },
         };
       }
-      if (a == "hint") {
+      if (type == "hint") {
         addBlockInfo.blockItem = {
           type: "hint",
           data: {
@@ -266,4 +204,63 @@ export default {
 };
 </script>
 
+<style lang="less">
+.addBlock-content {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  margin: 0;
+  .dropdown-menu {
+    background: #ffffff;
+    position: absolute;
+    // margin-left: 58px;
+    z-index: 2002;
+    width: 320px;
+    height: 360px;
+    overflow-y: auto;
+    border: 1px solid #dcdfe6;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 12px 0px;
+    border-radius: 4px;
 
+    .block-type-tip {
+      font-size: 12px;
+      color: #909399;
+      display: block;
+      padding: 10px 20px 5px 20px;
+    }
+    .block-item {
+      padding: 5px 20px 7px 20px;
+      display: flex;
+      align-items: center;
+      background: #ffffff;
+      .block-item-img {
+        width: 45px;
+        height: 45px;
+        background: #ffffff;
+        img {
+          border-radius: 4px;
+          border: 1px solid #dddddd;
+        }
+      }
+      .block-item-intro {
+        h4 {
+          margin: 0;
+          font-size: 14px;
+        }
+        span {
+          font-size: 12px;
+          color: #909399;
+        }
+        margin-left: 10px;
+      }
+    }
+    .block-item:hover {
+      background: #eeeeee;
+      cursor: pointer;
+    }
+  }
+}
+</style>

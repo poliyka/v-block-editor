@@ -25,8 +25,6 @@
 
 
 <script>
-// @ is an alias to /src
-
 export default {
   name: "AddBlock",
   props: ["BlocksIndex"],
@@ -36,10 +34,7 @@ export default {
   methods: {
     openMenuShow(e) {
       let a = { x: e.clientX, y: e.clientY };
-      // console.log(e)
       let b = true;
-      // console.log(e);
-      // console.log("111");
 
       this.$store.commit("mutationAddMenuContentLayerXY", a);
       this.$store.commit("mutationCurrentBlockIndex", this.BlocksIndex);
