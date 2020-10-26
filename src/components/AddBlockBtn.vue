@@ -33,13 +33,12 @@ export default {
   },
   methods: {
     openMenuShow(e) {
-      let a = { x: e.clientX, y: e.clientY };
-      let b = true;
+      let location = { x: e.clientX, y: e.clientY };
 
-      this.$store.commit("mutationAddMenuContentLayerXY", a);
+      this.$store.commit("mutationAddMenuContentLayerXY", location);
       this.$store.commit("mutationCurrentBlockIndex", this.BlocksIndex);
       setTimeout(() => {
-        this.$store.commit("mutationIsShowAddMenu", b);
+        this.$store.commit("mutationIsShowAddMenu", true);
       }, 50);
     },
   },

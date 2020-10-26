@@ -32,8 +32,6 @@
 </template>
 
 <script>
-// TODO: 这里的一些参数需要与vuex解绑
-// TODO: 重构仍需努力
 export default {
   name: "addBlock-content",
   data() {
@@ -87,7 +85,6 @@ export default {
     isShowAddMenu: function (value) {
       if (value == true) {
         document.addEventListener("click", e => {
-          // console.log(event.target.getAttribute("class"))
           if (event.target.getAttribute("class") != "iconfont iconplus") {
             if (event.target.getAttribute("class") != "dropdown-menu") {
               this.$store.commit("mutationIsShowAddMenu", false);

@@ -30,12 +30,12 @@ export default {
       let currInput = dom[index];
       currInput.disabled = true;
       let e = currInput.getBoundingClientRect();
-      let a = { x: e.left - 48, y: e.top + 20 };
-      let b = true;
-      this.$store.commit("mutationAddMenuContentLayerXY", a);
+      let location = { x: e.left - 48, y: e.top + 20 };
+
+      this.$store.commit("mutationAddMenuContentLayerXY", location);
       this.$store.commit("mutationCurrentBlockIndex", index);
       setTimeout(() => {
-        this.$store.commit("mutationIsShowAddMenu", b);
+        this.$store.commit("mutationIsShowAddMenu", true);
       }, 50);
       currInput.disabled = false;
     },
