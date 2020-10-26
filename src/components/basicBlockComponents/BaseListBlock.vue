@@ -40,10 +40,8 @@ export default {
   },
   methods: {
     enterMethod(event, index) {
-      let dom = document
-        .getElementsByClassName("block")
-        .getElementsByTagName("textarea")[0];
-      let nextInput = dom[index + 1];
+      let dom = document.getElementsByClassName("block");
+      let nextInput = dom[index + 1].getElementsByTagName("textarea")[0];
       nextInput.focus();
     },
     addNewTextBlock(event, index) {
@@ -64,7 +62,7 @@ export default {
         // 点击了回车，就会先删掉当前的内容块，然后新建一个text内容块
         let lastInput = dom[index - 1].getElementsByTagName("textarea")[0];
         lastInput.focus();
-        this.currentPageBlocks.splice(index, 1); // TODO:这一行可能有问题，直接改变了状态？需要增加一个delete的函数
+        this.$store.commit("mutationDeletePageBlock", this.currentBlockIndex);
       } else {
         let currInput = dom[index].getElementsByTagName("textarea")[0];
         let startPos = currInput.selectionStart;

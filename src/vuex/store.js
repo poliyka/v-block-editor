@@ -227,6 +227,10 @@ const mutations = {
         state.currentPageBlocks.splice(index, 0, addBlockInfo.blockItem)
         // console.log(state.currentPageBlocks)
     },
+    mutationDeletePageBlock(state, index) {
+        state.currentPageBlocks.splice(index, 1)
+        // console.log(state.currentPageBlocks)
+    },
     mutationUpdateCurrentPageBlocks(state, blocks) {
         state.currentPageBlocks = blocks
         // console.log(state.currentPageBlocks)

@@ -181,7 +181,7 @@ export default {
         this.currentPageBlocks[this.currentBlockIndex].data.text == ""
       ) {
         // 处理光标的显示问题，在当前模块显示
-        this.currentPageBlocks.splice(this.currentBlockIndex, 1);
+        this.$store.commit("mutationDeletePageBlock", this.currentBlockIndex);
         setTimeout(() => {
           let currInput = dom[this.currentBlockIndex].getElementsByTagName(
             "textarea"

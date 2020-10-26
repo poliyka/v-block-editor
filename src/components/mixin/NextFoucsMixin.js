@@ -46,7 +46,7 @@ const NextFoucsMixin = {
           this.currentPageBlocks.length > 1 &&
           this.deleteFlag === true
         ) {
-          this.currentPageBlocks.splice(index, 1);
+          this.$store.commit("mutationDeletePageBlock", index);
           lastInput.focus();
         }
       }

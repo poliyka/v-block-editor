@@ -21,7 +21,7 @@ const ListBlockMixin = {
         // 点击了回车，就会先删掉当前的内容块，然后新建一个text内容块
         let lastInput = dom[index - 1];
         lastInput.focus();
-        this.currentPageBlocks.splice(index, 1); //TODO:这一行可能有问题，直接改变了状态？
+        this.$store.commit("mutationDeletePageBlock", this.currentBlockIndex);
       } else {
         addBlockInfo.blockItem.type = this.paremtName
         // 输入的内容不为空的时候
