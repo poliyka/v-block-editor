@@ -3,7 +3,7 @@
     <!-- 添加组件的弹窗 -->
     <AddBlockContent></AddBlockContent>
     <draggable
-      tag="ul"
+      tag="div"
       v-model="getCurrentPageBlocks"
       class="list-group"
       handle=".handle"
@@ -12,6 +12,7 @@
         class="line-wrap list-group-item"
         v-for="(item, index) in getCurrentPageBlocks"
         :key="index"
+        ref="block"
       >
         <div class="line-left" v-if="readOnly == false">
           <!-- 弹出添加组件的弹窗+号按钮 -->
@@ -26,36 +27,43 @@
             v-model="item.data"
             :BlocksIndex="index"
             v-if="item.type == 'text'"
+            class="block"
           ></TextBlock>
           <TodoBlock
             v-model="item.data"
             :BlocksIndex="index"
             v-if="item.type == 'todo'"
+            class="block"
           ></TodoBlock>
           <Heading1
             v-model="item.data"
             :BlocksIndex="index"
             v-if="item.type == 'heading1'"
+            class="block"
           ></Heading1>
           <Heading2
             v-model="item.data"
             :BlocksIndex="index"
             v-if="item.type == 'heading2'"
+            class="block"
           ></Heading2>
           <Heading3
             v-model="item.data"
             :BlocksIndex="index"
             v-if="item.type == 'heading3'"
+            class="block"
           ></Heading3>
           <BulletedList
             v-model="item.data"
             :BlocksIndex="index"
             v-if="item.type == 'BulletedList'"
+            class="block"
           ></BulletedList>
           <Hint
             v-model="item.data"
             :BlocksIndex="index"
             v-if="item.type == 'hint'"
+            class="block"
           ></Hint>
         </div>
       </div>

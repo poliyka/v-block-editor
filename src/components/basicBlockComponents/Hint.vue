@@ -1,6 +1,6 @@
 <template>
   <div class="hint">
-    <div class="hint-bg">
+    <div class="hint-bg" :id="BlocksIndex">
       <BaseTextBlock
         :value="value"
         :BlocksIndex="BlocksIndex"

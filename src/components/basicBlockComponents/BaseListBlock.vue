@@ -19,7 +19,7 @@ import ListBlockMixin from "@/components/mixin/ListBlockMixin";
 export default {
   name: "BaseListBlock",
   props: ["value", "BlocksIndex", "placeholder"],
-  mixins: [NextFoucsMixin, ListBlockMixin],
+  mixins: [NextFoucsMixin],
   data() {
     return {
       mValue: this.value,
@@ -40,9 +40,49 @@ export default {
   },
   methods: {
     enterMethod(event, index) {
-      let dom = document.getElementsByTagName("textarea");
+      let dom = document
+        .getElementsByClassName("block")
+        .getElementsByTagName("textarea")[0];
       let nextInput = dom[index + 1];
       nextInput.focus();
+    },
+    addNewTextBlock(event, index) {
+      let addBlockInfo = {
+        index: index,
+        blockItem: {
+          type: "text",
+          data: {
+            text: "",
+          },
+        },
+      };
+
+      // 获取光标位置
+      let dom = document.getElementsByClassName("block");
+      if (this.mValue.text.length == 0) {
+        // 当输入的内容为空的时候
+        // 点击了回车，就会先删掉当前的内容块，然后新建一个text内容块
+        let lastInput = dom[index - 1].getElementsByTagName("textarea")[0];
+        lastInput.focus();
+        this.currentPageBlocks.splice(index, 1); // TODO:这一行可能有问题，直接改变了状态？需要增加一个delete的函数
+      } else {
+        let currInput = dom[index].getElementsByTagName("textarea")[0];
+        let startPos = currInput.selectionStart;
+
+        addBlockInfo.blockItem.type = this.paremtName;
+        // 输入的内容不为空的时候
+        // 新建text-item到vuex里
+        // 获取光标位置，处理回车时字符串换行问题
+        if (startPos != this.mValue.text.length) {
+          addBlockInfo.blockItem.data.text = this.mValue.text.slice(
+            startPos,
+            this.mValue.text.length
+          );
+          this.mValue.text = this.mValue.text.slice(0, startPos);
+        }
+        // 提交数据到vuex
+        this.$store.commit("mutationAddCurrentPageBlocks", addBlockInfo);
+      }
     },
   },
   computed: {

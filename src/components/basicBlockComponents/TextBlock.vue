@@ -1,5 +1,5 @@
 <template>
-  <div class="textBlock">
+  <div class="textBlock" :id="BlocksIndex">
     <BaseTextBlock
       :value="value"
       :BlocksIndex="BlocksIndex"
@@ -26,7 +26,9 @@ export default {
   watch: {},
   methods: {
     quickAddBlock(event, index) {
-      let dom = document.getElementsByTagName("textarea");
+      let dom = document
+        .getElementsByClassName("block")
+        .getElementsByTagName("textarea")[0];
       let currInput = dom[index];
       currInput.disabled = true;
       let e = currInput.getBoundingClientRect();
