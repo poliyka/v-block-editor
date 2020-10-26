@@ -4,7 +4,7 @@
       :value="value"
       :BlocksIndex="BlocksIndex"
       placeholder="点击 Alt 键快速插入内容"
-      @keydown.alt.exact.prevent.native="click($event, BlocksIndex)"
+      @keydown.alt.exact.prevent.native="quickAddBlock($event, BlocksIndex)"
       :allowNewLine="true"
     ></BaseTextBlock>
   </div>
@@ -25,7 +25,7 @@ export default {
   },
   watch: {},
   methods: {
-    click(event, index) {
+    quickAddBlock(event, index) {
       let dom = document.getElementsByTagName("textarea");
       let currInput = dom[index];
       currInput.disabled = true;
