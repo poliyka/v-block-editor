@@ -65,6 +65,11 @@
             v-if="item.type == 'hint'"
             class="block"
           ></Hint>
+          <BaseImage
+            :BlocksIndex="index"
+            v-if="item.type == 'image'"
+            class="block"
+          ></BaseImage>
         </div>
       </div>
     </draggable>
@@ -84,7 +89,7 @@ import Heading2 from "@/components/basicBlockComponents/Heading2";
 import Heading3 from "@/components/basicBlockComponents/Heading3";
 import BulletedList from "@/components/basicBlockComponents/BulletedList";
 import Hint from "@/components/basicBlockComponents/Hint";
-
+import BaseImage from "@/components/basicBlockComponents/Image";
 export default {
   //import引入的组件需要注入到对象中才能使用
   name: "AllInOne",
@@ -99,6 +104,7 @@ export default {
     Heading3,
     BulletedList,
     Hint,
+    BaseImage,
   },
   props: {
     readOnly: {
@@ -146,6 +152,7 @@ export default {
         }
       }
     },
+    watch: {},
   },
 };
 </script>

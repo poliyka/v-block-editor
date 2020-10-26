@@ -60,11 +60,11 @@ export default {
       if (this.mValue.text.length == 0) {
         // 当输入的内容为空的时候
         // 点击了回车，就会先删掉当前的内容块，然后新建一个text内容块
-        let lastInput = dom[index - 1].getElementsByTagName("textarea")[0];
+        let lastInput = dom[index - 1].getElementsByTagName("textarea")[0]; // 上一个元素不一定是input
         lastInput.focus();
         this.$store.commit("mutationDeletePageBlock", this.currentBlockIndex);
       } else {
-        let currInput = dom[index].getElementsByTagName("textarea")[0];
+        let currInput = dom[index].getElementsByTagName("textarea")[0]; // 没问题
         let startPos = currInput.selectionStart;
 
         addBlockInfo.blockItem.type = this.paremtName;

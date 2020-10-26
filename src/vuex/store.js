@@ -16,6 +16,12 @@ const state = {
             "text": "All-in-one 是什么"
         }
     }, {
+        "type": "image",
+        "data": {
+            "text": "asas",
+            "src": "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
+        }
+    }, {
         "type": "text",
         "data": {
             "text": "All-in-one 是一个开源的模块化内容构建编辑器，它不同于传统的文本编辑器，所有的内容都是以模块的概念来打造。灵感来自Notion"
