@@ -22,7 +22,7 @@
             <i class="iconfont icondrag"></i>
           </a>
         </div>
-        <div class="line-right">
+        <div class="line-medium">
           <TextBlock
             v-model="item.data"
             :BlocksIndex="index"
@@ -66,10 +66,16 @@
             class="block"
           ></Hint>
           <BaseImage
+            v-model="item.data"
             :BlocksIndex="index"
             v-if="item.type == 'image'"
             class="block"
           ></BaseImage>
+        </div>
+        <div class="line-right">
+          <a class="drag-btn handle" @click="setVisibleData(index)">
+            <i class="el-icon-menu"></i>
+          </a>
         </div>
       </div>
     </draggable>
@@ -135,6 +141,14 @@ export default {
     getterAddMenuContentLayerXY() {
       return this.$store.getters.getterAddMenuContentLayerXY;
     },
+    dialogFormVisible: {
+      get() {
+        return this.$store.state.dialogFormVisible;
+      },
+      set(value) {
+        this.$store.commit("mutationUpdateDialogFormVisible", value);
+      },
+    },
   },
   watch: {
     readOnly(val) {
@@ -152,7 +166,12 @@ export default {
         }
       }
     },
-    watch: {},
+  },
+  methods: {
+    setVisibleData(index) {
+      this.dialogFormVisible = true;
+      this.$store.commit("mutationCurrentBlockIndex", index);
+    },
   },
 };
 </script>
@@ -192,11 +211,21 @@ export default {
       visibility: hidden;
     }
     .line-right {
+      width: 40px;
+      display: flex;
+      align-items: center;
+      margin-right: 20px;
+      visibility: hidden;
+    }
+    .line-medium {
       width: 100%;
     }
   }
   .line-wrap:hover {
     .line-left {
+      visibility: visible;
+    }
+    .line-right {
       visibility: visible;
     }
   }

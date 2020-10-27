@@ -19,7 +19,9 @@ const state = {
         "type": "image",
         "data": {
             "text": "asas",
-            "src": "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
+            "src": "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
+            "height": "200px",
+            // "width": "200px",
         }
     }, {
         "type": "text",
@@ -215,6 +217,7 @@ const state = {
             "text": "封装成组件发布"
         }
     }],
+    dialogFormVisible: false
 }
 
 const mutations = {
@@ -226,20 +229,19 @@ const mutations = {
     },
     mutationAddMenuContentLayerXY(state, addMenuContentLayerXY) {
         state.addMenuContentLayerXY = addMenuContentLayerXY
-        // state.addMenuContentClientXY = {x:0,y:0}
     },
     mutationAddCurrentPageBlocks(state, addBlockInfo) {
         let index = addBlockInfo.index + 1
         state.currentPageBlocks.splice(index, 0, addBlockInfo.blockItem)
-        // console.log(state.currentPageBlocks)
     },
     mutationDeletePageBlock(state, index) {
         state.currentPageBlocks.splice(index, 1)
-        // console.log(state.currentPageBlocks)
     },
     mutationUpdateCurrentPageBlocks(state, blocks) {
         state.currentPageBlocks = blocks
-        // console.log(state.currentPageBlocks)
+    },
+    mutationUpdateDialogFormVisible(state, status) {
+        state.dialogFormVisible = status
     }
 }
 
