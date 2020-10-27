@@ -13,8 +13,6 @@ const ImageBlockFocusMixin = {
         console.log(currentBlock, currInput)
       }
 
-      let nowPos = currInput.getSelection();
-      console.log(nowPos)
       let maxPos = currInput.value.length
 
       if (event.key === "ArrowUp") {

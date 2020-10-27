@@ -1,9 +1,5 @@
 <template>
-  <div
-    contenteditable="true"
-    class="image"
-    @keyup="nextFocus($event, BlocksIndex)"
-  >
+  <div class="image" @keyup="nextFocus($event, BlocksIndex)">
     <img :src="url" style="width: 100px; height: 100px" />
   </div>
 </template>
