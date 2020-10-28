@@ -247,10 +247,6 @@ const mutations = {
 
 
 const getters = {
-
-    getterCurrentPageBlocks(state) {
-        return state.currentPageBlocks
-    },
     getterAddMenuContentLayerXY(state) {
 
         let a = state.addMenuContentLayerXY

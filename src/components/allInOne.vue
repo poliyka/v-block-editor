@@ -132,7 +132,7 @@ export default {
     },
     getCurrentPageBlocks: {
       get() {
-        return this.$store.getters.getterCurrentPageBlocks;
+        return this.$store.state.currentPageBlocks;
       },
       set(value) {
         this.$store.commit("mutationUpdateCurrentPageBlocks", value);
