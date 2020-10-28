@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import { getNextInputIndex } from "@/common.js";
 export default {
   name: "addBlock-content",
   data() {
@@ -109,7 +110,7 @@ export default {
     },
   },
   methods: {
-    addBlock(type) {
+    addBlock(type, data = {}) {
       let addBlockInfo = {
         index: this.currentBlockIndex,
         blockItem: {},
@@ -118,7 +119,7 @@ export default {
         addBlockInfo.blockItem = {
           type: "text",
           data: {
-            text: "",
+            text: data.text,
           },
         };
       }
@@ -127,7 +128,7 @@ export default {
           type: "todo",
           data: {
             isChecked: false,
-            text: "",
+            text: data.text,
           },
         };
       }
@@ -135,7 +136,7 @@ export default {
         addBlockInfo.blockItem = {
           type: "heading1",
           data: {
-            text: "",
+            text: data.text,
           },
         };
       }
@@ -143,7 +144,7 @@ export default {
         addBlockInfo.blockItem = {
           type: "heading2",
           data: {
-            text: "",
+            text: data.text,
           },
         };
       }
@@ -151,7 +152,7 @@ export default {
         addBlockInfo.blockItem = {
           type: "heading3",
           data: {
-            text: "",
+            text: data.text,
           },
         };
       }
@@ -159,7 +160,7 @@ export default {
         addBlockInfo.blockItem = {
           type: "BulletedList",
           data: {
-            text: "",
+            text: data.text,
           },
         };
       }
@@ -167,7 +168,7 @@ export default {
         addBlockInfo.blockItem = {
           type: "hint",
           data: {
-            text: "",
+            text: data.text,
           },
         };
       }
@@ -175,9 +176,9 @@ export default {
         addBlockInfo.blockItem = {
           type: "image",
           data: {
-            src: "",
-            height: "",
-            width: "",
+            src: data.src,
+            height: data.height,
+            width: data.width,
           },
         };
       }
@@ -201,7 +202,11 @@ export default {
       } else {
         // 处理光标的显示问题，新建后，光标也到新建栏
         setTimeout(() => {
-          let nextInput = dom[this.currentBlockIndex + 1].getElementsByTagName(
+          let nextInputIndex = getNextInputIndex(
+            this.currentBlockIndex,
+            this.currentPageBlocks
+          );
+          let nextInput = dom[nextInputIndex].getElementsByTagName(
             "textarea"
           )[0];
           nextInput.focus();

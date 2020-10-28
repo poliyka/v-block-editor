@@ -28,11 +28,10 @@
 </template>
 
 <script>
-import ImageBlockFocusMixin from "@/components/mixin/ImageBlockFocusMixin";
 export default {
   name: "BaseImage",
   props: ["value", "BlocksIndex"],
-  mixins: [ImageBlockFocusMixin],
+  mixins: [],
   components: {},
   data() {
     return {

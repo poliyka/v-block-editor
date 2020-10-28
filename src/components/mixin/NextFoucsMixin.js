@@ -64,6 +64,7 @@ const NextFoucsMixin = {
         this.deleteFlag = false;
       }
     },
+    // FIXME: 需要删掉，然后调用common.js中的函数
     getLastInputIndex(index) {
       let lastInputIndex = index - 1
       let lastBlcok = this.currentPageBlocks[lastInputIndex]
