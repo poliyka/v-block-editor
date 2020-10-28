@@ -8,27 +8,30 @@ const NextFoucsMixin = {
 
       if (event.key === "ArrowUp") {
         if (nowPos === 0 && index !== 0) {
-          let lastInput = dom[index - 1].getElementsByTagName("textarea")[0];
-          console.log(nowPos)
+          let lastInputIndex = this.getLastInputIndex(index)
+          let lastInput = dom[lastInputIndex].getElementsByTagName("textarea")[0];
           lastInput.focus();
         }
       }
       if (event.key === "ArrowDown") {
         if (nowPos === maxPos && index !== this.currentPageBlocks.length - 1) {
-          let nextInput = dom[index + 1].getElementsByTagName("textarea")[0];
+          let nextInputIndex = this.getNextInputIndex(index)
+          let nextInput = dom[nextInputIndex].getElementsByTagName("textarea")[0];
           nextInput.setSelectionRange(0, 0);
           nextInput.focus();
         }
       }
       if (event.key === "ArrowLeft") {
         if (nowPos === 0 && this.toLastInputFlag === true && index !== 0) {
-          let lastInput = dom[index - 1].getElementsByTagName("textarea")[0];
+          let lastInputIndex = this.getLastInputIndex(index)
+          let lastInput = dom[lastInputIndex].getElementsByTagName("textarea")[0];
           lastInput.focus();
         }
       }
       if (event.key === "ArrowRight") {
         if (nowPos === maxPos && this.toNextFlag === true && index !== this.currentPageBlocks.length - 1) {
-          let nextInput = dom[index + 1].getElementsByTagName("textarea")[0];
+          let nextInputIndex = this.getNextInputIndex(index)
+          let nextInput = dom[nextInputIndex].getElementsByTagName("textarea")[0];
           nextInput.setSelectionRange(0, 0);
           nextInput.focus();
         }
@@ -62,6 +65,24 @@ const NextFoucsMixin = {
       }
       // console.log(index, this.toLastInputFlag, this.toNextFlag, nowPos)
     },
+    getLastInputIndex(index) {
+      let lastInputIndex = index - 1
+      let lastBlcok = this.currentPageBlocks[lastInputIndex]
+      while (lastBlcok.type === "image") { // TODO：这里需要改动，现在只是测试
+        lastInputIndex -= 1
+        lastBlcok = this.currentPageBlocks[lastInputIndex]
+      }
+      return lastInputIndex
+    },
+    getNextInputIndex(index) {
+      let nextInputIndex = index + 1
+      let lastBlcok = this.currentPageBlocks[nextInputIndex]
+      while (lastBlcok.type === "image") { // TODO：这里需要改动，现在只是测试
+        nextInputIndex += 1
+        lastBlcok = this.currentPageBlocks[nextInputIndex]
+      }
+      return nextInputIndex
+    }
   },
 }
 
