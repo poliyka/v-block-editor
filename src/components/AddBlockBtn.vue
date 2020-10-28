@@ -37,9 +37,7 @@ export default {
 
       this.$store.commit("mutationAddMenuContentLayerXY", location);
       this.$store.commit("mutationCurrentBlockIndex", this.BlocksIndex);
-      setTimeout(() => {
-        this.$store.commit("mutationIsShowAddMenu", true);
-      }, 50);
+      this.$store.commit("mutationIsShowAddMenu", true);
     },
   },
 };

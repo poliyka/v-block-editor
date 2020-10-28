@@ -32,7 +32,6 @@
 </template>
 
 <script>
-import { getNextInputIndex } from "@/common.js";
 import AddBlockMixin from "@/components/mixin/AddBlockMixin.js";
 
 export default {
