@@ -14,10 +14,12 @@
 <script>
 // 两次回车才是新建text，一次回车是换行（即不需要prevent）
 import BaseTextBlock from "@/components/basicBlockComponents/BaseTextBlock";
+import AddBlockMixin from "@/components/mixin/AddBlockMixin.js";
 
 export default {
   name: "textBlock",
   props: ["value", "BlocksIndex"],
+  mixins: [AddBlockMixin],
   components: {
     BaseTextBlock,
   },
@@ -27,10 +29,8 @@ export default {
   watch: {},
   methods: {
     quickAddBlock(event, index) {
-      let dom = document
-        .getElementsByClassName("block")
-        .getElementsByTagName("textarea")[0];
-      let currInput = dom[index];
+      let dom = document.getElementsByClassName("block");
+      let currInput = dom[index].getElementsByTagName("textarea")[0];
       currInput.disabled = true;
       let e = currInput.getBoundingClientRect();
       let location = { x: e.left - 48, y: e.top + 20 };
@@ -48,7 +48,7 @@ export default {
         event.preventDefault();
         let file = event.clipboardData.files[0];
         let addBlockInfo = {
-          index: this.BlocksIndex,
+          index: this.BlocksIndex - 1,
           blockItem: {
             type: "image",
             data: {
@@ -64,9 +64,16 @@ export default {
         reader.readAsDataURL(file);
         reader.onload = event => {
           imgBase64 = event.target.result;
-          console.log("dsd", imgBase64);
           addBlockInfo.blockItem.data.src = imgBase64;
           this.$store.commit("mutationAddCurrentPageBlocks", addBlockInfo);
+          this.$nextTick(() => {
+            let dom = document.getElementsByClassName("block");
+            let currInput = dom[this.BlocksIndex + 1].getElementsByTagName(
+              "textarea"
+            )[0];
+            console.log(currInput);
+            currInput.focus();
+          });
         };
       }
     },

@@ -33,53 +33,14 @@
 
 <script>
 import { getNextInputIndex } from "@/common.js";
+import AddBlockMixin from "@/components/mixin/AddBlockMixin.js";
+
 export default {
   name: "addBlock-content",
+  mixins: [AddBlockMixin],
   data() {
     return {
       isShowMenu: this.isShowAddMenu,
-      addBlockInfoArray: [
-        {
-          name: "纯文本",
-          tip: "用纯文本开始写内容",
-          type: "text",
-        },
-        {
-          name: "待办清单",
-          tip: "用待办清单去追踪任务",
-          type: "todo",
-        },
-        {
-          name: "标题1",
-          tip: "大字号标题",
-          type: "heading1",
-        },
-        {
-          name: "标题2",
-          tip: "中字号标题",
-          type: "heading2",
-        },
-        {
-          name: "标题3",
-          tip: "小字号标题",
-          type: "heading3",
-        },
-        {
-          name: "符号列表",
-          tip: "大字号标题",
-          type: "BulletedList",
-        },
-        {
-          name: "提示栏",
-          tip: "用于提示比较重要的信息",
-          type: "hint",
-        },
-        {
-          name: "图片",
-          tip: "用于提示比较重要的信息",
-          type: "image",
-        },
-      ],
     };
   },
   watch: {
@@ -108,111 +69,14 @@ export default {
     currentPageBlocks() {
       return this.$store.state.currentPageBlocks;
     },
+    addBlockInfoArray() {
+      return this.$store.state.addBlockInfoArray;
+    },
+    addBlockInfoOject() {
+      return this.$store.getters.getterAddBlockInfoObject;
+    },
   },
   methods: {
-    addBlock(type, data = {}) {
-      let addBlockInfo = {
-        index: this.currentBlockIndex,
-        blockItem: {},
-      };
-      if (type == "text") {
-        addBlockInfo.blockItem = {
-          type: "text",
-          data: {
-            text: data.text,
-          },
-        };
-      }
-      if (type == "todo") {
-        addBlockInfo.blockItem = {
-          type: "todo",
-          data: {
-            isChecked: false,
-            text: data.text,
-          },
-        };
-      }
-      if (type == "heading1") {
-        addBlockInfo.blockItem = {
-          type: "heading1",
-          data: {
-            text: data.text,
-          },
-        };
-      }
-      if (type == "heading2") {
-        addBlockInfo.blockItem = {
-          type: "heading2",
-          data: {
-            text: data.text,
-          },
-        };
-      }
-      if (type == "heading3") {
-        addBlockInfo.blockItem = {
-          type: "heading3",
-          data: {
-            text: data.text,
-          },
-        };
-      }
-      if (type == "BulletedList") {
-        addBlockInfo.blockItem = {
-          type: "BulletedList",
-          data: {
-            text: data.text,
-          },
-        };
-      }
-      if (type == "hint") {
-        addBlockInfo.blockItem = {
-          type: "hint",
-          data: {
-            text: data.text,
-          },
-        };
-      }
-      if (type == "image") {
-        addBlockInfo.blockItem = {
-          type: "image",
-          data: {
-            src: data.src,
-            height: data.height,
-            width: data.width,
-          },
-        };
-      }
-
-      this.$store.commit("mutationAddCurrentPageBlocks", addBlockInfo);
-
-      // 如果是触发添加内容的面板是从text模块显示的模块添加弹窗页面的，并且内容为空
-      let dom = document.getElementsByClassName("block");
-      if (
-        this.currentPageBlocks[this.currentBlockIndex].type == "text" &&
-        this.currentPageBlocks[this.currentBlockIndex].data.text == ""
-      ) {
-        // 处理光标的显示问题，在当前模块显示
-        this.$store.commit("mutationDeletePageBlock", this.currentBlockIndex);
-        setTimeout(() => {
-          let currInput = dom[this.currentBlockIndex].getElementsByTagName(
-            "textarea"
-          )[0];
-          currInput.focus();
-        }, 300);
-      } else {
-        // 处理光标的显示问题，新建后，光标也到新建栏
-        setTimeout(() => {
-          let nextInputIndex = getNextInputIndex(
-            this.currentBlockIndex,
-            this.currentPageBlocks
-          );
-          let nextInput = dom[nextInputIndex].getElementsByTagName(
-            "textarea"
-          )[0];
-          nextInput.focus();
-        }, 300);
-      }
-    },
     getImgUrl(type) {
       return require("@/assets/" + type + ".png");
     },

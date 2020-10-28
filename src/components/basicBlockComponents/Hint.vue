@@ -33,6 +33,7 @@ export default {
 .hint {
   display: flex;
   align-items: center;
+  margin: 10px;
   .hint-bg {
     padding: 20px;
     background: #f2f6fc;
