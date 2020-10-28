@@ -56,7 +56,7 @@ export default {
         let dom = document.getElementsByTagName("textarea");
         let nextInput = dom[index + 1];
         nextInput.focus();
-        console.log(dom[index].value);
+        // console.log(dom[index].value);
         this.v = dom[index].value;
       }
     },

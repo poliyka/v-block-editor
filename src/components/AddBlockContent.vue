@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import { getNextInputIndex } from "@/common.js";
 export default {
   name: "addBlock-content",
   data() {
@@ -76,7 +77,7 @@ export default {
         {
           name: "图片",
           tip: "用于提示比较重要的信息",
-          type: "hint",
+          type: "image",
         },
       ],
     };
@@ -109,7 +110,7 @@ export default {
     },
   },
   methods: {
-    addBlock(type) {
+    addBlock(type, data = {}) {
       let addBlockInfo = {
         index: this.currentBlockIndex,
         blockItem: {},
@@ -118,7 +119,7 @@ export default {
         addBlockInfo.blockItem = {
           type: "text",
           data: {
-            text: "",
+            text: data.text,
           },
         };
       }
@@ -127,7 +128,7 @@ export default {
           type: "todo",
           data: {
             isChecked: false,
-            text: "",
+            text: data.text,
           },
         };
       }
@@ -135,7 +136,7 @@ export default {
         addBlockInfo.blockItem = {
           type: "heading1",
           data: {
-            text: "",
+            text: data.text,
           },
         };
       }
@@ -143,7 +144,7 @@ export default {
         addBlockInfo.blockItem = {
           type: "heading2",
           data: {
-            text: "",
+            text: data.text,
           },
         };
       }
@@ -151,7 +152,7 @@ export default {
         addBlockInfo.blockItem = {
           type: "heading3",
           data: {
-            text: "",
+            text: data.text,
           },
         };
       }
@@ -159,7 +160,7 @@ export default {
         addBlockInfo.blockItem = {
           type: "BulletedList",
           data: {
-            text: "",
+            text: data.text,
           },
         };
       }
@@ -167,7 +168,17 @@ export default {
         addBlockInfo.blockItem = {
           type: "hint",
           data: {
-            text: "",
+            text: data.text,
+          },
+        };
+      }
+      if (type == "image") {
+        addBlockInfo.blockItem = {
+          type: "image",
+          data: {
+            src: data.src,
+            height: data.height,
+            width: data.width,
           },
         };
       }
@@ -175,21 +186,29 @@ export default {
       this.$store.commit("mutationAddCurrentPageBlocks", addBlockInfo);
 
       // 如果是触发添加内容的面板是从text模块显示的模块添加弹窗页面的，并且内容为空
-      let dom = document.getElementsByTagName("textarea");
+      let dom = document.getElementsByClassName("block");
       if (
         this.currentPageBlocks[this.currentBlockIndex].type == "text" &&
         this.currentPageBlocks[this.currentBlockIndex].data.text == ""
       ) {
         // 处理光标的显示问题，在当前模块显示
-        this.currentPageBlocks.splice(this.currentBlockIndex, 1);
+        this.$store.commit("mutationDeletePageBlock", this.currentBlockIndex);
         setTimeout(() => {
-          let currInput = dom[this.currentBlockIndex];
+          let currInput = dom[this.currentBlockIndex].getElementsByTagName(
+            "textarea"
+          )[0];
           currInput.focus();
         }, 300);
       } else {
         // 处理光标的显示问题，新建后，光标也到新建栏
         setTimeout(() => {
-          let nextInput = dom[this.currentBlockIndex + 1];
+          let nextInputIndex = getNextInputIndex(
+            this.currentBlockIndex,
+            this.currentPageBlocks
+          );
+          let nextInput = dom[nextInputIndex].getElementsByTagName(
+            "textarea"
+          )[0];
           nextInput.focus();
         }, 300);
       }
