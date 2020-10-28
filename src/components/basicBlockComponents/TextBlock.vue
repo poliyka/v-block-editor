@@ -6,6 +6,7 @@
       placeholder="点击 Alt 键快速插入内容"
       @keydown.alt.exact.prevent.native="quickAddBlock($event, BlocksIndex)"
       :allowNewLine="true"
+      @paste.native="onPaste($event)"
     ></BaseTextBlock>
   </div>
 </template>
@@ -40,6 +41,34 @@ export default {
         this.$store.commit("mutationIsShowAddMenu", true);
       }, 50);
       currInput.disabled = false;
+    },
+    // 劫持黏贴事件
+    onPaste(event) {
+      if (event.clipboardData.files[0] !== undefined) {
+        event.preventDefault();
+        let file = event.clipboardData.files[0];
+        let addBlockInfo = {
+          index: this.BlocksIndex,
+          blockItem: {
+            type: "image",
+            data: {
+              src: "",
+              height: "200px",
+              // width: "",
+            },
+          },
+        };
+
+        let imgBase64 = "";
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = event => {
+          imgBase64 = event.target.result;
+          console.log("dsd", imgBase64);
+          addBlockInfo.blockItem.data.src = imgBase64;
+          this.$store.commit("mutationAddCurrentPageBlocks", addBlockInfo);
+        };
+      }
     },
   },
   computed: {},

@@ -63,7 +63,6 @@ const NextFoucsMixin = {
       } else {
         this.deleteFlag = false;
       }
-      // console.log(index, this.toLastInputFlag, this.toNextFlag, nowPos)
     },
     getLastInputIndex(index) {
       let lastInputIndex = index - 1

@@ -76,7 +76,7 @@ export default {
         {
           name: "图片",
           tip: "用于提示比较重要的信息",
-          type: "hint",
+          type: "image",
         },
       ],
     };
@@ -168,6 +168,16 @@ export default {
           type: "hint",
           data: {
             text: "",
+          },
+        };
+      }
+      if (type == "image") {
+        addBlockInfo.blockItem = {
+          type: "image",
+          data: {
+            src: "",
+            height: "",
+            width: "",
           },
         };
       }
