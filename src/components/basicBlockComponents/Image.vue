@@ -28,6 +28,7 @@
 </template>
 
 <script>
+// 添加图片的居中，居左，居右功能
 export default {
   name: "BaseImage",
   props: ["value", "BlocksIndex"],

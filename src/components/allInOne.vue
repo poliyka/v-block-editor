@@ -83,7 +83,13 @@
 </template>
 
 <script>
-// 引入vuedraggable拖拽组件
+// TODO:添加addBlock,deleteBlock,moveBlock,changeBlock等事件
+// TODO:图片的上传设置
+// TODO:emoji的添加组件
+// TODO:将BulletedList作为一个组件，内部添加多个无序列表
+// TODO:添加代码框以及高亮功能
+// TODO:添加撤销redo,undo功能
+// TODO:添加全局快捷键
 import draggable from "vuedraggable";
 // 编写的模块组件
 import AddBlockBtn from "@/components/AddBlockBtn";
@@ -97,7 +103,6 @@ import BulletedList from "@/components/basicBlockComponents/BulletedList";
 import Hint from "@/components/basicBlockComponents/Hint";
 import BaseImage from "@/components/basicBlockComponents/Image";
 export default {
-  //import引入的组件需要注入到对象中才能使用
   name: "AllInOne",
   components: {
     draggable,
