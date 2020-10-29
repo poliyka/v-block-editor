@@ -1,3 +1,8 @@
+import {
+  getNextInputIndex,
+  getLastInputIndex
+} from "@/common.js";
+
 const NextFoucsMixin = {
   methods: {
     nextFocus(event, index) {
@@ -8,14 +13,14 @@ const NextFoucsMixin = {
 
       if (event.key === "ArrowUp") {
         if (nowPos === 0 && index !== 0) {
-          let lastInputIndex = this.getLastInputIndex(index)
+          let lastInputIndex = getLastInputIndex(index, this.currentPageBlocks)
           let lastInput = dom[lastInputIndex].getElementsByTagName("textarea")[0];
           lastInput.focus();
         }
       }
       if (event.key === "ArrowDown") {
         if (nowPos === maxPos && index !== this.currentPageBlocks.length - 1) {
-          let nextInputIndex = this.getNextInputIndex(index)
+          let nextInputIndex = getNextInputIndex(index, this.currentPageBlocks)
           let nextInput = dom[nextInputIndex].getElementsByTagName("textarea")[0];
           nextInput.setSelectionRange(0, 0);
           nextInput.focus();
@@ -23,14 +28,14 @@ const NextFoucsMixin = {
       }
       if (event.key === "ArrowLeft") {
         if (nowPos === 0 && this.toLastInputFlag === true && index !== 0) {
-          let lastInputIndex = this.getLastInputIndex(index)
+          let lastInputIndex = getLastInputIndex(index, this.currentPageBlocks)
           let lastInput = dom[lastInputIndex].getElementsByTagName("textarea")[0];
           lastInput.focus();
         }
       }
       if (event.key === "ArrowRight") {
         if (nowPos === maxPos && this.toNextFlag === true && index !== this.currentPageBlocks.length - 1) {
-          let nextInputIndex = this.getNextInputIndex(index)
+          let nextInputIndex = getNextInputIndex(index, this.currentPageBlocks)
           let nextInput = dom[nextInputIndex].getElementsByTagName("textarea")[0];
           nextInput.setSelectionRange(0, 0);
           nextInput.focus();
@@ -64,25 +69,6 @@ const NextFoucsMixin = {
         this.deleteFlag = false;
       }
     },
-    // FIXME: 需要删掉，然后调用common.js中的函数
-    getLastInputIndex(index) {
-      let lastInputIndex = index - 1
-      let lastBlcok = this.currentPageBlocks[lastInputIndex]
-      while (lastBlcok.type === "image") { // TODO：这里需要改动，现在只是测试
-        lastInputIndex -= 1
-        lastBlcok = this.currentPageBlocks[lastInputIndex]
-      }
-      return lastInputIndex
-    },
-    getNextInputIndex(index) {
-      let nextInputIndex = index + 1
-      let lastBlcok = this.currentPageBlocks[nextInputIndex]
-      while (lastBlcok.type === "image") { // TODO：这里需要改动，现在只是测试
-        nextInputIndex += 1
-        lastBlcok = this.currentPageBlocks[nextInputIndex]
-      }
-      return nextInputIndex
-    }
   },
 }
 

@@ -5,7 +5,6 @@
         :value="value"
         :BlocksIndex="BlocksIndex"
         placeholder="输入需要提示的内容"
-        :allowNewLine="true"
       ></BaseTextBlock>
     </div>
   </div>

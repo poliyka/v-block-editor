@@ -5,7 +5,6 @@
     style="z-index: 2001"
     @mousewheel.prevent
   >
-    <!-- {{getterAddMenuContentLayerXY}} -->
     <div
       class="dropdown-menu"
       :style="{
