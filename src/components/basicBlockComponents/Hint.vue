@@ -5,13 +5,14 @@
         :value="value"
         :BlocksIndex="BlocksIndex"
         placeholder="输入需要提示的内容"
+        @keypress.enter.capture.stop.native
       ></BaseTextBlock>
     </div>
   </div>
 </template>
 
 <script>
-// 两次回车才是新建text，一次回车是换行（即不需要prevent）
+// 自定义左侧的颜色
 import BaseTextBlock from "@/components/basicBlockComponents/BaseTextBlock";
 export default {
   name: "hint",

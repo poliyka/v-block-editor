@@ -26,9 +26,6 @@ export default {
     return {
       mValue: this.value,
       deleteFlag: true,
-      toLastInputFlag: true, // 判断键盘方向键的Flag
-      // 判断是否 Enter 连续按了两次
-      v: "",
     };
   },
   watch: {
@@ -68,10 +65,7 @@ export default {
         );
         this.mValue.text = this.mValue.text.slice(0, startPos);
       }
-      console.log(startPos, addBlockInfo, this.mValue.text.length, currInput);
-
       // 提交数据到vuex
-
       this.$store.commit("mutationAddCurrentPageBlocks", addBlockInfo);
       this.$nextTick(() => {
         let currInput = dom[index + 1].getElementsByTagName("textarea")[0];
