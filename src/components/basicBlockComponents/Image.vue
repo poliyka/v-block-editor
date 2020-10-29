@@ -10,13 +10,13 @@
     <el-dialog title="编辑" :visible.sync="visible">
       <el-form :model="mValue">
         <el-form-item label="url" :label-width="formLabelWidth">
-          <el-input v-model="mValue.src" autocomplete="off"></el-input>
+          <el-input v-model="mValue.src"></el-input>
         </el-form-item>
         <el-form-item label="高度" :label-width="formLabelWidth">
-          <el-input v-model="mValue.width" autocomplete="off"></el-input>
+          <el-input v-model="mValue.width"></el-input>
         </el-form-item>
         <el-form-item label="宽度" :label-width="formLabelWidth">
-          <el-input v-model="mValue.height" autocomplete="off"></el-input>
+          <el-input v-model="mValue.height"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -50,9 +50,6 @@ export default {
   },
   methods: {
     updaet() {},
-    test() {
-      this.dialogFormVisible = true;
-    },
   },
   computed: {
     currentPageBlocks() {

@@ -16,12 +16,12 @@ const AddBlockMixin = {
       if (isEmptyObject(data)) {
         addBlockInfo.blockItem = {
           type: type,
-          data: data,
+          data: blockInfo.data,
         };
       } else {
         addBlockInfo.blockItem = {
           type: type,
-          data: blockInfo.data,
+          data: data,
         };
       }
       this.$store.commit("mutationAddCurrentPageBlocks", addBlockInfo);

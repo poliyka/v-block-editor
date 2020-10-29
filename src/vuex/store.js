@@ -271,6 +271,7 @@ const state = {
       type: "hint",
       data: {
         text: "",
+        color: "#409eff",
       },
     },
     {
@@ -279,7 +280,7 @@ const state = {
       type: "image",
       data: {
         src: "",
-        width: "",
+        height: "200px",
       },
     },
   ],
