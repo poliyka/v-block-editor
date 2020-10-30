@@ -307,6 +307,10 @@ const mutations = {
   mutationUpdateCurrentPageBlocks(state, blocks) {
     state.currentPageBlocks = blocks
   },
+  mutationUpdateOneBlock(state, block) {
+    let index = block.index
+    state.currentPageBlocks[index] = state.blockItem
+  },
   mutationUpdateDialogFormVisible(state, status) {
     state.dialogFormVisible = status
   }

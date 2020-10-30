@@ -10,7 +10,7 @@
     </div>
     <el-dialog title="编辑" :visible.sync="visible">
       <el-form :model="mValue">
-        <el-form-item label="颜色" :label-width="formLabelWidth">
+        <el-form-item label="颜色" label-width="120px">
           <el-select
             v-model="mValue.color"
             filterable
@@ -33,7 +33,7 @@
           </el-select>
           <el-tag style="margin-left: 5px">支持 hex 色码</el-tag>
         </el-form-item>
-        <el-form-item label="文字" :label-width="formLabelWidth">
+        <el-form-item label="文字" label-width="120px">
           <el-input v-model="mValue.text"></el-input>
         </el-form-item>
       </el-form>
@@ -74,7 +74,24 @@ export default {
       ],
     };
   },
-  watch: {},
+  watch: {
+    mValue: {
+      handler(newVal, oldVal) {
+        let blockInfo = {
+          index: this.BlocksIndex,
+          blockItem: {
+            type: this.$options.name,
+            data: {
+              text: newVal.text,
+              color: newVal.color,
+            },
+          },
+        };
+        this.$store.commit("mutationUpdateOneBlock", blockInfo);
+      },
+      deep: true,
+    },
+  },
   methods: {},
   computed: {
     customStyle() {
