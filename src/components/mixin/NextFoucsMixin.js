@@ -48,7 +48,13 @@ const NextFoucsMixin = {
           this.deleteFlag === true
         ) {
           this.$store.commit("mutationDeletePageBlock", index);
-          lastInput.focus();
+          this.$nextTick(() => {
+            let dom = document.getElementsByClassName("block");
+            let lastInputIndex = getLastInputIndex(index, this.currentPageBlocks)
+            let lastInput = dom[lastInputIndex].getElementsByTagName("textarea")[0];
+            lastInput.focus();
+          })
+
         }
       }
       if (nowPos === 0) {
