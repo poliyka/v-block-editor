@@ -1,18 +1,20 @@
 <template>
-  <div class="hint">
-    <div class="hint-bg" :id="BlocksIndex" :style="customStyle">
-      <BaseTextBlock
-        :value="value"
-        :BlocksIndex="BlocksIndex"
-        placeholder="输入需要提示的内容"
-        @keypress.enter.capture.stop.native
-      ></BaseTextBlock>
+  <div>
+    <div class="hint">
+      <div class="hint-bg" :id="BlocksIndex" :style="customStyle">
+        <BaseTextBlock
+          :value="value"
+          :BlocksIndex="BlocksIndex"
+          placeholder="输入需要提示的内容"
+          @keypress.enter.capture.stop.native
+        ></BaseTextBlock>
+      </div>
     </div>
-    <el-dialog title="编辑" :visible.sync="visible">
-      <el-form :model="mValue">
+    <el-dialog title="编辑" :visible.sync="visible" @closed="close">
+      <el-form :model="formData">
         <el-form-item label="颜色" label-width="120px">
           <el-select
-            v-model="mValue.color"
+            v-model="formData.color"
             filterable
             allow-create
             placeholder="请选择颜色"
@@ -34,12 +36,14 @@
           <el-tag style="margin-left: 5px">支持 hex 色码</el-tag>
         </el-form-item>
         <el-form-item label="文字" label-width="120px">
-          <el-input v-model="mValue.text"></el-input>
+          <el-input v-model="formData.text" autosize type="textarea"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="visible = false">取 消</el-button>
-        <el-button type="primary" @click="visible = false">确 定</el-button>
+        <el-button type="primary" @click="updateBlock(formData)"
+          >确 定</el-button
+        >
       </div>
     </el-dialog>
   </div>
@@ -72,35 +76,39 @@ export default {
           label: "灰色",
         },
       ],
+      formData: {
+        text: this.value.text,
+        color: this.value.color || "#409eff",
+      },
     };
   },
-  watch: {
-    mValue: {
-      handler(newVal, oldVal) {
-        let blockInfo = {
-          index: this.BlocksIndex,
-          blockItem: {
-            type: this.$options.name,
-            data: {
-              text: newVal.text,
-              color: newVal.color,
-            },
+  watch: {},
+  methods: {
+    updateBlock(formData) {
+      let blockInfo = {
+        index: this.BlocksIndex,
+        blockItem: {
+          type: this.$options.name,
+          data: {
+            text: formData.text,
+            color: formData.color,
           },
-        };
-        this.$store.commit("mutationUpdateOneBlock", blockInfo);
-      },
-      deep: true,
+        },
+      };
+      this.$store.commit("mutationUpdateOneBlock", blockInfo);
+      this.visible = false;
+    },
+    close() {
+      this.formData = {
+        text: this.value.text,
+        color: this.value.color || "#409eff",
+      };
     },
   },
-  methods: {},
   computed: {
     customStyle() {
-      let color = "#409eff";
-      if (this.mValue.color) {
-        color = this.mValue.color;
-      }
       return {
-        borderColor: color,
+        borderColor: this.value.color || "#409eff",
       };
     },
     dialogFormVisible() {

@@ -29,9 +29,17 @@ export default {
     };
   },
   watch: {
-    mValue(val) {
-      //本地值改变传给父组件
-      this.$emit("input", val);
+    "mValue.text": {
+      handler(val) {
+        //本地值改变传给父组件
+        this.$emit("input", val);
+
+        let blockInfo = {
+          index: this.BlocksIndex,
+          text: val,
+        };
+        this.$store.commit("mutationUpdateInputBlockText", blockInfo);
+      },
     },
     value(val) {
       this.mValue = val;
@@ -39,7 +47,6 @@ export default {
   },
   methods: {
     addNewTextBlock(event, index) {
-      // event.preventDefault();
       let dom = document.getElementsByClassName("block");
       let currInput = dom[index].getElementsByTagName("textarea")[0];
       let startPos = currInput.selectionStart;

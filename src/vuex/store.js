@@ -309,7 +309,11 @@ const mutations = {
   },
   mutationUpdateOneBlock(state, block) {
     let index = block.index
-    state.currentPageBlocks[index] = state.blockItem
+    state.currentPageBlocks.splice(index, 1, block.blockItem);
+  },
+  mutationUpdateInputBlockText(state, block) {
+    let index = block.index
+    state.currentPageBlocks[index].data.text = block.text
   },
   mutationUpdateDialogFormVisible(state, status) {
     state.dialogFormVisible = status
