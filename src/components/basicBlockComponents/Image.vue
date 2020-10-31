@@ -1,5 +1,5 @@
 <template>
-  <div class="image" @keyup="nextFocus($event, BlocksIndex)">
+  <div class="image">
     <img
       :src="mValue.src"
       :width="mValue.width"
@@ -7,21 +7,23 @@
       @click="visible = true"
     />
 
-    <el-dialog title="编辑" :visible.sync="visible">
-      <el-form :model="mValue">
+    <el-dialog title="编辑" :visible.sync="visible" @closed="close">
+      <el-form :model="formData">
         <el-form-item label="url" :label-width="formLabelWidth">
-          <el-input v-model="mValue.src"></el-input>
+          <el-input v-model="formData.src"></el-input>
         </el-form-item>
         <el-form-item label="高度" :label-width="formLabelWidth">
-          <el-input v-model="mValue.width"></el-input>
+          <el-input v-model="formData.width"></el-input>
         </el-form-item>
         <el-form-item label="宽度" :label-width="formLabelWidth">
-          <el-input v-model="mValue.height"></el-input>
+          <el-input v-model="formData.height"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="visible = false">取 消</el-button>
-        <el-button type="primary" @click="visible = false">确 定</el-button>
+        <el-button type="primary" @click="updateBlock(formData)"
+          >确 定</el-button
+        >
       </div>
     </el-dialog>
   </div>
@@ -32,12 +34,16 @@
 export default {
   name: "BaseImage",
   props: ["value", "BlocksIndex"],
-  mixins: [],
   components: {},
   data() {
     return {
       mValue: this.value,
       formLabelWidth: "120px",
+      formData: {
+        src: this.value.src,
+        height: this.value.height,
+        width: this.width,
+      },
     };
   },
   mounted: function () {},
@@ -50,7 +56,24 @@ export default {
     },
   },
   methods: {
-    updaet() {},
+    updateBlock(formData) {
+      let blockInfo = {
+        index: this.BlocksIndex,
+        blockItem: {
+          type: "image",
+          data: {
+            src: formData.src,
+            height: formData.height,
+            width: formData.width,
+          },
+        },
+      };
+      this.$store.commit("mutationUpdateOneBlock", blockInfo);
+      this.visible = false;
+    },
+    close() {
+      this.formData = this.lodash.cloneDeep(this.mValue);
+    },
   },
   computed: {
     currentPageBlocks() {
