@@ -343,8 +343,9 @@ const getters = {
     return blockObject
   }
 }
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state,
   mutations,
   getters
 })
+export default store

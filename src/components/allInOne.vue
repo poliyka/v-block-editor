@@ -102,6 +102,9 @@ import Heading3 from "@/components/basicBlockComponents/Heading3";
 import BulletedList from "@/components/basicBlockComponents/BulletedList";
 import Hint from "@/components/basicBlockComponents/Hint";
 import BaseImage from "@/components/basicBlockComponents/Image";
+import store from "@/vuex/store.js";
+import Vue from "vue";
+// import { set } from "vue/types/umd";
 export default {
   name: "AllInOne",
   components: {
@@ -129,7 +132,84 @@ export default {
   data() {
     return {
       dragging: false,
+      historicalRecord: "",
     };
+  },
+  mounted() {
+    class HistoryRecord {
+      constructor() {
+        const { maxStack, delay } = {
+          maxStack: 100, // 最多100步
+          delay: 3000, // 3s算一次操作
+        };
+        this.actionPoints = []; // 快照数组
+        this.step = 0; // 当前位置
+        this.maxStack = maxStack;
+        (this.delay = delay), (this.updateTime = 0); // 上次的操作时间
+        this.init();
+      }
+
+      init() {
+        this._event_bind(); // 快捷键绑定
+        this.actionPoints.push(
+          Vue.lodash.cloneDeep(store.state.currentPageBlocks)
+        ); // push首次数据
+      }
+
+      push(type, data) {
+        const curTime = Date.now();
+        // const isChange = diff(data, this.actionPoints[this.step]);
+        // if (!isChange) return; // 数据没变直接返回
+        // 对应前面说的 原理C， 3s一次
+        if (curTime - this.updateTime < this.delay) {
+          this.actionPoints[this.step] = data;
+          return;
+        }
+
+        // 对应前面说的 原理B， 发现撤销过又有新的操作
+        if (this.actionPoints.length - 1 > this.step) {
+          this.actionPoints.splice(this.step + 1);
+        }
+
+        this.actionPoints.push(data);
+        this.step++;
+
+        // 对应前面说的 原理D， 长度超出了
+        if (this.actionPoints.length > this.maxStack) {
+          this.actionPoints.shift();
+          this.step--;
+        }
+        this.updateTime = curTime;
+      }
+      undo() {
+        if (this.step <= 0) return;
+        this.step--;
+        this.reset();
+      }
+      redo() {
+        if (this.step + 1 >= this.actionPoints.length) return;
+        this.step++;
+        this.reset();
+      }
+      reset() {
+        this.updateTime = Date.now();
+        let data = this.actionPoints[this.step];
+        // console.log(this.actionPoints, data, this.step);
+        store.commit("mutationUpdateCurrentPageBlocks", data);
+      }
+      _event_bind() {
+        document.addEventListener("keydown", e => {
+          if ((e.metaKey || e.ctrlKey) && e.keyCode === 90) {
+            this.undo();
+          }
+          if ((e.metaKey || e.ctrlKey) && e.keyCode === 89) {
+            this.redo();
+          }
+        });
+      }
+    }
+    this.historicalRecord = new HistoryRecord();
+    this.subscribe();
   },
   computed: {
     isShowAddMenu() {
@@ -176,6 +256,22 @@ export default {
     setVisibleData(index) {
       this.dialogFormVisible = true;
       this.$store.commit("mutationCurrentBlockIndex", index);
+    },
+    subscribe() {
+      // 需要监控的 mutation
+      let allowMutationSet = new Set([
+        "mutationAddCurrentPageBlocks",
+        "mutationDeletePageBlock",
+        "mutationUpdateOneBlock",
+        "mutationUpdateInputBlockText",
+        "mutationUpdateCurrentPageBlocks",
+      ]);
+      this.$store.subscribe(({ type }, state) => {
+        if (allowMutationSet.has(type)) {
+          const data = this.lodash.cloneDeep(state.currentPageBlocks);
+          this.historicalRecord.push(type, data);
+        }
+      });
     },
   },
 };
