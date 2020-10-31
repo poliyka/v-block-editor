@@ -1,17 +1,15 @@
 <template>
-  <el-input
-    type="textarea"
-    autosize
-    v-model="mValue.text"
+  <BaseInput
+    :style="customStyle"
+    :BlocksIndex="BlocksIndex"
+    :value="mValue"
     :placeholder="placeholder"
     @keypress.enter.prevent.native="addNewTextBlock($event, BlocksIndex)"
-    @keyup.native="nextFocus($event, BlocksIndex)"
-    :style="customStyle"
-  ></el-input>
+  ></BaseInput>
 </template>
 
 <script>
-import NextFoucsMixin from "@/components/mixin/NextFoucsMixin";
+import BaseInput from "@/components/basicBlockComponents/BaseInput";
 
 export default {
   name: "BaseTextBlock",
@@ -21,26 +19,15 @@ export default {
     customStyle: Object,
     placeholder: String,
   },
-  mixins: [NextFoucsMixin],
+  components: {
+    BaseInput,
+  },
   data() {
     return {
       mValue: this.value,
-      deleteFlag: true,
     };
   },
   watch: {
-    "mValue.text": {
-      handler(val) {
-        //本地值改变传给父组件
-        this.$emit("input", val);
-
-        let blockInfo = {
-          index: this.BlocksIndex,
-          text: val,
-        };
-        this.$store.commit("mutationUpdateInputBlockText", blockInfo);
-      },
-    },
     value(val) {
       this.mValue = val;
     },
@@ -80,11 +67,7 @@ export default {
       });
     },
   },
-  computed: {
-    currentPageBlocks() {
-      return this.$store.state.currentPageBlocks;
-    },
-  },
+  computed: {},
 };
 </script>
 

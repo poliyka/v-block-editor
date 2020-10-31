@@ -1,29 +1,26 @@
 <template>
   <div class="BaseListBlock">
     <slot></slot>
-    <el-input
-      type="textarea"
-      autosize
-      v-model="mValue.text"
+    <BaseInput
+      :BlocksIndex="BlocksIndex"
+      :value="mValue"
       :placeholder="placeholder"
       @keypress.enter.prevent.native="addNewTextBlock($event, BlocksIndex)"
-      @keyup.native="nextFocus($event, BlocksIndex)"
       @keyup.enter.prevent.native="enterMethod($event, BlocksIndex)"
-    ></el-input>
+    ></BaseInput>
   </div>
 </template>
 
 <script>
-import NextFoucsMixin from "@/components/mixin/NextFoucsMixin";
-import ListBlockMixin from "@/components/mixin/ListBlockMixin";
+import BaseInput from "@/components/basicBlockComponents/BaseInput";
+
 export default {
   name: "BaseListBlock",
   props: ["value", "BlocksIndex", "placeholder"],
-  mixins: [NextFoucsMixin],
+  components: { BaseInput },
   data() {
     return {
       mValue: this.value,
-      deleteFlag: true,
       paremtName: this.$options.parent.$options.name,
       toLastInputFlag: true,
       toNextFlag: true,
@@ -83,11 +80,7 @@ export default {
       }
     },
   },
-  computed: {
-    currentPageBlocks() {
-      return this.$store.state.currentPageBlocks;
-    },
-  },
+  computed: {},
 };
 </script>
 
