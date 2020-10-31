@@ -2,7 +2,7 @@
   <BaseInput
     :style="customStyle"
     :BlocksIndex="BlocksIndex"
-    :value="mValue"
+    v-model="mValue.text"
     :placeholder="placeholder"
     @keypress.enter.prevent.native="addNewTextBlock($event, BlocksIndex)"
   ></BaseInput>

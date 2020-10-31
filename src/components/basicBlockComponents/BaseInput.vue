@@ -2,7 +2,7 @@
   <el-input
     type="textarea"
     autosize
-    v-model="mValue.text"
+    v-model="mValue"
     :placeholder="placeholder"
     @keyup.native="nextFocus($event, BlocksIndex)"
   ></el-input>
@@ -14,7 +14,7 @@ import NextFoucsMixin from "@/components/mixin/NextFoucsMixin";
 export default {
   name: "BaseTextBlock",
   props: {
-    value: Object,
+    value: String,
     BlocksIndex: Number,
     placeholder: String,
   },
@@ -25,7 +25,7 @@ export default {
     };
   },
   watch: {
-    "mValue.text": {
+    mValue: {
       handler(val) {
         //本地值改变传给父组件
         this.$emit("input", val);
@@ -42,6 +42,10 @@ export default {
     },
   },
   methods: {},
-  computed: {},
+  computed: {
+    currentPageBlocks() {
+      return this.$store.state.currentPageBlocks;
+    },
+  },
 };
 </script>

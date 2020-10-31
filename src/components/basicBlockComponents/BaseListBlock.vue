@@ -3,7 +3,7 @@
     <slot></slot>
     <BaseInput
       :BlocksIndex="BlocksIndex"
-      :value="mValue"
+      v-model="mValue.text"
       :placeholder="placeholder"
       @keypress.enter.prevent.native="addNewTextBlock($event, BlocksIndex)"
       @keyup.enter.prevent.native="enterMethod($event, BlocksIndex)"
