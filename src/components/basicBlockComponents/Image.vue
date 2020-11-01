@@ -4,7 +4,8 @@
       :src="mValue.src"
       :width="mValue.width"
       :height="mValue.height"
-      @click="visible = true"
+      @keyup.delete.prevent="deleteBlock(BlocksIndex)"
+      tabindex="0"
     />
 
     <el-dialog title="编辑" :visible.sync="visible" @closed="close">
@@ -56,6 +57,10 @@ export default {
     },
   },
   methods: {
+    deleteBlock(index) {
+      console.log("delete");
+      this.$store.commit("mutationDeletePageBlock", index);
+    },
     updateBlock(formData) {
       let blockInfo = {
         index: this.BlocksIndex,
