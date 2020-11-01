@@ -88,7 +88,6 @@
 // TODO:emoji的添加组件
 // TODO:将BulletedList作为一个组件，内部添加多个无序列表
 // TODO:添加代码框以及高亮功能
-// TODO:添加撤销redo,undo功能
 // TODO:添加全局快捷键
 import draggable from "vuedraggable";
 // 编写的模块组件
@@ -104,9 +103,9 @@ import Hint from "@/components/basicBlockComponents/Hint";
 import BaseImage from "@/components/basicBlockComponents/Image";
 import store from "@/vuex/store.js";
 import Vue from "vue";
-// import { set } from "vue/types/umd";
+
 export default {
-  name: "AllInOne",
+  name: "blockEditor",
   components: {
     draggable,
     AddBlockBtn,

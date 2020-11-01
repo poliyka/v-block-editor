@@ -24,10 +24,26 @@
       ></el-switch>
     </div>
     <div>
-      <allInOne :readOnly="readOnly"></allInOne>
+      <blockEditor :readOnly="readOnly"></blockEditor>
     </div>
   </div>
 </template>
+
+
+<script>
+import blockEditor from "@/components/blockEditor";
+export default {
+  name: "Home",
+  components: { blockEditor },
+  data() {
+    return { readOnly: false };
+  },
+  computed: {},
+  watch: {},
+  mounted() {},
+};
+</script>
+
 
 <style lang="less">
 .home {
@@ -55,20 +71,3 @@
   }
 }
 </style>
-
-
-<script>
-import allInOne from "@/components/allInOne";
-export default {
-  name: "Home",
-  components: { allInOne },
-  data() {
-    return { readOnly: false };
-  },
-  computed: {},
-  watch: {},
-  mounted() {},
-};
-</script>
-
-
