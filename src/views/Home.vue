@@ -24,7 +24,11 @@
       ></el-switch>
     </div>
     <div>
-      <blockEditor :readOnly="readOnly"></blockEditor>
+      <blockEditor
+        :readOnly="readOnly"
+        :currentPageBlocks="currentPageBlocks"
+        @change="change"
+      ></blockEditor>
     </div>
   </div>
 </template>
@@ -32,15 +36,23 @@
 
 <script>
 import blockEditor from "@/components/blockEditor";
+import currentPageBlocks from "@/mock/data.js";
+
 export default {
   name: "Home",
   components: { blockEditor },
   data() {
-    return { readOnly: false };
+    return { readOnly: false, currentPageBlocks: currentPageBlocks };
   },
   computed: {},
   watch: {},
   mounted() {},
+  methods: {
+    change(value) {
+      console.log("blockChange", value);
+      // console.log(value);
+    },
+  },
 };
 </script>
 

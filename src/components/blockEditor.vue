@@ -136,7 +136,13 @@ export default {
     delay: {
       type: Number,
       default: function () {
-        return 3000;
+        return 2000;
+      },
+    },
+    currentPageBlocks: {
+      type: Array,
+      default: function () {
+        return [];
       },
     },
   },
@@ -146,8 +152,12 @@ export default {
     };
   },
   mounted() {
+    this.$store.commit(
+      "mutationUpdateCurrentPageBlocks",
+      this.currentPageBlocks
+    );
     class HistoryRecord {
-      constructor(maxStack = 100, delay = 3000) {
+      constructor(maxStack = 100, delay = 2000) {
         this.actionPoints = []; // 快照数组
         this.step = 0; // 当前位置
         this.maxStack = maxStack; // 最大容量
@@ -214,7 +224,7 @@ export default {
         });
       }
     }
-    this.historicalRecord = new HistoryRecord();
+    this.historicalRecord = new HistoryRecord(this.maxStack, this.delay);
     this.subscribe();
   },
   computed: {
@@ -274,6 +284,8 @@ export default {
       ]);
       this.$store.subscribe(({ type }, state) => {
         if (allowMutationSet.has(type)) {
+          // TODO:还需要返回type，比如有 add,delete,drabbagle,textChangeds
+          this.$emit("change", state.currentPageBlocks);
           const data = this.lodash.cloneDeep(state.currentPageBlocks);
           this.historicalRecord.push(type, data);
         }
