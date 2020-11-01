@@ -1,5 +1,5 @@
 <template>
-  <div class="container-870">
+  <div class="container-870" id="blockEditor">
     <!-- 添加组件的弹窗 -->
     <AddBlockContent></AddBlockContent>
     <draggable
@@ -128,24 +128,32 @@ export default {
         return false;
       },
     },
+    maxStack: {
+      type: Number,
+      default: function () {
+        return 100;
+      },
+    },
+    delay: {
+      type: Number,
+      default: function () {
+        return 3000;
+      },
+    },
   },
   data() {
     return {
-      dragging: false,
       historicalRecord: "",
     };
   },
   mounted() {
     class HistoryRecord {
-      constructor() {
-        const { maxStack, delay } = {
-          maxStack: 100, // 最多100步
-          delay: 3000, // 3s算一次操作
-        };
+      constructor(maxStack = 100, delay = 3000) {
         this.actionPoints = []; // 快照数组
         this.step = 0; // 当前位置
-        this.maxStack = maxStack;
-        (this.delay = delay), (this.updateTime = 0); // 上次的操作时间
+        this.maxStack = maxStack; // 最大容量
+        this.delay = delay; //延迟时间，默认3000毫秒
+        this.updateTime = 0; // 上次的操作时间
         this.init();
       }
 
@@ -194,7 +202,6 @@ export default {
       reset() {
         this.updateTime = Date.now();
         let data = this.actionPoints[this.step];
-        // console.log(this.actionPoints, data, this.step);
         store.commit("mutationUpdateCurrentPageBlocks", data);
       }
       _event_bind() {
