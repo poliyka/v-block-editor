@@ -9,6 +9,7 @@
 </template>
 
 <script>
+
 import NextFoucsMixin from "@/components/mixin/NextFoucsMixin";
 
 export default {
@@ -49,3 +50,10 @@ export default {
   },
 };
 </script>
+
+<style lang="less">
+.el-textarea {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+</style>

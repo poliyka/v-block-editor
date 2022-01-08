@@ -8,15 +8,24 @@
     <div
       class="dropdown-menu"
       :style="{
-        top: getterAddMenuContentLayerXY.y,
-        left: getterAddMenuContentLayerXY.x,
+        top: getterMenuContentLayerXY.y,
+        left: getterMenuContentLayerXY.x,
       }"
       @mousewheel.stop
     >
       <div v-for="(item, index) in addBlockInfoArray" :key="index">
         <span class="block-type-tip" v-if="index == 0">基础模块</span>
         <span class="block-type-tip" v-if="index == 7">媒体和数据</span>
-        <div class="block-item" @click="addBlock(item.type)">
+        <div class="block-item" @click="addBlock(item.type)" v-if="item.name != 'Delete'">
+          <div class="block-item-img">
+            <img :src="getImgUrl(item.type)" style="width: 100%" />
+          </div>
+          <div class="block-item-intro">
+            <h4>{{ item.name }}</h4>
+            <span>{{ item.tip }}</span>
+          </div>
+        </div>
+        <div class="block-item" @click="deleteBlock(currentBlockIndex)" v-if="item.name == 'Delete'">
           <div class="block-item-img">
             <img :src="getImgUrl(item.type)" style="width: 100%" />
           </div>
@@ -61,8 +70,8 @@ export default {
     currentBlockIndex() {
       return this.$store.state.currentBlockIndex;
     },
-    getterAddMenuContentLayerXY() {
-      return this.$store.getters.getterAddMenuContentLayerXY;
+    getterMenuContentLayerXY() {
+      return this.$store.getters.getterMenuContentLayerXY;
     },
     currentPageBlocks() {
       return this.$store.state.currentPageBlocks;
@@ -78,6 +87,9 @@ export default {
     getImgUrl(type) {
       return require("@/assets/" + type + ".png");
     },
+    deleteBlock(index){
+      this.$store.commit("mutationDeletePageBlock", index);
+    }
   },
 };
 </script>

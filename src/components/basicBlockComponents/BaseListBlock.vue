@@ -3,7 +3,7 @@
     <slot></slot>
     <BaseInput
       :BlocksIndex="BlocksIndex"
-      v-model="mValue.text"
+      v-model="inputValue.text"
       :placeholder="placeholder"
       @keypress.enter.prevent.native="addNewTextBlock($event, BlocksIndex)"
       @keyup.enter.prevent.native="enterMethod($event, BlocksIndex)"
@@ -20,19 +20,19 @@ export default {
   components: { BaseInput },
   data() {
     return {
-      mValue: this.value,
+      inputValue: this.value,
       paremtName: this.$options.parent.$options.name,
       toLastInputFlag: true,
       toNextFlag: true,
     };
   },
   watch: {
-    mValue(val) {
+    inputValue(val) {
       //本地值改变传给父组件
       this.$emit("input", val);
     },
     value(val) {
-      this.mValue = val;
+      this.inputValue = val;
     },
   },
   methods: {
@@ -54,7 +54,7 @@ export default {
 
       // 获取光标位置
       let dom = document.getElementsByClassName("block");
-      if (this.mValue.text.length == 0) {
+      if (this.inputValue.text.length == 0) {
         // 当输入的内容为空的时候
         // 点击了回车，就会先删掉当前的内容块，然后新建一个text内容块
         let lastInput = dom[index - 1].getElementsByTagName("textarea")[0]; // 上一个元素不一定是input
@@ -68,12 +68,12 @@ export default {
         // 输入的内容不为空的时候
         // 新建text-item到vuex里
         // 获取光标位置，处理回车时字符串换行问题
-        if (startPos != this.mValue.text.length) {
-          addBlockInfo.blockItem.data.text = this.mValue.text.slice(
+        if (startPos != this.inputValue.text.length) {
+          addBlockInfo.blockItem.data.text = this.inputValue.text.slice(
             startPos,
-            this.mValue.text.length
+            this.inputValue.text.length
           );
-          this.mValue.text = this.mValue.text.slice(0, startPos);
+          this.inputValue.text = this.inputValue.text.slice(0, startPos);
         }
         // 提交数据到vuex
         this.$store.commit("mutationAddCurrentPageBlocks", addBlockInfo);

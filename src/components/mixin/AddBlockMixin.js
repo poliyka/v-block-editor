@@ -1,7 +1,4 @@
 import {
-  isEmptyObject
-} from "@/utils.js"
-import {
   getNextInputIndex
 } from "@/common.js";
 
@@ -13,7 +10,7 @@ const AddBlockMixin = {
         index: this.currentBlockIndex,
         blockItem: {},
       };
-      if (isEmptyObject(data)) {
+      if (this._.isEmpty(data)) {
         addBlockInfo.blockItem = {
           type: type,
           data: blockInfo.data,

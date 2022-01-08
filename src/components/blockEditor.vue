@@ -1,12 +1,17 @@
 <template>
-  <div class="container-870" id="blockEditor">
+  <div
+    class="container-870"
+    id="blockEditor"
+  >
     <!-- 添加组件的弹窗 -->
-    <AddBlockContent></AddBlockContent>
+    <AddBlockInfoContent></AddBlockInfoContent>
+    <DragBlockConfigContent></DragBlockConfigContent>
     <draggable
       tag="div"
       v-model="getCurrentPageBlocks"
       class="list-group"
       handle=".handle"
+      :ghost-class="dragGhostClass"
     >
       <div
         class="line-wrap list-group-item"
@@ -14,13 +19,14 @@
         :key="index"
         ref="block"
       >
-        <div class="line-left" v-if="readOnly == false">
+        <div
+          class="line-left"
+          v-if="readOnly == false"
+        >
           <!-- 弹出添加组件的弹窗+号按钮 -->
           <AddBlockBtn :BlocksIndex="index"></AddBlockBtn>
           <!-- 拖拽组件 -->
-          <a class="drag-btn handle">
-            <i class="iconfont icondrag"></i>
-          </a>
+          <DragBlockBtn :BlocksIndex="index"></DragBlockBtn>
         </div>
         <div class="line-medium">
           <TextBlock
@@ -73,7 +79,10 @@
           ></BaseImage>
         </div>
         <div class="line-right">
-          <a class="drag-btn handle" @click="setVisibleData(index)">
+          <a
+            class="drag-btn handle"
+            @click="setVisibleData(index)"
+          >
             <i class="el-icon-menu"></i>
           </a>
         </div>
@@ -92,7 +101,9 @@
 import draggable from "vuedraggable";
 // 编写的模块组件
 import AddBlockBtn from "@/components/AddBlockBtn";
-import AddBlockContent from "@/components/AddBlockContent";
+import DragBlockBtn from "@/components/DragBlockBtn";
+import AddBlockInfoContent from "@/components/AddBlockInfoContent";
+import DragBlockConfigContent from "@/components/DragBlockConfigContent";
 import TextBlock from "@/components/basicBlockComponents/TextBlock";
 import TodoBlock from "@/components/basicBlockComponents/TodoBlock";
 import Heading1 from "@/components/basicBlockComponents/Heading1";
@@ -109,7 +120,9 @@ export default {
   components: {
     draggable,
     AddBlockBtn,
-    AddBlockContent,
+    DragBlockBtn,
+    AddBlockInfoContent,
+    DragBlockConfigContent,
     TextBlock,
     TodoBlock,
     Heading1,
@@ -143,6 +156,12 @@ export default {
       type: Array,
       default: function () {
         return [];
+      },
+    },
+    dragGhostClass: {
+      type: String,
+      default: function () {
+        return "default-ghost-bg-color";
       },
     },
   },
@@ -239,8 +258,8 @@ export default {
         this.$store.commit("mutationUpdateCurrentPageBlocks", value);
       },
     },
-    getterAddMenuContentLayerXY() {
-      return this.$store.getters.getterAddMenuContentLayerXY;
+    getterMenuContentLayerXY() {
+      return this.$store.getters.getterMenuContentLayerXY;
     },
     dialogFormVisible: {
       get() {
@@ -305,18 +324,6 @@ export default {
   border-radius: 2px;
   box-shadow: 0 8px 42px -8px rgba(82, 94, 102, 0.15);
   margin-bottom: 100px;
-  .drag-btn {
-    padding: 2px 5px;
-    border-radius: 2px;
-    color: #999999;
-    .icondrag {
-      font-size: 14px;
-    }
-  }
-  .drag-btn:hover {
-    background: #eeeeee;
-    cursor: pointer;
-  }
 
   .line-wrap {
     display: flex;
@@ -351,5 +358,8 @@ export default {
   .line-wrap:focus {
     visibility: hidden;
   }
+}
+.default-ghost-bg-color {
+  background: hsla(196, 85%, 63%, 0.123);
 }
 </style>
