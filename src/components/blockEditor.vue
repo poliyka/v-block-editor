@@ -5,13 +5,14 @@
   >
     <!-- 添加组件的弹窗 -->
     <AddBlockInfoContent></AddBlockInfoContent>
-    <DragBlockConfigContent></DragBlockConfigContent>
+    <DragBlockActionContent></DragBlockActionContent>
     <draggable
       tag="div"
       v-model="getCurrentPageBlocks"
       class="list-group"
       handle=".handle"
       :ghost-class="dragGhostClass"
+      animation="300"
     >
       <div
         class="line-wrap list-group-item"
@@ -103,7 +104,7 @@ import draggable from "vuedraggable";
 import AddBlockBtn from "@/components/AddBlockBtn";
 import DragBlockBtn from "@/components/DragBlockBtn";
 import AddBlockInfoContent from "@/components/AddBlockInfoContent";
-import DragBlockConfigContent from "@/components/DragBlockConfigContent";
+import DragBlockActionContent from "@/components/DragBlockActionContent";
 import TextBlock from "@/components/basicBlockComponents/TextBlock";
 import TodoBlock from "@/components/basicBlockComponents/TodoBlock";
 import Heading1 from "@/components/basicBlockComponents/Heading1";
@@ -122,7 +123,7 @@ export default {
     AddBlockBtn,
     DragBlockBtn,
     AddBlockInfoContent,
-    DragBlockConfigContent,
+    DragBlockActionContent,
     TextBlock,
     TodoBlock,
     Heading1,

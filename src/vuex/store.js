@@ -14,56 +14,56 @@ const state = {
   currentPageBlocks: [],
   addBlockInfoArray: [
     {
-      name: "纯文本",
-      tip: "用纯文本开始写内容",
+      name: "純文本",
+      tip: "用純文本開始寫內容",
       type: "text",
       data: {
         text: "",
       },
     },
     {
-      name: "待办清单",
-      tip: "用待办清单去追踪任务",
+      name: "待辦清單",
+      tip: "用待辦清單去追蹤任務",
       type: "todo",
       data: {
         text: "",
       },
     },
     {
-      name: "标题1",
-      tip: "大字号标题",
+      name: "標題1",
+      tip: "大字號標題",
       type: "heading1",
       data: {
         text: "",
       },
     },
     {
-      name: "标题2",
-      tip: "中字号标题",
+      name: "標題2",
+      tip: "中字號標題",
       type: "heading2",
       data: {
         text: "",
       },
     },
     {
-      name: "标题3",
-      tip: "小字号标题",
+      name: "標題3",
+      tip: "小字號標題",
       type: "heading3",
       data: {
         text: "",
       },
     },
     {
-      name: "符号列表",
-      tip: "大字号标题",
+      name: "符號列表",
+      tip: "大字號標題",
       type: "BulletedList",
       data: {
         text: "",
       },
     },
     {
-      name: "提示栏",
-      tip: "用于提示比较重要的信息",
+      name: "提示欄",
+      tip: "用於提示比較重要的信息",
       type: "hint",
       data: {
         text: "",
@@ -71,8 +71,8 @@ const state = {
       },
     },
     {
-      name: "图片",
-      tip: "用于提示比较重要的信息",
+      name: "圖片",
+      tip: "用於提示比較重要的信息",
       type: "image",
       data: {
         src: "",
@@ -80,10 +80,38 @@ const state = {
       },
     },
   ],
-  dragBlockConfigArray: [
+  dragBlockActionArray: [
     {
       name: "刪除",
-      type: "delete",
+      cmd: "Del",
+      type: "button",
+      action: "delete",
+      iconClass: "el-icon-delete",
+      color: "block",
+    },
+    {
+      name: "複製",
+      cmd: "Ctrl + D",
+      type: "button",
+      action: "duplicate",
+      iconClass: "el-icon-copy-document",
+      color: "red",
+    },
+    {
+      name: "轉換",
+      cmd: null,
+      type: "list",
+      action: "turnInto",
+      iconClass: "el-icon-connection",
+      color: "red",
+    },
+    {
+      name: "顏色",
+      cmd: null,
+      type: "list",
+      action: "color",
+      iconClass: "el-icon-orange",
+      color: "red",
     },
   ],
   dialogFormVisible: false,
@@ -126,22 +154,21 @@ const mutations = {
 };
 
 const getters = {
-  getterMenuContentLayerXY(state) {
+  getterMenuContentLayerXY: state => (contentWidth, contentHeight) => {
     let a = state.addMenuContentLayerXY;
 
     // 當目前高度大於物件高度顯示在上方
-    if (a.y > 380) {
-      a.y = a.y - 380;
+    if (a.y > contentHeight) {
+      a.y = a.y - contentHeight;
     }
-    a.y = `${a.y + 10}px`;
 
     // 當目前左方寬度大於物件寬度顯示在左方
-    if (a.x > 330) {
-      a.x = a.x - 330;
-      a.x = `${a.x - 5}px`;
-    } else {
-      a.x = `${a.x + 5}px`;
+    if (a.x > contentWidth) {
+      a.x = a.x - contentWidth;
     }
+
+    a.y = `${a.y + 10}px`;
+    a.x = `${a.x - 5}px`;
 
     return a;
   },
@@ -152,10 +179,10 @@ const getters = {
     }
     return blockObject;
   },
-  getterDragBlockConfigObject(state) {
+  getterDragBlockActionObject(state) {
     let blockObject = {};
-    for (let blockConfig of state.dragBlockConfigArray) {
-      blockObject[blockConfig.type] = blockConfig;
+    for (let blockAction of state.dragBlockActionArray) {
+      blockObject[blockAction.type] = blockAction;
     }
     return blockObject;
   },

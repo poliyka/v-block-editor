@@ -71,7 +71,7 @@ export default {
       return this.$store.state.currentBlockIndex;
     },
     getterMenuContentLayerXY() {
-      return this.$store.getters.getterMenuContentLayerXY;
+      return this.$store.getters.getterMenuContentLayerXY(320, 360);
     },
     currentPageBlocks() {
       return this.$store.state.currentPageBlocks;

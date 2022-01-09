@@ -14,19 +14,18 @@
       @mousewheel.stop
     >
       <div
-        v-for="(item, index) in dragBlockConfigArray"
+        v-for="(item, index) in dragBlockActionArray"
         :key="index"
       >
         <div
           class="block-item"
-          @click="action(item.type, currentBlockIndex)"
+          @click="blockOnClickAction(item.action, currentBlockIndex)"
+          :style="{'color': item.color}"
         >
-          <div class="block-item-img">
-            <i>icon</i>
-          </div>
-          <div class="block-item-intro">
-            <h4>{{ item.name }}</h4>
-            <span>{{ item.type }}</span>
+          <div :class="getItemIntroClass(item.type)">
+            <i :class="item.iconClass">{{ item.name }}</i>
+            <span v-if="item.type == 'button'">{{ item.cmd }}</span>
+            <i class="el-icon-caret-right" v-if="item.type == 'list'"></i>
           </div>
         </div>
       </div>
@@ -66,30 +65,35 @@ export default {
       return this.$store.state.currentBlockIndex;
     },
     getterMenuContentLayerXY() {
-      return this.$store.getters.getterMenuContentLayerXY;
+      let contentWeight = 245
+      let contentHeight = this.dragBlockActionArray.length * 14 + 16
+      return this.$store.getters.getterMenuContentLayerXY(contentWeight, contentHeight);
     },
     currentPageBlocks() {
       return this.$store.state.currentPageBlocks;
     },
-    dragBlockConfigArray() {
-      return this.$store.state.dragBlockConfigArray;
+    dragBlockActionArray() {
+      return this.$store.state.dragBlockActionArray;
     },
     addBlockInfoOject() {
       return this.$store.getters.getterAddBlockInfoObject;
     },
   },
   methods: {
-    getImgUrl(type) {
+    getIconUrl(type) {
       return require("@/assets/" + type + ".png");
     },
-    action(type, index) {
-      switch (type) {
+    blockOnClickAction(action, index) {
+      switch (action) {
         case "delete":
           this.$store.commit("mutationDeletePageBlock", index);
-        break
+          break
+      }
+    },
+    getItemIntroClass(type){
+      return `block-item-intro block-type-${type}`
     }
-  }
-},
+  },
 };
 </script>
 
@@ -105,12 +109,15 @@ export default {
   overflow: auto;
   margin: 0;
   .dropdown-menu {
+    padding: 8px 0px 8px 0px;
     background: #ffffff;
     position: absolute;
     // margin-left: 58px;
+    width: 245px;
+    min-width: 180px;
+    max-width: calc(100vw - 24px);
+    max-height: 70vh;
     z-index: 2002;
-    width: 320px;
-    height: 360px;
     overflow-y: auto;
     border: 1px solid #dcdfe6;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 12px 0px;
@@ -123,22 +130,14 @@ export default {
       padding: 10px 20px 5px 20px;
     }
     .block-item {
-      padding: 5px 20px 7px 20px;
-      display: flex;
-      align-items: center;
+      padding: 8px 20px 8px 20px;
       background: #ffffff;
-      .block-item-img {
-        width: 45px;
-        height: 45px;
-        background: #ffffff;
-        img {
-          border-radius: 4px;
-          border: 1px solid #dddddd;
-        }
-      }
-      .block-item-intro {
-        h4 {
+      .block-item-intro{
+        display: flex;
+        justify-content: space-between;
+        i {
           margin: 0;
+          font-weight: bold;
           font-size: 14px;
         }
         span {
