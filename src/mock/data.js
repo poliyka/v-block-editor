@@ -19,7 +19,7 @@ const currentPageBlocks = [
     type: "text",
     data: {
       text:
-        "v-block-editor 是一個開源的模塊化內容構建編輯器，它不同於古早的文本編輯器，所有的內容都是以模塊的概念來打造。靈感來自Notion",
+        "v-block-editor 是一個開源的模塊化內容構建編輯器，它不同於古早的文本編輯器，所有的內容都是以模組的概念來打造。靈感來自Notion",
     },
   },
   {
@@ -32,7 +32,7 @@ const currentPageBlocks = [
     type: "text",
     data: {
       text:
-        "所有的模塊都以VUE組件的形式編寫，可以靈活插拔。你可以用v-block-editor編輯器構建一個模塊化的內容平臺，可以在一個頁麵裏插入任何其他模塊，就像Notion一樣",
+        "所有的模組都以VUE組件的形式編寫，可以靈活插拔。你可以用v-block-editor編輯器構建一個模組化的內容平臺，可以在一個頁面裏插入任何其他模組，就像Notion一樣",
     },
   },
   {
@@ -57,7 +57,7 @@ const currentPageBlocks = [
     type: "hint",
     data: {
       text:
-        "🐞目前由於不是用WYSIWYG的編輯器進行二次開發，目前在文本編輯方麵有一些不能解決的Bug",
+        "🐞目前由於不是用WYSIWYG的編輯器進行二次開發，目前在文本編輯方面有一些不能解決的Bug",
     },
   },
   {
@@ -70,13 +70,13 @@ const currentPageBlocks = [
     type: "BulletedList",
     data: {
       text:
-        "當輸入行大於等於2行時，鍵盤的上下按鍵冇有辦法處理遊標在同組件的文本內容裏上下移動",
+        "當輸入行大於等於2行時，鍵盤的上下按鍵沒有辦法處理光標在同組件的文本內容裡上下移動",
     },
   },
   {
     type: "BulletedList",
     data: {
-      text: "內容無法跨模塊複製",
+      text: "內容無法跨模組複製",
     },
   },
   {
@@ -94,7 +94,7 @@ const currentPageBlocks = [
   {
     type: "hint",
     data: {
-      text: "👏 已實現的模塊",
+      text: "👏 已實現的模組",
     },
   },
   {
@@ -142,7 +142,7 @@ const currentPageBlocks = [
     type: "todo",
     data: {
       isChecked: true,
-      text: "符號列錶",
+      text: "符號列表",
     },
   },
   {
@@ -202,14 +202,14 @@ const currentPageBlocks = [
     type: "todo",
     data: {
       isChecked: false,
-      text: "錶格組件",
+      text: "表格組件",
     },
   },
   {
     type: "todo",
     data: {
       isChecked: false,
-      text: "看闆組件",
+      text: "看板組件",
     },
   },
   {
@@ -223,35 +223,21 @@ const currentPageBlocks = [
     type: "todo",
     data: {
       isChecked: false,
-      text: "右鍵新建block組件",
+      text: "Alt新增組件改為 '/' 新增組件",
     },
   },
   {
     type: "todo",
     data: {
       isChecked: false,
-      text: "重構",
+      text: "有序列表",
     },
   },
   {
     type: "todo",
     data: {
       isChecked: false,
-      text: "有序列錶",
-    },
-  },
-  {
-    type: "todo",
-    data: {
-      isChecked: false,
-      text: "插入錶情",
-    },
-  },
-  {
-    type: "todo",
-    data: {
-      isChecked: false,
-      text: "封裝成組件PO",
+      text: "插入emoji",
     },
   },
 ];
