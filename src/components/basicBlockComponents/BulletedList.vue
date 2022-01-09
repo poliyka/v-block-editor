@@ -1,10 +1,10 @@
 <template>
   <div class="BulletedList" :id="BlocksIndex">
-    <!-- 这个符号需要更新 -->
+    <!-- 這個符號需要更新 -->
     <BaseListBlock
       :value="value"
       :BlocksIndex="BlocksIndex"
-      placeholder="输入列表内容"
+      placeholder="輸入列表內容"
     >
       <span class="left-Symbol">·</span>
     </BaseListBlock>
@@ -13,8 +13,8 @@
 
 <script>
 import BaseListBlock from "@/components/basicBlockComponents/BaseListBlock";
-// TODO: 在一行头无法直接删除
-// TODO: 将一块无序列表打包在一起
+// TODO: 在一行頭無法直接刪除
+// TODO: 將一塊無序列表打包在一起
 export default {
   name: "BulletedList",
   props: ["value", "BlocksIndex"],

@@ -28,7 +28,7 @@ export default {
   watch: {
     mValue: {
       handler(val) {
-        //本地值改变传给父组件
+        //在地值改變傳給父組件
         this.$emit("input", val);
 
         let blockInfo = {

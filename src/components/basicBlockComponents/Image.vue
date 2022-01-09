@@ -8,7 +8,7 @@
       tabindex="0"
     />
 
-    <el-dialog title="编辑" :visible.sync="visible" @closed="close">
+    <el-dialog title="編輯" :visible.sync="visible" @closed="close">
       <el-form :model="formData">
         <el-form-item label="url" :label-width="formLabelWidth">
           <el-input v-model="formData.src"></el-input>
@@ -16,14 +16,14 @@
         <el-form-item label="高度" :label-width="formLabelWidth">
           <el-input v-model="formData.width"></el-input>
         </el-form-item>
-        <el-form-item label="宽度" :label-width="formLabelWidth">
+        <el-form-item label="寬度" :label-width="formLabelWidth">
           <el-input v-model="formData.height"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="visible = false">取 消</el-button>
         <el-button type="primary" @click="updateBlock(formData)"
-          >确 定</el-button
+          >確 定</el-button
         >
       </div>
     </el-dialog>
@@ -31,7 +31,7 @@
 </template>
 
 <script>
-// 添加图片的居中，居左，居右功能
+// 添加圖片的居中，居左，居右功能
 export default {
   name: "BaseImage",
   props: ["value", "BlocksIndex"],

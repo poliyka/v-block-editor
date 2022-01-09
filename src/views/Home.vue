@@ -1,12 +1,12 @@
 <template>
   <div class="home">
     <div class="header">
-      <h1>All-in-one</h1>
-      <p>模块化内容构建编辑器，基于 Vue 和 element 的打造</p>
-      <p>以 JSON 格式输出，灵感来自Notion</p>
+      <h1>v-block-editor</h1>
+      <p>模組化內容構建編輯器，基於 Vue 和 element 的打造</p>
+      <p>以 JSON 格式輸出，靈感來自Notion</p>
       <el-link
         :underline="false"
-        href="https://github.com/renmu123/All-in-one"
+        href="https://github.com/poliyka/v-block-editor"
         class="el-link-btn"
         target="_blank"
       >
@@ -19,8 +19,8 @@
     <div class="readOnly-switch">
       <el-switch
         v-model="readOnly"
-        active-text="只读模式"
-        inactive-text="编辑模式"
+        active-text="只讀模式"
+        inactive-text="編輯模式"
       ></el-switch>
     </div>
     <div>

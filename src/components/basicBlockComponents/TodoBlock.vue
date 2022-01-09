@@ -3,7 +3,7 @@
     <BaseListBlock
       :value="value"
       :BlocksIndex="BlocksIndex"
-      placeholder="输入待办项"
+      placeholder="輸入待辦事項"
     >
       <el-checkbox v-model="value.isChecked"></el-checkbox>
     </BaseListBlock>

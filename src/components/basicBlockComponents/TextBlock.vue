@@ -3,7 +3,7 @@
     <BaseTextBlock
       :value="value"
       :BlocksIndex="BlocksIndex"
-      placeholder="点击 Alt 键快速插入内容"
+      placeholder="點選 Alt 鍵快速插入內容"
       @keydown.alt.exact.prevent.native="quickAddBlock($event, BlocksIndex)"
       @paste.native="onPaste($event)"
     ></BaseTextBlock>
@@ -40,7 +40,7 @@ export default {
       }, 50);
       currInput.disabled = false;
     },
-    // 劫持黏贴事件
+    // 劫持黏貼事件
     onPaste(event) {
       if (event.clipboardData.files[0] !== undefined) {
         event.preventDefault();

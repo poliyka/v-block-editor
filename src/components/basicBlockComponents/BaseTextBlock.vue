@@ -38,7 +38,7 @@ export default {
       let currInput = dom[index].getElementsByTagName("textarea")[0];
       let startPos = currInput.selectionStart;
 
-      // 新建text-item到vuex里
+      // 新建text-item到vuex裏
       let addBlockInfo = {
         index: index,
         blockItem: {
@@ -49,17 +49,17 @@ export default {
         },
       };
 
-      // 获取光标位置，处理回车时字符串换行问题
+      // 獲取光標位置，處理回車時字符串換行問題
       if (startPos != this.mValue.text.length) {
-        // 如果光标的位置不在最末尾的时候
-        // 对光标之后的内容进行截取，并传递给新建的字符串
+        // 如果光標的位置不在最末尾的時候
+        // 對光標之後的內容進行截取，並傳遞給新建的字符串
         addBlockInfo.blockItem.data.text = this.mValue.text.slice(
           startPos,
           this.mValue.text.length
         );
         this.mValue.text = this.mValue.text.slice(0, startPos);
       }
-      // 提交数据到vuex
+      // 提交數據到vuex
       this.$store.commit("mutationAddCurrentPageBlocks", addBlockInfo);
       this.$nextTick(() => {
         let currInput = dom[index + 1].getElementsByTagName("textarea")[0];

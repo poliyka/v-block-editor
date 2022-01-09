@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <el-button @click="test123()">aaa</el-button>
-    <el-select v-model="value" placeholder="请选择">
+    <el-select v-model="value" placeholder="請選擇">
       <el-option
         v-for="item in options"
         :key="item.value"
@@ -19,24 +19,24 @@ export default {
     return {
       options: [
         {
-          value: "选项1",
-          label: "黄金糕",
+          value: "選項1",
+          label: "黃金糕",
         },
         {
-          value: "选项2",
-          label: "双皮奶",
+          value: "選項2",
+          label: "雙皮奶",
         },
         {
-          value: "选项3",
+          value: "選項3",
           label: "蚵仔煎",
         },
         {
-          value: "选项4",
-          label: "龙须面",
+          value: "選項4",
+          label: "龍須麵",
         },
         {
-          value: "选项5",
-          label: "北京烤鸭",
+          value: "選項5",
+          label: "北京烤鴨",
         },
       ],
       value: "",

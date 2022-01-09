@@ -14,8 +14,8 @@
       @mousewheel.stop
     >
       <div v-for="(item, index) in addBlockInfoArray" :key="index">
-        <span class="block-type-tip" v-if="index == 0">基础模块</span>
-        <span class="block-type-tip" v-if="index == 7">媒体和数据</span>
+        <span class="block-type-tip" v-if="index == 0">基礎模組</span>
+        <span class="block-type-tip" v-if="index == 7">媒體和數據</span>
         <div class="block-item" @click="addBlock(item.type)" v-if="item.name != 'Delete'">
           <div class="block-item-img">
             <img :src="getImgUrl(item.type)" style="width: 100%" />

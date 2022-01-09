@@ -24,13 +24,13 @@ const AddBlockMixin = {
       this.$store.commit("mutationAddCurrentPageBlocks", addBlockInfo);
 
       this.$nextTick(() => {
-        // 如果是触发添加内容的面板是从text模块显示的模块添加弹窗页面的，并且内容为空
+        // 如果是觸發添加內容的面板是從text模塊顯示的模塊添加彈窗頁面的，並且內容為空
         let dom = document.getElementsByClassName("block");
         if (
           this.currentPageBlocks[this.currentBlockIndex].type == "text" &&
           this.currentPageBlocks[this.currentBlockIndex].data.text == ""
         ) {
-          // 处理光标的显示问题，在当前模块显示
+          // 處理游標的顯示問題，在當前模塊顯示
           this.$store.commit("mutationDeletePageBlock", this.currentBlockIndex);
           this.$nextTick(() => {
             let currInput = dom[this.currentBlockIndex].getElementsByTagName(
@@ -39,7 +39,7 @@ const AddBlockMixin = {
             currInput.focus();
           })
         } else {
-          // 处理光标的显示问题，新建后，光标也到新建栏
+          // 處理游標的顯示問題，新建後，遊標也到新建欄
           let nextInputIndex = getNextInputIndex(
             this.currentBlockIndex,
             this.currentPageBlocks

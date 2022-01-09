@@ -1,7 +1,7 @@
 const getLastInputIndex = function (index, currentPageBlocks) {
   let lastInputIndex = index - 1
   let lastBlcok = currentPageBlocks[lastInputIndex]
-  while (lastBlcok.type === "image") { // TODO：这里需要改动，现在只是测试
+  while (lastBlcok.type === "image") { // TODO：這裏需要改動，現在只是測試
     lastInputIndex -= 1
     lastBlcok = currentPageBlocks[lastInputIndex]
   }
@@ -10,7 +10,7 @@ const getLastInputIndex = function (index, currentPageBlocks) {
 const getNextInputIndex = function (index, currentPageBlocks) {
   let nextInputIndex = index + 1
   let nextBlcok = currentPageBlocks[nextInputIndex]
-  while (nextBlcok.type === "image") { // TODO：这里需要改动，现在只是测试
+  while (nextBlcok.type === "image") { // TODO：這裏需要改動，現在只是測試
     nextInputIndex += 1
     nextBlcok = currentPageBlocks[nextInputIndex]
   }

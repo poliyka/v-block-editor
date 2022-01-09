@@ -3,7 +3,7 @@
     class="container-870"
     id="blockEditor"
   >
-    <!-- 添加组件的弹窗 -->
+    <!-- 添加組件的彈窗 -->
     <AddBlockInfoContent></AddBlockInfoContent>
     <DragBlockActionContent></DragBlockActionContent>
     <draggable
@@ -24,9 +24,9 @@
           class="line-left"
           v-if="readOnly == false"
         >
-          <!-- 弹出添加组件的弹窗+号按钮 -->
+          <!-- 彈出添加組件的彈窗+號按鈕 -->
           <AddBlockBtn :BlocksIndex="index"></AddBlockBtn>
-          <!-- 拖拽组件 -->
+          <!-- 拖拽組件 -->
           <DragBlockBtn :BlocksIndex="index"></DragBlockBtn>
         </div>
         <div class="line-medium">
@@ -94,13 +94,13 @@
 
 <script>
 // TODO:添加addBlock,deleteBlock,moveBlock,changeBlock等事件
-// TODO:图片的上传设置
-// TODO:emoji的添加组件
-// TODO:将BulletedList作为一个组件，内部添加多个无序列表
-// TODO:添加代码框以及高亮功能
-// TODO:添加全局快捷键
+// TODO:圖片的上載設定
+// TODO:emoji的添加組件
+// TODO:將BulletedList作為一個組件，內部添加多個無序列表
+// TODO:添加代碼框以及高亮功能
+// TODO:添加全局快捷鍵
 import draggable from "vuedraggable";
-// 编写的模块组件
+// 編寫的模塊組件
 import AddBlockBtn from "@/components/AddBlockBtn";
 import DragBlockBtn from "@/components/DragBlockBtn";
 import AddBlockInfoContent from "@/components/AddBlockInfoContent";
@@ -178,32 +178,32 @@ export default {
     );
     class HistoryRecord {
       constructor(maxStack = 100, delay = 2000) {
-        this.actionPoints = []; // 快照数组
-        this.step = 0; // 当前位置
+        this.actionPoints = []; // 快照數組
+        this.step = 0; // 當前位置
         this.maxStack = maxStack; // 最大容量
-        this.delay = delay; //延迟时间，默认3000毫秒
-        this.updateTime = 0; // 上次的操作时间
+        this.delay = delay; //延遲時間，預設3000毫秒
+        this.updateTime = 0; // 上次的操作時間
         this.init();
       }
 
       init() {
-        this._event_bind(); // 快捷键绑定
+        this._event_bind(); // 快捷鍵綁定
         this.actionPoints.push(
           Vue.lodash.cloneDeep(store.state.currentPageBlocks)
-        ); // push首次数据
+        ); // push首次數據
       }
 
       push(type, data) {
         const curTime = Date.now();
         // const isChange = diff(data, this.actionPoints[this.step]);
-        // if (!isChange) return; // 数据没变直接返回
-        // 对应前面说的 原理C， 3s一次
+        // if (!isChange) return; // 數據冇變直接返回
+        // 對應前面說的 原理C， 3s一次
         if (curTime - this.updateTime < this.delay) {
           this.actionPoints[this.step] = data;
           return;
         }
 
-        // 对应前面说的 原理B， 发现撤销过又有新的操作
+        // 對應前面說的 原理B， 發現撤銷過又有新的操作
         if (this.actionPoints.length - 1 > this.step) {
           this.actionPoints.splice(this.step + 1);
         }
@@ -211,7 +211,7 @@ export default {
         this.actionPoints.push(data);
         this.step++;
 
-        // 对应前面说的 原理D， 长度超出了
+        // 對應前面說的 原理D， 長度超出了
         if (this.actionPoints.length > this.maxStack) {
           this.actionPoints.shift();
           this.step--;
@@ -294,7 +294,7 @@ export default {
       this.$store.commit("mutationCurrentBlockIndex", index);
     },
     subscribe() {
-      // 需要监控的 mutation
+      // 需要監控的 mutation
       let allowMutationSet = new Set([
         "mutationAddCurrentPageBlocks",
         "mutationDeletePageBlock",
@@ -304,7 +304,7 @@ export default {
       ]);
       this.$store.subscribe(({ type }, state) => {
         if (allowMutationSet.has(type)) {
-          // TODO:还需要返回type，比如有 add,delete,drabbagle,textChangeds
+          // TODO:還需要返回type，比如有 add,delete,drabbagle,textChangeds
           this.$emit("change", state.currentPageBlocks);
           const data = this.lodash.cloneDeep(state.currentPageBlocks);
           this.historicalRecord.push(type, data);

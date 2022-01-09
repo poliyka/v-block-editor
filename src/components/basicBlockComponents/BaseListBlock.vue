@@ -28,7 +28,7 @@ export default {
   },
   watch: {
     inputValue(val) {
-      //本地值改变传给父组件
+      //在地值改變傳給父組件
       this.$emit("input", val);
     },
     value(val) {
@@ -52,22 +52,22 @@ export default {
         },
       };
 
-      // 获取光标位置
+      // 獲取游標位置
       let dom = document.getElementsByClassName("block");
       if (this.inputValue.text.length == 0) {
-        // 当输入的内容为空的时候
-        // 点击了回车，就会先删掉当前的内容块，然后新建一个text内容块
-        let lastInput = dom[index - 1].getElementsByTagName("textarea")[0]; // 上一个元素不一定是input
+        // 當輸入的內容為空的時候
+        // 點選了回車，就會先刪掉當前的內容塊，然後新建一個text內容塊
+        let lastInput = dom[index - 1].getElementsByTagName("textarea")[0]; // 上一個元素不一定是input
         lastInput.focus();
         this.$store.commit("mutationDeletePageBlock", this.currentBlockIndex);
       } else {
-        let currInput = dom[index].getElementsByTagName("textarea")[0]; // 没问题
+        let currInput = dom[index].getElementsByTagName("textarea")[0]; // 沒有問題
         let startPos = currInput.selectionStart;
 
         addBlockInfo.blockItem.type = this.paremtName;
-        // 输入的内容不为空的时候
-        // 新建text-item到vuex里
-        // 获取光标位置，处理回车时字符串换行问题
+        // 輸入的內容不為空的時候
+        // 新建text-item到vuex裏
+        // 獲取游標位置，處理回車時字符串換行問題
         if (startPos != this.inputValue.text.length) {
           addBlockInfo.blockItem.data.text = this.inputValue.text.slice(
             startPos,
@@ -75,7 +75,7 @@ export default {
           );
           this.inputValue.text = this.inputValue.text.slice(0, startPos);
         }
-        // 提交数据到vuex
+        // 提交數據到vuex
         this.$store.commit("mutationAddCurrentPageBlocks", addBlockInfo);
       }
     },

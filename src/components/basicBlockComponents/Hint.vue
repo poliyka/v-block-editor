@@ -5,19 +5,19 @@
         <BaseTextBlock
           :value="value"
           :BlocksIndex="BlocksIndex"
-          placeholder="输入需要提示的内容"
+          placeholder="輸入需要提示的內容"
           @keypress.enter.capture.stop.native
         ></BaseTextBlock>
       </div>
     </div>
-    <el-dialog title="编辑" :visible.sync="visible" @closed="close">
+    <el-dialog title="編輯" :visible.sync="visible" @closed="close">
       <el-form :model="formData">
-        <el-form-item label="颜色" label-width="120px">
+        <el-form-item label="顔色" label-width="120px">
           <el-select
             v-model="formData.color"
             filterable
             allow-create
-            placeholder="请选择颜色"
+            placeholder="請選擇顔色"
           >
             <el-option
               v-for="item in options"
@@ -33,7 +33,7 @@
               >
             </el-option>
           </el-select>
-          <el-tag style="margin-left: 5px">支持 hex 色码</el-tag>
+          <el-tag style="margin-left: 5px">支援 hex 色碼</el-tag>
         </el-form-item>
         <el-form-item label="文字" label-width="120px">
           <el-input v-model="formData.text" autosize type="textarea"></el-input>
@@ -42,7 +42,7 @@
       <div slot="footer" class="dialog-footer">
         <el-button @click="visible = false">取 消</el-button>
         <el-button type="primary" @click="updateBlock(formData)"
-          >确 定</el-button
+          >確 定</el-button
         >
       </div>
     </el-dialog>
@@ -50,7 +50,7 @@
 </template>
 
 <script>
-// TODO:支持自定义默认值以及颜色选择器
+// TODO:支援自定義預設值以及顔色選擇器
 import BaseTextBlock from "@/components/basicBlockComponents/BaseTextBlock";
 export default {
   name: "hint",
