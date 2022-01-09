@@ -1,7 +1,7 @@
 <template>
   <div class="addBlock">
     <a class="add-block-btn" @click="openMenuShow($event)">
-      <i class="iconfont iconplus"></i>
+      <i class="el-icon-plus"></i>
     </a>
   </div>
 </template>
@@ -9,11 +9,11 @@
 <style lang="less">
 .addBlock {
   .add-block-btn {
-    padding: 2px 6px 4px 6px;
+    padding: 5px;
     border-radius: 2px;
-    .iconplus {
-      font-size: 12px;
-      color: #999999;
+    .el-icon-plus {
+      font-weight: bold;
+      font-size: 16px;
     }
     cursor: pointer;
   }

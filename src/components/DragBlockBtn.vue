@@ -2,17 +2,17 @@
   <a
     class="drag-btn handle" @click="openMenuShow($event)"
   >
-    <i class="iconfont icondrag"></i>
+    <i class="el-icon-s-fold"></i>
   </a>
 </template>
 
 <style lang="less">
 .drag-btn {
-  padding: 2px 5px;
+  padding: 5px;
   border-radius: 2px;
-  color: #999999;
-  .icondrag {
-    font-size: 14px;
+  .el-icon-s-fold {
+    // font-weight: bold;
+    font-size: 16px;
   }
 }
 .drag-btn:hover {

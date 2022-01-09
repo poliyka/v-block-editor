@@ -54,7 +54,7 @@ export default {
     isShowAddMenu: function (value) {
       if (value == true) {
         document.addEventListener("click", e => {
-          if (event.target.getAttribute("class") != "iconfont iconplus") {
+          if (event.target.getAttribute("class") != "el-icon-plus") {
             if (event.target.getAttribute("class") != "dropdown-menu") {
               this.$store.commit("mutationIsShowAddMenu", false);
             }

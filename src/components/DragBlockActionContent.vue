@@ -48,7 +48,7 @@ export default {
     isShowDragMenu: function (value) {
       if (value == true) {
         document.addEventListener("click", e => {
-          if (event.target.getAttribute("class") != "iconfont icondrag") {
+          if (event.target.getAttribute("class") != "el-icon-s-fold") {
             if (event.target.getAttribute("class") != "dropdown-menu") {
               this.$store.commit("mutationIsShowDragMenu", false);
             }
