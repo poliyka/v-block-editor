@@ -290,8 +290,7 @@ export default {
     subscribe() {
       // 需要監控的 mutation
       let allowMutationSet = new Set([
-        "addMenuStore/mutationAddCurrentPageBlocks",
-        "dragMenuStore/mutationDragCurrentPageBlocks",
+        "mainStore/mutationAddCurrentPageBlocks",
         "mainStore/mutationDeletePageBlock",
         "mainStore/mutationUpdateOneBlock",
         "mainStore/mutationUpdateInputBlockText",
