@@ -1,6 +1,9 @@
 <template>
   <div class="addBlock">
-    <a class="add-block-btn" @click="openMenuShow($event)">
+    <a
+      class="add-block-btn"
+      @click="openMenuShow($event)"
+    >
       <i class="el-icon-plus"></i>
     </a>
   </div>

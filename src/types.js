@@ -1,7 +1,7 @@
 const types = {
   TEXT: {
-    type: ""
+    type: "",
   },
-}
+};
 
-export default types
+export default types;

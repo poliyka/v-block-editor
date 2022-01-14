@@ -1,5 +1,8 @@
 <template>
-  <div class="Heading" :id="BlocksIndex">
+  <div
+    class="Heading"
+    :id="BlocksIndex"
+  >
     <BaseTextBlock
       :value="value"
       :BlocksIndex="BlocksIndex"

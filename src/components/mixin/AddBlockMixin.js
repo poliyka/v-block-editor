@@ -1,6 +1,4 @@
-import {
-  getNextInputIndex
-} from "@/common.js";
+import { getNextInputIndex } from "@/common.js";
 
 const AddBlockMixin = {
   methods: {
@@ -31,13 +29,16 @@ const AddBlockMixin = {
           this.currentPageBlocks[this.currentBlockIndex].data.text == ""
         ) {
           // 處理游標的顯示問題，在當前模塊顯示
-          this.$store.dispatch("mainStore/setDeletePageBlock", this.currentBlockIndex);
+          this.$store.dispatch(
+            "mainStore/setDeletePageBlock",
+            this.currentBlockIndex
+          );
           this.$nextTick(() => {
             let currInput = dom[this.currentBlockIndex].getElementsByTagName(
               "textarea"
             )[0];
             currInput.focus();
-          })
+          });
         } else {
           // 處理游標的顯示問題，新建後，遊標也到新建欄
           let nextInputIndex = getNextInputIndex(
@@ -49,8 +50,8 @@ const AddBlockMixin = {
           )[0];
           nextInput.focus();
         }
-      })
+      });
     },
   },
-}
-export default AddBlockMixin
+};
+export default AddBlockMixin;

@@ -1,7 +1,11 @@
 <template>
   <div>
     <div class="hint">
-      <div class="hint-bg" :id="BlocksIndex" :style="customStyle">
+      <div
+        class="hint-bg"
+        :id="BlocksIndex"
+        :style="customStyle"
+      >
         <BaseTextBlock
           :value="value"
           :BlocksIndex="BlocksIndex"
@@ -10,9 +14,16 @@
         ></BaseTextBlock>
       </div>
     </div>
-    <el-dialog title="編輯" :visible.sync="visible" @closed="close">
+    <el-dialog
+      title="編輯"
+      :visible.sync="visible"
+      @closed="close"
+    >
       <el-form :model="formData">
-        <el-form-item label="顔色" label-width="120px">
+        <el-form-item
+          label="顔色"
+          label-width="120px"
+        >
           <el-select
             v-model="formData.color"
             filterable
@@ -29,21 +40,31 @@
               <span
                 style="float: right; font-size: 13px"
                 :style="{ color: item.value }"
-                >{{ item.value }}</span
-              >
+              >{{ item.value }}</span>
             </el-option>
           </el-select>
           <el-tag style="margin-left: 5px">支援 hex 色碼</el-tag>
         </el-form-item>
-        <el-form-item label="文字" label-width="120px">
-          <el-input v-model="formData.text" autosize type="textarea"></el-input>
+        <el-form-item
+          label="文字"
+          label-width="120px"
+        >
+          <el-input
+            v-model="formData.text"
+            autosize
+            type="textarea"
+          ></el-input>
         </el-form-item>
       </el-form>
-      <div slot="footer" class="dialog-footer">
+      <div
+        slot="footer"
+        class="dialog-footer"
+      >
         <el-button @click="visible = false">取 消</el-button>
-        <el-button type="primary" @click="updateBlock(formData)"
-          >確 定</el-button
-        >
+        <el-button
+          type="primary"
+          @click="updateBlock(formData)"
+        >確 定</el-button>
       </div>
     </el-dialog>
   </div>

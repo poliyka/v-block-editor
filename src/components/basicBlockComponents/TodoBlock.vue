@@ -1,5 +1,8 @@
 <template>
-  <div class="TodoBlock" :id="BlocksIndex">
+  <div
+    class="TodoBlock"
+    :id="BlocksIndex"
+  >
     <BaseListBlock
       :value="value"
       :BlocksIndex="BlocksIndex"

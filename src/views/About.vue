@@ -1,7 +1,10 @@
 <template>
   <div class="about">
     <el-button @click="test123()">aaa</el-button>
-    <el-select v-model="value" placeholder="請選擇">
+    <el-select
+      v-model="value"
+      placeholder="請選擇"
+    >
       <el-option
         v-for="item in options"
         :key="item.value"

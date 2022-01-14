@@ -1,5 +1,8 @@
 <template>
-  <div class="BulletedList" :id="BlocksIndex">
+  <div
+    class="BulletedList"
+    :id="BlocksIndex"
+  >
     <!-- 這個符號需要更新 -->
     <BaseListBlock
       :value="value"

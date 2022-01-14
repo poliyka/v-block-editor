@@ -1,11 +1,10 @@
-import Vue from 'vue'
+import Vue from "vue";
 import Vuex from "vuex";
 Vue.use(Vuex);
 
-import mainStore from "./modules/MainStore"
-import addMenuStore from "./modules/AddMenuStore"
-import dragMenuStore from "./modules/DragMenuStore"
-
+import mainStore from "./modules/MainStore";
+import addMenuStore from "./modules/AddMenuStore";
+import dragMenuStore from "./modules/DragMenuStore";
 
 const store = new Vuex.Store({
   modules: {

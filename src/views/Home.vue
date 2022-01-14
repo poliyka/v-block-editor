@@ -11,7 +11,10 @@
         target="_blank"
       >
         <i>
-          <img src="../assets/github.svg" width="18px" />
+          <img
+            src="../assets/github.svg"
+            width="18px"
+          />
         </i>
         GitHub
       </el-link>
@@ -46,7 +49,7 @@ export default {
   },
   computed: {},
   watch: {},
-  mounted() {},
+  mounted() { },
   methods: {
     change(value) {
       console.log("blockChange", value);

@@ -1,6 +1,7 @@
 <template>
   <a
-    class="drag-btn handle" @click="openMenuShow($event)"
+    class="drag-btn handle"
+    @click="openMenuShow($event)"
   >
     <i class="el-icon-s-fold"></i>
   </a>

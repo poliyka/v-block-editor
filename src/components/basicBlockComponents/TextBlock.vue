@@ -36,7 +36,6 @@ export default {
       let e = currInput.getBoundingClientRect();
       let location = { x: e.left - 48, y: e.top + 20 };
 
-
       this.$store.dispatch("mainStore/setMenuContentLayerXY", location);
       this.$store.dispatch("mainStore/setCurrentBlockIndex", index);
       setTimeout(() => {

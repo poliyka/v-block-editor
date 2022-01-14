@@ -25,7 +25,10 @@
           <div :class="getItemIntroClass(item.type)">
             <i :class="item.iconClass">{{ item.name }}</i>
             <span v-if="item.type == 'button'">{{ item.cmd }}</span>
-            <i class="el-icon-caret-right" v-if="item.type == 'list'"></i>
+            <i
+              class="el-icon-caret-right"
+              v-if="item.type == 'list'"
+            ></i>
           </div>
         </div>
       </div>
@@ -88,7 +91,7 @@ export default {
           break
       }
     },
-    getItemIntroClass(type){
+    getItemIntroClass(type) {
       return `block-item-intro block-type-${type}`
     }
   },
@@ -130,7 +133,7 @@ export default {
     .block-item {
       padding: 8px 20px 8px 20px;
       background: #ffffff;
-      .block-item-intro{
+      .block-item-intro {
         display: flex;
         justify-content: space-between;
         i {
