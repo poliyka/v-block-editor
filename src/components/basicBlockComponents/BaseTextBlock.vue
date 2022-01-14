@@ -60,7 +60,7 @@ export default {
         this.mValue.text = this.mValue.text.slice(0, startPos);
       }
       // 提交數據到vuex
-      this.$store.commit("mutationAddCurrentPageBlocks", addBlockInfo);
+      this.$store.dispatch("mainStore/setAddCurrentPageBlocks", addBlockInfo);
       this.$nextTick(() => {
         let currInput = dom[index + 1].getElementsByTagName("textarea")[0];
         currInput.focus();

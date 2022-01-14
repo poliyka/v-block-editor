@@ -59,7 +59,7 @@ export default {
         // 點選了回車，就會先刪掉當前的內容塊，然後新建一個text內容塊
         let lastInput = dom[index - 1].getElementsByTagName("textarea")[0]; // 上一個元素不一定是input
         lastInput.focus();
-        this.$store.commit("mutationDeletePageBlock", this.currentBlockIndex);
+        this.$store.dispatch("mainStore/setDeletePageBlock", this.currentBlockIndex);
       } else {
         let currInput = dom[index].getElementsByTagName("textarea")[0]; // 沒有問題
         let startPos = currInput.selectionStart;
@@ -76,7 +76,7 @@ export default {
           this.inputValue.text = this.inputValue.text.slice(0, startPos);
         }
         // 提交數據到vuex
-        this.$store.commit("mutationAddCurrentPageBlocks", addBlockInfo);
+        this.$store.dispatch("mainStore/setAddCurrentPageBlocks", addBlockInfo);
       }
     },
   },

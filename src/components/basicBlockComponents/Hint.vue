@@ -95,7 +95,7 @@ export default {
           },
         },
       };
-      this.$store.commit("mutationUpdateOneBlock", blockInfo);
+      this.$store.dispatch("mainStore/setUpdateOneBlock", blockInfo);
       this.visible = false;
     },
     close() {
@@ -112,10 +112,10 @@ export default {
       };
     },
     dialogFormVisible() {
-      return this.$store.state.dialogFormVisible;
+      return this.$store.state.mainStore.dialogFormVisible;
     },
     currentBlockIndex() {
-      return this.$store.state.currentBlockIndex;
+      return this.$store.state.mainStore.currentBlockIndex;
     },
     visible: {
       get() {
@@ -129,7 +129,7 @@ export default {
         }
       },
       set(value) {
-        this.$store.commit("mutationUpdateDialogFormVisible", value);
+        this.$store.dispatch("mainStore/setUpdateDialogFormVisible", value);
       },
     },
   },

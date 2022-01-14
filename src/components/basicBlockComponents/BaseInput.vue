@@ -35,7 +35,7 @@ export default {
           index: this.BlocksIndex,
           text: val,
         };
-        this.$store.commit("mutationUpdateInputBlockText", blockInfo);
+        this.$store.dispatch("mainStore/setUpdateInputBlockText", blockInfo);
       },
     },
     value(val) {
@@ -45,7 +45,7 @@ export default {
   methods: {},
   computed: {
     currentPageBlocks() {
-      return this.$store.state.currentPageBlocks;
+      return this.$store.state.mainStore.currentPageBlocks;
     },
   },
 };

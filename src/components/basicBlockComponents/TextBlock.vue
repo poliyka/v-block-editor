@@ -1,5 +1,8 @@
 <template>
-  <div class="textBlock" :id="BlocksIndex">
+  <div
+    class="textBlock"
+    :id="BlocksIndex"
+  >
     <BaseTextBlock
       :value="value"
       :BlocksIndex="BlocksIndex"
@@ -33,10 +36,11 @@ export default {
       let e = currInput.getBoundingClientRect();
       let location = { x: e.left - 48, y: e.top + 20 };
 
-      this.$store.commit("mutationAddMenuContentLayerXY", location);
-      this.$store.commit("mutationCurrentBlockIndex", index);
+
+      this.$store.dispatch("mainStore/setMenuContentLayerXY", location);
+      this.$store.dispatch("mainStore/setCurrentBlockIndex", index);
       setTimeout(() => {
-        this.$store.commit("mutationIsShowAddMenu", true);
+        this.$store.dispatch("addMenuStore/setIsShowAddMenu", true);
       }, 50);
       currInput.disabled = false;
     },
@@ -63,7 +67,7 @@ export default {
         reader.onload = event => {
           imgBase64 = event.target.result;
           addBlockInfo.blockItem.data.src = imgBase64;
-          this.$store.commit("mutationAddCurrentPageBlocks", addBlockInfo);
+          this.$store.dispatch("mainStore/setAddCurrentPageBlocks", addBlockInfo);
           this.$nextTick(() => {
             let dom = document.getElementsByClassName("block");
             let currInput = dom[this.BlocksIndex + 1].getElementsByTagName(

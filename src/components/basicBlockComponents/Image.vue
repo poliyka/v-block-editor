@@ -58,8 +58,7 @@ export default {
   },
   methods: {
     deleteBlock(index) {
-      console.log("delete");
-      this.$store.commit("mutationDeletePageBlock", index);
+      this.$store.dispatch("mainStore/setDeletePageBlock", index);
     },
     updateBlock(formData) {
       let blockInfo = {
@@ -73,7 +72,7 @@ export default {
           },
         },
       };
-      this.$store.commit("mutationUpdateOneBlock", blockInfo);
+      this.$store.dispatch("mainStore/mutationUpdateOneBlock", blockInfo);
       this.visible = false;
     },
     close() {
@@ -82,13 +81,13 @@ export default {
   },
   computed: {
     currentPageBlocks() {
-      return this.$store.state.currentPageBlocks;
+      return this.$store.state.mainStore.currentPageBlocks;
     },
     dialogFormVisible() {
-      return this.$store.state.dialogFormVisible;
+      return this.$store.state.mainStore.dialogFormVisible;
     },
     currentBlockIndex() {
-      return this.$store.state.currentBlockIndex;
+      return this.$store.state.mainStore.currentBlockIndex;
     },
     visible: {
       get() {
@@ -102,7 +101,7 @@ export default {
         }
       },
       set(value) {
-        this.$store.commit("mutationUpdateDialogFormVisible", value);
+        this.$store.dispatch("mainStore/setUpdateDialogFormVisible", value);
       },
     },
   },

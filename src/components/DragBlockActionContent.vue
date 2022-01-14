@@ -34,11 +34,9 @@
 </template>
 
 <script>
-import AddBlockMixin from "@/components/mixin/AddBlockMixin.js";
 
 export default {
   name: "dragBlock-content",
-  mixins: [AddBlockMixin],
   data() {
     return {
       isShowMenu: this.isShowDragMenu,
@@ -50,7 +48,7 @@ export default {
         document.addEventListener("click", e => {
           if (event.target.getAttribute("class") != "el-icon-s-fold") {
             if (event.target.getAttribute("class") != "dropdown-menu") {
-              this.$store.commit("mutationIsShowDragMenu", false);
+              this.$store.dispatch("dragMenuStore/setIsShowDragMenu", false);
             }
           }
         });
@@ -59,24 +57,24 @@ export default {
   },
   computed: {
     isShowDragMenu() {
-      return this.$store.state.isShowDragMenu;
+      return this.$store.state.dragMenuStore.isShowDragMenu;
     },
     currentBlockIndex() {
-      return this.$store.state.currentBlockIndex;
+      return this.$store.state.mainStore.currentBlockIndex;
     },
     getterMenuContentLayerXY() {
       let contentWeight = 245
       let contentHeight = this.dragBlockActionArray.length * 14 + 16
-      return this.$store.getters.getterMenuContentLayerXY(contentWeight, contentHeight);
+      return this.$store.getters["mainStore/getterMenuContentLayerXY"](contentWeight, contentHeight);
     },
     currentPageBlocks() {
-      return this.$store.state.currentPageBlocks;
+      return this.$store.state.dragMenuStore.currentPageBlocks;
     },
     dragBlockActionArray() {
-      return this.$store.state.dragBlockActionArray;
+      return this.$store.state.dragMenuStore.dragBlockActionArray;
     },
-    addBlockInfoOject() {
-      return this.$store.getters.getterAddBlockInfoObject;
+    dragBlockActionObject() {
+      return this.$store.getters["drag/getterDragBlockActionObject"];
     },
   },
   methods: {
@@ -86,7 +84,7 @@ export default {
     blockOnClickAction(action, index) {
       switch (action) {
         case "delete":
-          this.$store.commit("mutationDeletePageBlock", index);
+          this.$store.dispatch("mainStore/setDeletePageBlock", index);
           break
       }
     },

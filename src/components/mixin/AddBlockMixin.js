@@ -21,7 +21,7 @@ const AddBlockMixin = {
           data: data,
         };
       }
-      this.$store.commit("mutationAddCurrentPageBlocks", addBlockInfo);
+      this.$store.dispatch("mainStore/setAddCurrentPageBlocks", addBlockInfo);
 
       this.$nextTick(() => {
         // 如果是觸發添加內容的面板是從text模塊顯示的模塊添加彈窗頁面的，並且內容為空
@@ -31,7 +31,7 @@ const AddBlockMixin = {
           this.currentPageBlocks[this.currentBlockIndex].data.text == ""
         ) {
           // 處理游標的顯示問題，在當前模塊顯示
-          this.$store.commit("mutationDeletePageBlock", this.currentBlockIndex);
+          this.$store.dispatch("mainStore/setDeletePageBlock", this.currentBlockIndex);
           this.$nextTick(() => {
             let currInput = dom[this.currentBlockIndex].getElementsByTagName(
               "textarea"

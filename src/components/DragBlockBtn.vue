@@ -33,9 +33,9 @@ export default {
     openMenuShow(e) {
       let location = { x: e.clientX, y: e.clientY };
 
-      this.$store.commit("mutationAddMenuContentLayerXY", location);
-      this.$store.commit("mutationCurrentBlockIndex", this.BlocksIndex);
-      this.$store.commit("mutationIsShowDragMenu", true);
+      this.$store.dispatch("mainStore/setMenuContentLayerXY", location);
+      this.$store.dispatch("mainStore/setCurrentBlockIndex", this.BlocksIndex);
+      this.$store.dispatch("dragMenuStore/setIsShowDragMenu", true);
     },
   },
 };

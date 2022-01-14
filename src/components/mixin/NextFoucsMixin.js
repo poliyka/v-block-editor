@@ -47,7 +47,7 @@ const NextFoucsMixin = {
           this.currentPageBlocks.length > 1 &&
           this.deleteFlag === true
         ) {
-          this.$store.commit("mutationDeletePageBlock", index);
+          this.$store.dispatch("mainStore/setDeletePageBlock", index);
           this.$nextTick(() => {
             let dom = document.getElementsByClassName("block");
             let lastInputIndex = getLastInputIndex(index, this.currentPageBlocks)

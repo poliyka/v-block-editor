@@ -172,10 +172,7 @@ export default {
     };
   },
   mounted() {
-    this.$store.commit(
-      "mutationUpdateCurrentPageBlocks",
-      this.currentPageBlocks
-    );
+    this.$store.dispatch("mainStore/setUpdateCurrentPageBlocks", this.currentPageBlocks);
     class HistoryRecord {
       constructor(maxStack = 100, delay = 2000) {
         this.actionPoints = []; // 快照數組
@@ -249,25 +246,22 @@ export default {
   },
   computed: {
     isShowAddMenu() {
-      return this.$store.state.isShowAddMenu;
+      return this.$store.state.addMenuStore.isShowAddMenu;
     },
     getCurrentPageBlocks: {
       get() {
-        return this.$store.state.currentPageBlocks;
+        return this.$store.state.mainStore.currentPageBlocks;
       },
       set(value) {
-        this.$store.commit("mutationUpdateCurrentPageBlocks", value);
+        this.$store.dispatch("mainStore/setUpdateCurrentPageBlocks", value);
       },
-    },
-    getterMenuContentLayerXY() {
-      return this.$store.getters.getterMenuContentLayerXY;
     },
     dialogFormVisible: {
       get() {
-        return this.$store.state.dialogFormVisible;
+        return this.$store.state.mainStore.dialogFormVisible;
       },
       set(value) {
-        this.$store.commit("mutationUpdateDialogFormVisible", value);
+        this.$store.dispatch("mainStore/setUpdateDialogFormVisible", value);
       },
     },
   },
@@ -291,20 +285,21 @@ export default {
   methods: {
     setVisibleData(index) {
       this.dialogFormVisible = true;
-      this.$store.commit("mutationCurrentBlockIndex", index);
+      this.$store.dispatch("mainStore/setCurrentBlockIndex", index);
     },
     subscribe() {
       // 需要監控的 mutation
       let allowMutationSet = new Set([
-        "mutationAddCurrentPageBlocks",
-        "mutationDeletePageBlock",
-        "mutationUpdateOneBlock",
-        "mutationUpdateInputBlockText",
-        "mutationUpdateCurrentPageBlocks",
+        "addMenuStore/mutationAddCurrentPageBlocks",
+        "dragMenuStore/mutationDragCurrentPageBlocks",
+        "mainStore/mutationDeletePageBlock",
+        "mainStore/mutationUpdateOneBlock",
+        "mainStore/mutationUpdateInputBlockText",
+        "mainStore/mutationUpdateCurrentPageBlocks",
       ]);
       this.$store.subscribe(({ type }, state) => {
         if (allowMutationSet.has(type)) {
-          // TODO:還需要返回type，比如有 add,delete,drabbagle,textChangeds
+          // TODO:還需要返回type，比如有 add, delete, drabbagle, textChangeds
           this.$emit("change", state.currentPageBlocks);
           const data = this.lodash.cloneDeep(state.currentPageBlocks);
           this.historicalRecord.push(type, data);
