@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: frontend
+    entrypoint: './entrypoint.sh'
+    platform: linux/amd64
+    restart: always
+    ports:
+      - "3000:3000"
+    env_file: .env
+    volumes:
+      - ./src:/home/appuser/app/src
+      - ./dist:/home/appuser/app/dist
+      - ./node_modules:/home/appuser/app/node_modules
+      - ./package.json:/home/appuser/app/package.json
+      - ./package-lock.json:/home/appuser/app/package-lock.json
