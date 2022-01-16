@@ -23,28 +23,11 @@
         >基礎模組</span>
         <span
           class="block-type-tip"
-          v-if="index == 7"
+          v-if="index == 8"
         >媒體和數據</span>
         <div
           class="block-item"
           @click="addBlock(item.type)"
-          v-if="item.name != 'Delete'"
-        >
-          <div class="block-item-img">
-            <img
-              :src="getImgUrl(item.type)"
-              style="width: 100%"
-            />
-          </div>
-          <div class="block-item-intro">
-            <h4>{{ item.name }}</h4>
-            <span>{{ item.tip }}</span>
-          </div>
-        </div>
-        <div
-          class="block-item"
-          @click="deleteBlock(currentBlockIndex)"
-          v-if="item.name == 'Delete'"
         >
           <div class="block-item-img">
             <img
@@ -102,7 +85,7 @@ export default {
     addBlockInfoArray() {
       return this.$store.state.addMenuStore.addBlockInfoArray;
     },
-    addBlockInfoOject() {
+    addBlockInfoObject() {
       return this.$store.getters["addMenuStore/getterAddBlockInfoObject"];
     },
   },
@@ -110,9 +93,6 @@ export default {
     getImgUrl(type) {
       return require("@/assets/" + type + ".png");
     },
-    deleteBlock(index) {
-      this.$store.dispatch("mainStore/setDeletePageBlock", index);
-    }
   },
 };
 </script>

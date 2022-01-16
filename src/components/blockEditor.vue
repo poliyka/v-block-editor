@@ -72,6 +72,12 @@
             v-if="item.type == 'hint'"
             class="block"
           ></Hint>
+          <PrismCodeEditor
+            v-model="item.data"
+            :BlocksIndex="index"
+            v-if="item.type == 'PrismCodeEditor'"
+            class="block"
+          ></PrismCodeEditor>
           <BaseImage
             v-model="item.data"
             :BlocksIndex="index"
@@ -112,12 +118,14 @@ import Heading2 from "@/components/basicBlockComponents/Heading2";
 import Heading3 from "@/components/basicBlockComponents/Heading3";
 import BulletedList from "@/components/basicBlockComponents/BulletedList";
 import Hint from "@/components/basicBlockComponents/Hint";
+import PrismCodeEditor from "@/components/basicBlockComponents/PrismCodeEditor";
 import BaseImage from "@/components/basicBlockComponents/Image";
 import store from "@/vuex/store.js";
 import Vue from "vue";
 
 export default {
   name: "blockEditor",
+  store,
   components: {
     draggable,
     AddBlockBtn,
@@ -131,6 +139,7 @@ export default {
     Heading3,
     BulletedList,
     Hint,
+    PrismCodeEditor,
     BaseImage,
   },
   props: {
@@ -228,7 +237,7 @@ export default {
       reset() {
         this.updateTime = Date.now();
         let data = this.actionPoints[this.step];
-        store.commit("mutationUpdateCurrentPageBlocks", data);
+        this.$store.dispatch("mainStore/setUpdateCurrentPageBlocks", data);
       }
       _event_bind() {
         document.addEventListener("keydown", e => {
@@ -299,7 +308,7 @@ export default {
       this.$store.subscribe(({ type }, state) => {
         if (allowMutationSet.has(type)) {
           // TODO:還需要返回type，比如有 add, delete, drabbagle, textChangeds
-          this.$emit("change", state.currentPageBlocks);
+          // this.$emit("change", state.currentPageBlocks);
           const data = this.lodash.cloneDeep(state.currentPageBlocks);
           this.historicalRecord.push(type, data);
         }

@@ -3,7 +3,7 @@ import { getNextInputIndex } from "@/common.js";
 const AddBlockMixin = {
   methods: {
     addBlock(type, data = {}) {
-      let blockInfo = this.addBlockInfoOject[type];
+      let blockInfo = this.addBlockInfoObject[type];
       let addBlockInfo = {
         index: this.currentBlockIndex,
         blockItem: {},

@@ -92,6 +92,19 @@ const currentPageBlocks = [
     },
   },
   {
+    type: "PrismCodeEditor",
+    data: {
+      text: "console.log('程式碼編輯器')",
+      language: "js",
+    },
+  },
+  {
+    type: "text",
+    data: {
+      text: "",
+    },
+  },
+  {
     type: "hint",
     data: {
       text: "👏 已實現的模組",

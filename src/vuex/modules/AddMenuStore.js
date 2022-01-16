@@ -59,6 +59,15 @@ const state = {
       },
     },
     {
+      name: "程式碼",
+      tip: "程式碼編輯器",
+      type: "PrismCodeEditor",
+      data: {
+        text: "",
+        language: "js",
+      },
+    },
+    {
       name: "圖片",
       tip: "用於提示比較重要的信息",
       type: "image",
