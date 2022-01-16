@@ -1,18 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
+<tal:doctype tal:replace="structure string:&lt;!DOCTYPE html&gt;" />
+  <html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xml:lang="en"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    xmlns:v-on="http://vue.org/namespaces/vue"
+    class="no-js"
+    lang="en"
+    tal:define="plone_layout python:context.restrictedTraverse('@@plone_layout');"
+    i18n:domain="vblockeditor.poliyka"
+  >
+
   <head>
+    <?python
+      from plone import api
+      portal = api.portal.get()
+      portal_url = portal.portal_url()
+      ?>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_1752291_7r302vqgs2a.css">
+    <meta
+      http-equiv="X-UA-Compatible"
+      content="IE=edge"
+    >
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0"
+    >
+    <link
+      rel="icon"
+      href="<%= BASE_URL %>favicon.ico"
+    >
     <title>v-block-editor</title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
-</html>
+
+    <!-- custom css -->
+    <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
+    <link
+      rel="stylesheet"
+      href="<%= VUE_APP_PORTAL_URL + htmlWebpackPlugin.files.chunks[chunk].css %>"
+    />
+    <%}%>
+    </head>
+
+    <body>
+
+      <div id="app"></div>
+
+    <!-- custom js -->
+    <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
+    <script src="<%= VUE_APP_PORTAL_URL + htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
+    <%}%>
+
+    </body>
+
+
+  </html>
