@@ -183,7 +183,7 @@ const currentPageBlocks = [
     type: "todo",
     data: {
       isChecked: true,
-      text: "文本編輯器",
+      text: "程式碼編輯器",
     },
   },
   {
