@@ -308,8 +308,8 @@ export default {
       this.$store.subscribe(({ type }, state) => {
         if (allowMutationSet.has(type)) {
           // TODO:還需要返回type，比如有 add, delete, drabbagle, textChangeds
-          // this.$emit("change", state.currentPageBlocks);
-          const data = this.lodash.cloneDeep(state.currentPageBlocks);
+          this.$emit("change", state.mainStore.currentPageBlocks);
+          const data = this.lodash.cloneDeep(state.mainStore.currentPageBlocks);
           this.historicalRecord.push(type, data);
         }
       });

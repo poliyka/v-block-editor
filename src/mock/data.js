@@ -92,10 +92,17 @@ const currentPageBlocks = [
     },
   },
   {
+    type: "heading3",
+    data: {
+      text: "使用 Prismjs 建構的編輯器",
+    },
+  },
+  {
     type: "PrismCodeEditor",
     data: {
-      text: "console.log('程式碼編輯器')",
-      language: "js",
+      text: "class Python:\n    \"\"\" Amazing prismjs! 😎 \"\"\"\n    \n    text=\"Hello World\"\n    print(text)",
+      language: "py",
+      tabSize: 4,
     },
   },
   {
@@ -173,6 +180,13 @@ const currentPageBlocks = [
     },
   },
   {
+    type: "todo",
+    data: {
+      isChecked: true,
+      text: "文本編輯器",
+    },
+  },
+  {
     type: "text",
     data: {
       text: "",
@@ -188,13 +202,6 @@ const currentPageBlocks = [
     type: "text",
     data: {
       text: "",
-    },
-  },
-  {
-    type: "todo",
-    data: {
-      isChecked: false,
-      text: "將 textarea 改為 WYSIWYG",
     },
   },
   {

@@ -14,6 +14,7 @@
         ></BaseTextBlock>
       </div>
     </div>
+
     <el-dialog
       title="編輯"
       :visible.sync="visible"
@@ -56,6 +57,7 @@
           ></el-input>
         </el-form-item>
       </el-form>
+
       <div
         slot="footer"
         class="dialog-footer"
@@ -66,6 +68,7 @@
           @click="updateBlock(formData)"
         >確 定</el-button>
       </div>
+
     </el-dialog>
   </div>
 </template>

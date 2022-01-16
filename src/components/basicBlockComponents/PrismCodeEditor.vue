@@ -4,8 +4,9 @@
       <prism-editor
         :id="BlocksIndex"
         class="prism-code-editor"
-        v-model="code.text"
+        v-model="code"
         :highlight="highlighter"
+        :tab-size="formData.tabSize"
         line-numbers
       ></prism-editor>
     </div>
@@ -14,21 +15,39 @@
       title="編輯"
       :visible.sync="visible"
     >
-      <el-select
-        v-model="language"
-        filterable
-        placeholder="選擇語言"
-      >
-        <el-option
-          v-for="lang in languageOptions"
-          :key="lang.value"
-          :label="lang.label"
-          :value="lang.value"
+      <el-form :model="formData">
+        <el-form-item
+          label="語言"
+          label-width="120px"
         >
-          <span style="float: left">{{ lang.label }}</span>
-          <span style="float: right; font-size: 13px">{{ lang.value }}</span>
-        </el-option>
-      </el-select>
+
+          <el-select
+            v-model="formData.language"
+            filterable
+            placeholder="選擇語言"
+          >
+            <el-option
+              v-for="(lang, index) in languageOptions"
+              :key="index"
+              :label="lang.label"
+              :value="lang.value"
+            >
+            </el-option>
+          </el-select>
+        </el-form-item>
+
+        <el-form-item
+          label="縮排長度"
+          label-width="120px"
+        >
+          <el-input-number
+            v-model="formData.tabSize"
+            :step="2"
+            step-strictly
+          ></el-input-number>
+        </el-form-item>
+      </el-form>
+
       <div
         slot="footer"
         class="dialog-footer"
@@ -36,7 +55,7 @@
         <el-button @click="visible = false">取 消</el-button>
         <el-button
           type="primary"
-          @click="updateBlock(language)"
+          @click="updateBlock(formData)"
         >確 定</el-button>
       </div>
     </el-dialog>
@@ -53,45 +72,55 @@ Prism.manual = false;
 
 
 export default {
-  name: "hint",
+  name: "PrismCodeEditor",
   props: ["value", "BlocksIndex"],
   components: {
     PrismEditor,
   },
   data() {
     return {
-      code: this.value,
-      languageOptions: [
-        {
-          value: "js",
-          label: "Javascript",
-        },
-        {
-          value: "py",
-          label: "Python",
-        },
-        {
-          value: "java",
-          label: "Java",
-        },
-      ],
-      language: "js",
+      code: this.value.text,
+      formData: {
+        language: this.value.language || "js",
+        tabSize: this.value.tabSize || 2,
+      },
+      languageOptions: Object.entries(Prism.languages).map(([k, v]) => { return { label: k, value: k } }),
     };
   },
   watch: {
+    code: {
+      handler(val) {
+        //在地值改變傳給父組件
+        let blockItem = {
+          language: this.formData.language,
+          tabSize: this.formData.tabSize,
+          text: val,
+        }
+        this.$emit("input", blockItem);
+
+        let blockInfo = {
+          index: this.BlocksIndex,
+          text: val,
+        };
+        this.$store.dispatch("mainStore/setUpdateInputBlockText", blockInfo);
+      },
+    },
     value(val) {
-      this.code = val;
+      this.code = val.text;
+      this.formData.language = val.language;
+      this.formData.tabSize = val.tabSize;
     },
   },
   methods: {
-    updateBlock(language) {
+    updateBlock(formData) {
       let blockInfo = {
         index: this.BlocksIndex,
         blockItem: {
           type: this.$options.name,
           data: {
-            text: this.value,
-            language: language,
+            text: this.code,
+            language: formData.language,
+            tabSize: formData.tabSize,
           },
         },
       };
@@ -99,7 +128,7 @@ export default {
       this.visible = false;
     },
     highlighter(code) {
-      return Prism.highlight(code, Prism.languages.js);
+      return Prism.highlight(code, Prism.languages[this.formData.language]);
     },
   },
   computed: {

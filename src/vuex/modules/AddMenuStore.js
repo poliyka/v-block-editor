@@ -65,6 +65,7 @@ const state = {
       data: {
         text: "",
         language: "js",
+        tabSize: 2,
       },
     },
     {
