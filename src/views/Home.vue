@@ -13,7 +13,7 @@
       >
         <i>
           <img
-            src="../assets/github.svg"
+            src="../assets/img/github.svg"
             width="18px"
           />
         </i>
@@ -32,6 +32,8 @@
         :readonly="readonly"
         :currentPageBlocks="currentPageBlocks"
         @change="change"
+        :maxStack="100"
+        :delay="2000"
       ></blockEditor>
     </div>
   </div>
@@ -54,7 +56,6 @@ export default {
   methods: {
     change(value) {
       console.log("blockChange", value);
-      // console.log(value);
     },
   },
 };

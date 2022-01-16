@@ -1,4 +1,6 @@
 <template>
+  <!-- TODO: 不應該限制  container 大小 -->
+  <!-- 不應該有固定 id -->
   <div
     class="container-870"
     id="blockEditor"
@@ -172,7 +174,7 @@ export default {
     dragGhostClass: {
       type: String,
       default: function () {
-        return "default-ghost-bg-color";
+        return "__ven_ghost-bg-color";
       },
     },
   },
@@ -196,7 +198,7 @@ export default {
       init() {
         this._event_bind(); // 快捷鍵綁定
         this.actionPoints.push(
-          Vue.lodash.cloneDeep(store.state.currentPageBlocks)
+          Vue.lodash.cloneDeep(store.state.mainStore.currentPageBlocks)
         ); // push首次數據
       }
 
@@ -237,8 +239,9 @@ export default {
       }
       reset() {
         this.updateTime = Date.now();
+        console.log(this.actionPoints);
         let data = this.actionPoints[this.step];
-        this.$store.dispatch("mainStore/setUpdateCurrentPageBlocks", data);
+        store.dispatch("mainStore/setUpdateCurrentPageBlocks", data);
       }
       _event_bind() {
         document.addEventListener("keydown", e => {
@@ -364,7 +367,7 @@ export default {
     visibility: hidden;
   }
 }
-.default-ghost-bg-color {
+.__vne_ghost-bg-color {
   background: hsla(196, 85%, 63%, 0.123);
 }
 </style>
