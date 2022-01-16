@@ -11,7 +11,7 @@ services:
     restart: always
     ports:
       - "3000:3000"
-    env_file: .env
+    env_file: .env.docker
     volumes:
       - ./src:/home/appuser/app/src
       - ./dist:/home/appuser/app/dist
