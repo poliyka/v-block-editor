@@ -13,7 +13,7 @@
 # 使用
 
 ```
-git clone https://github.com/poliyka/v-block-editor.git
+git clone https://github.com/poliyka/vne-block-editor.git
 cd vne-block-editor
 
 npm install
