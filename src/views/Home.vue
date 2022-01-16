@@ -1,13 +1,13 @@
 <template>
   <div class="home">
     <div class="header">
-      <h1>v-block-editor</h1>
+      <h1>vne-block-editor</h1>
       <p>模組化內容構建編輯器，基於 Vue 和 element 的打造</p>
       <p>以 JSON 格式輸出，靈感來自Notion</p>
       <p>Show test immediately</p>
       <el-link
         :underline="false"
-        href="https://github.com/poliyka/v-block-editor"
+        href="https://github.com/poliyka/vne-block-editor"
         class="el-link-btn"
         target="_blank"
       >

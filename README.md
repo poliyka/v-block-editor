@@ -14,15 +14,15 @@
 
 ```
 git clone https://github.com/poliyka/v-block-editor.git
-cd v-block-editor
+cd vne-block-editor
 
 npm install
 npm run serve
 ```
 
-# v-block-editor 是什麼
+# vne-block-editor 是什麼
 
-v-block-editor 是一個開源的模塊化內容構建編輯器，它不同於古早的文本編輯器，所有的內容都是以模塊的概念來打造。靈感來自 Notion
+vne-block-editor 是一個開源的模塊化內容構建編輯器，它不同於古早的文本編輯器，所有的內容都是以模塊的概念來打造。靈感來自 Notion
 
 # 與原版的差異
 
@@ -31,7 +31,7 @@ v-block-editor 是一個開源的模塊化內容構建編輯器，它不同於�
 
 ## 靈活的插拔
 
-所有的模塊都以 Vue 組件的形式編寫，可以靈活插拔。你可以用 v-block-editor 編輯器構建一個模塊化的內容平臺，可以在一個頁麵裏插入任何其他模塊，就像 Notion 一樣
+所有的模塊都以 Vue 組件的形式編寫，可以靈活插拔。你可以用 vne-block-editor 編輯器構建一個模塊化的內容平臺，可以在一個頁麵裏插入任何其他模塊，就像 Notion 一樣
 
 ## 純淨的輸出
 
