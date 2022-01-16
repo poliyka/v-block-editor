@@ -8,9 +8,9 @@
         :highlight="highlighter"
         :tab-size="formData.tabSize"
         line-numbers
+        :readonly="readonly"
       ></prism-editor>
     </div>
-
     <el-dialog
       title="編輯"
       :visible.sync="visible"
@@ -73,7 +73,7 @@ Prism.manual = false;
 
 export default {
   name: "PrismCodeEditor",
-  props: ["value", "BlocksIndex"],
+  props: ["value", "BlocksIndex", "readonly"],
   components: {
     PrismEditor,
   },

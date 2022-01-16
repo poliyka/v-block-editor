@@ -22,7 +22,7 @@
       >
         <div
           class="line-left"
-          v-if="readOnly == false"
+          v-if="readonly == false"
         >
           <!-- 彈出添加組件的彈窗+號按鈕 -->
           <AddBlockBtn :BlocksIndex="index"></AddBlockBtn>
@@ -77,6 +77,7 @@
             :BlocksIndex="index"
             v-if="item.type == 'PrismCodeEditor'"
             class="block"
+            :readonly="readonly"
           ></PrismCodeEditor>
           <BaseImage
             v-model="item.data"
@@ -143,7 +144,7 @@ export default {
     BaseImage,
   },
   props: {
-    readOnly: {
+    readonly: {
       type: Boolean,
       required: false,
       default: function () {
@@ -275,18 +276,18 @@ export default {
     },
   },
   watch: {
-    readOnly(val) {
+    readonly(val) {
       let textareaDom = document.getElementsByTagName("textarea");
       if (val == true) {
         for (let index = 0; index < textareaDom.length; index++) {
           const element = textareaDom[index];
-          element.readOnly = true;
+          element.readonly = true;
         }
       }
       if (val == false) {
         for (let index = 0; index < textareaDom.length; index++) {
           const element = textareaDom[index];
-          element.readOnly = false;
+          element.readonly = false;
         }
       }
     },

@@ -20,16 +20,16 @@
         GitHub
       </el-link>
     </div>
-    <div class="readOnly-switch">
+    <div class="readonly-switch">
       <el-switch
-        v-model="readOnly"
+        v-model="readonly"
         active-text="只讀模式"
         inactive-text="編輯模式"
       ></el-switch>
     </div>
     <div>
       <blockEditor
-        :readOnly="readOnly"
+        :readonly="readonly"
         :currentPageBlocks="currentPageBlocks"
         @change="change"
       ></blockEditor>
@@ -46,7 +46,7 @@ export default {
   name: "Home",
   components: { blockEditor },
   data() {
-    return { readOnly: false, currentPageBlocks: currentPageBlocks };
+    return { readonly: false, currentPageBlocks: currentPageBlocks };
   },
   computed: {},
   watch: {},
@@ -81,7 +81,7 @@ export default {
       color: #303133;
     }
   }
-  .readOnly-switch {
+  .readonly-switch {
     text-align: center;
     margin-bottom: 20px;
   }
