@@ -11,7 +11,7 @@ const AddBlockMixin = {
       if (this._.isEmpty(data)) {
         addBlockInfo.blockItem = {
           type: type,
-          data: blockInfo.data,
+          data: Object.assign({}, blockInfo.data), // 務必 DeepClone 否則新增的物件都會連動
         };
       } else {
         addBlockInfo.blockItem = {
