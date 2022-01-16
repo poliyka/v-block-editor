@@ -2,7 +2,7 @@ const currentPageBlocks = [
   {
     type: "heading1",
     data: {
-      text: "v-block-editor 是什麼",
+      text: "vne-block-editor 是什麼",
     },
   },
   {
@@ -19,7 +19,7 @@ const currentPageBlocks = [
     type: "text",
     data: {
       text:
-        "v-block-editor 是一個開源的模塊化內容構建編輯器，它不同於古早的文本編輯器，所有的內容都是以模組的概念來打造。靈感來自Notion",
+        "vne-block-editor 是一個開源的模塊化內容構建編輯器，它不同於古早的文本編輯器，所有的內容都是以模組的概念來打造。靈感來自Notion",
     },
   },
   {
@@ -32,7 +32,7 @@ const currentPageBlocks = [
     type: "text",
     data: {
       text:
-        "所有的模組都以VUE組件的形式編寫，可以靈活插拔。你可以用v-block-editor編輯器構建一個模組化的內容平臺，可以在一個頁面裏插入任何其他模組，就像Notion一樣",
+        "所有的模組都以VUE組件的形式編寫，可以靈活插拔。你可以用vne-block-editor編輯器構建一個模組化的內容平臺，可以在一個頁面裏插入任何其他模組，就像Notion一樣",
     },
   },
   {

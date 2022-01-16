@@ -91,7 +91,7 @@ export default {
   },
   methods: {
     getImgUrl(type) {
-      return require("@/assets/" + type + ".png");
+      return require("@/assets/img/" + type + ".png");
     },
   },
 };

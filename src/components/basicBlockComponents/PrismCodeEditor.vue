@@ -1,9 +1,13 @@
 <template>
-  <div>
-    <div class="code">
+  <div :id="joinBlockIdPrefix(BlocksIndex)">
+    <div :class="joinClassPrefix({code: {join: true},})">
+
       <prism-editor
-        :id="BlocksIndex"
-        class="prism-code-editor"
+        :class="joinClassPrefix({
+          'prism-code-editor': {join: true},
+          'code': {join: false},
+          'disabled': {join: false, show: readonly},
+        })"
         v-model="code"
         :highlight="highlighter"
         :tab-size="formData.tabSize"
@@ -11,6 +15,7 @@
         :readonly="readonly"
       ></prism-editor>
     </div>
+
     <el-dialog
       title="編輯"
       :visible.sync="visible"
@@ -48,31 +53,29 @@
         </el-form-item>
       </el-form>
 
-      <div
-        slot="footer"
-        class="dialog-footer"
-      >
+      <template #footer>
         <el-button @click="visible = false">取 消</el-button>
         <el-button
           type="primary"
           @click="updateBlock(formData)"
         >確 定</el-button>
-      </div>
+      </template>
     </el-dialog>
   </div>
 </template>
 
 <script>
-// TODO:支援自定義預設值以及顔色選擇器
 import { PrismEditor } from 'vue-prism-editor';
-import 'vue-prism-editor/dist/prismeditor.min.css';
-
+import PrefixMixin from '../mixin/PrefixMixin'
 import Prism from 'prismjs'
+
+import 'vue-prism-editor/dist/prismeditor.min.css';
 Prism.manual = false;
 
 
 export default {
   name: "PrismCodeEditor",
+  mixins: [PrefixMixin],
   props: ["value", "BlocksIndex", "readonly"],
   components: {
     PrismEditor,
@@ -162,12 +165,12 @@ export default {
   font-family: "Fira code";
   src: url("../../assets/font/FiraCode.ttf");
 }
-.code {
+.__vne_code {
   margin-right: 10px;
   padding: 10px;
 }
 /* required class */
-.prism-code-editor {
+.__vne_prism-code-editor {
   /* we dont use `language-` classes anymore so thats why we need to add background and text color manually */
   background: #2d2d2d;
   color: #ccc;
