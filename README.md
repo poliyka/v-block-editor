@@ -12,7 +12,7 @@
 
 # 使用
 
-```
+```bash
 git clone https://github.com/poliyka/vne-block-editor.git
 cd vne-block-editor
 
@@ -64,25 +64,25 @@ vne-block-editor 是一個開源的模塊化內容構建編輯器，它不同於
 
 # API
 
-```
-    <blockEditor
-    :currentPageBlocks="currentPageBlocks"
-    @change="change"
-    :maxStack="100"  //最大歷史記錄
-    :delay="2000" // 兩秒保存一次歷史記錄
-    ></blockEditor>
+```html
+<blockEditor
+  :currentPageBlocks="currentPageBlocks"
+  @change="change"
+  :maxStack="100"
+  :delay="2000"
+></blockEditor>
 ```
 
 # Event
 
-| Event   | Status             | Desctiption             |
+| Event   | Usable             | Desctiption             |
 | ------- | -------            | ----------------------- |
 | change  | :white_check_mark: | 任何操作都將返回目前文本內容 |
 | drag    | :x:                | 拖曳事件                 |
 
 # Prop
 
-| Prop     | Status             | Desctiption             |
+| Prop     | Usable             | Desctiption             |
 | -------- | -------            | ----------------------- |
 | maxStack | :white_check_mark: | 最大保存歷史紀錄數量        |
 | delay    | :white_check_mark: | n秒保存一次歷史記錄         |
