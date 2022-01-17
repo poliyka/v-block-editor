@@ -46,7 +46,7 @@ vne-block-editor 是一個開源的模塊化內容構建編輯器，它不同於
 - [x] 標題 1
 - [x] 標題 2
 - [x] 標題 3
-- [x] 符號列錶
+- [x] 符號列表
 - [x] 提示欄
 - [x] 組件的拖拽移動
 - [x] 允許使用 Ctrl+Z 和 Ctrl+Y 來執行撤銷和重做
@@ -68,7 +68,21 @@ vne-block-editor 是一個開源的模塊化內容構建編輯器，它不同於
     <blockEditor
     :currentPageBlocks="currentPageBlocks"
     @change="change"
-    maxStack="100"  //最大曆史記錄
-    delay="2000" // 兩秒保存一次曆史記錄
+    :maxStack="100"  //最大歷史記錄
+    :delay="2000" // 兩秒保存一次歷史記錄
     ></blockEditor>
 ```
+
+# Event
+
+| Event   | Status             | Desctiption             |
+| ------- | -------            | ----------------------- |
+| change  | :white_check_mark: | 任何操作都將返回目前文本內容 |
+| drag    | :x:                | 拖曳事件                 |
+
+# Prop
+
+| Prop     | Status             | Desctiption             |
+| -------- | -------            | ----------------------- |
+| maxStack | :white_check_mark: | 最大保存歷史紀錄數量        |
+| delay    | :white_check_mark: | n秒保存一次歷史記錄         |
