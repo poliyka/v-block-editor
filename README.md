@@ -10,7 +10,7 @@
 
 由於 `CedarXi` 與 `renmu123` 都長時間無維護此項目，我將它重新撿起來維護
 
-# 使用
+# 💾 Installation
 
 ```bash
 git clone https://github.com/poliyka/vne-block-editor.git
@@ -18,6 +18,17 @@ cd vne-block-editor
 
 npm install
 npm run serve
+```
+
+# Quick Start
+
+```html
+<blockEditor
+  :currentPageBlocks="currentPageBlocks"
+  @change="change"
+  :maxStack="100"
+  :delay="2000"
+></blockEditor>
 ```
 
 # vne-block-editor 是什麼
@@ -62,16 +73,7 @@ vne-block-editor 是一個開源的模塊化內容構建編輯器，它不同於
 - [ ] emoji 組件
 - [ ] 插件化開發設定
 
-# API
 
-```html
-<blockEditor
-  :currentPageBlocks="currentPageBlocks"
-  @change="change"
-  :maxStack="100"
-  :delay="2000"
-></blockEditor>
-```
 
 # Event
 
