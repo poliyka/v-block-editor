@@ -20,11 +20,11 @@
         <span
           class="block-type-tip"
           v-if="index == 0"
-        >基礎模組</span>
+        >{{ $t('addMenu.group.baseBlocks') }}</span>
         <span
           class="block-type-tip"
           v-if="index == 8"
-        >媒體和數據</span>
+        >{{ $t('addMenu.group.media') }}</span>
         <div
           class="block-item"
           @click="addBlock(item.type)"
@@ -36,8 +36,8 @@
             />
           </div>
           <div class="block-item-intro">
-            <h4>{{ item.name }}</h4>
-            <span>{{ item.tip }}</span>
+            <h4>{{ $t(item.name) }}</h4>
+            <span>{{ $t(item.tip) }}</span>
           </div>
         </div>
       </div>

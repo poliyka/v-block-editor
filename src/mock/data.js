@@ -98,7 +98,7 @@ const currentPageBlocks = [
     },
   },
   {
-    type: "PrismCodeEditor",
+    type: "code",
     data: {
       text: "class Python:\n    \"\"\" Amazing prismjs! 😎 \"\"\"\n    \n    text=\"Hello World\"\n    print(text)",
       language: "py",

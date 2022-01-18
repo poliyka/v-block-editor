@@ -1,0 +1,75 @@
+{
+  "root": {
+    "modify": "Modify",
+    "cancel": "Cancel",
+    "confirm": "Confirm"
+  },
+  "addMenu": {
+    "name": {
+      "text": "Text",
+      "todo": "Todo",
+      "heading1": "Heading1",
+      "heading2": "Heading2",
+      "heading3": "Heading3",
+      "BulletedList": "BulletedList",
+      "hint": "Hint",
+      "code": "Code",
+      "image": "Image"
+    },
+    "tip": {
+      "text": "Just start writing with plain text.",
+      "todo": "Track tasks with a todo.",
+      "heading1": "Big section heading.",
+      "heading2": "Medium section heading.",
+      "heading3": "small section heading.",
+      "BulletedList": "Create a simple bulleted list",
+      "hint": "Important message hint.",
+      "code": "Capture a code snippet.",
+      "image": "Upload or embed with a link."
+    },
+    "group": {
+      "baseBlocks": "BASE BLOCKS",
+      "media": "MEDIA"
+    }
+  },
+  "dragMenu": {
+    "name": {
+      "delete": "Delete",
+      "duplicate": "Duplicate",
+      "turnInto": "Turn into",
+      "color": "Color"
+    }
+  },
+  "dialog": {
+    "hint": {
+      "color": {
+        "label": "Color",
+        "placeholder": "Pick a color",
+        "tip": "Support hex code"
+      },
+      "text": {
+        "label": "Text"
+      }
+    },
+    "code": {
+      "tabSize": {
+        "label": "Tab Size"
+      },
+      "language": {
+        "label": "Language",
+        "placeholder": "Pick a language"
+      }
+    },
+    "image": {
+      "url": {
+        "label": "Url"
+      },
+      "height": {
+        "label": "Height"
+      },
+      "width": {
+        "label": "Width"
+      }
+    }
+  }
+}

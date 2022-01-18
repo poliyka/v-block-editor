@@ -17,19 +17,19 @@
     </div>
 
     <el-dialog
-      title="編輯"
+      :title="$t('root.modify')"
       :visible.sync="visible"
     >
       <el-form :model="formData">
         <el-form-item
-          label="語言"
+          :label="$t('dialog.code.language.label')"
           label-width="120px"
         >
 
           <el-select
             v-model="formData.language"
             filterable
-            placeholder="選擇語言"
+            :placeholder="$t('dialog.code.language.placeholder')"
           >
             <el-option
               v-for="(lang, index) in languageOptions"
@@ -42,7 +42,7 @@
         </el-form-item>
 
         <el-form-item
-          label="縮排長度"
+          :label="$t('dialog.code.tabSize.label')"
           label-width="120px"
         >
           <el-input-number
@@ -54,11 +54,11 @@
       </el-form>
 
       <template #footer>
-        <el-button @click="visible = false">取 消</el-button>
+        <el-button @click="visible = false">{{ $t('root.cancel') }}</el-button>
         <el-button
           type="primary"
           @click="updateBlock(formData)"
-        >確 定</el-button>
+        >{{ $t('root.confirm') }}</el-button>
       </template>
     </el-dialog>
   </div>

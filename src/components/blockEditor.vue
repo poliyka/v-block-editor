@@ -3,8 +3,8 @@
   <!-- 不應該有固定 id -->
   <div
     class="container-870"
-    id="blockEditor"
   >
+
     <!-- 添加組件的彈窗 -->
     <AddBlockInfoContent></AddBlockInfoContent>
     <DragBlockActionContent></DragBlockActionContent>
@@ -77,7 +77,7 @@
           <PrismCodeEditor
             v-model="item.data"
             :BlocksIndex="index"
-            v-if="item.type == 'PrismCodeEditor'"
+            v-if="item.type == 'code'"
             class="block"
             :readonly="readonly"
           ></PrismCodeEditor>
@@ -149,38 +149,45 @@ export default {
     readonly: {
       type: Boolean,
       required: false,
-      default: function () {
+      default() {
         return false;
       },
     },
     maxStack: {
       type: Number,
-      default: function () {
+      default() {
         return 100;
       },
     },
     delay: {
       type: Number,
-      default: function () {
+      default() {
         return 2000;
       },
     },
     currentPageBlocks: {
       type: Array,
-      default: function () {
+      default() {
         return [];
       },
     },
     dragGhostClass: {
       type: String,
-      default: function () {
+      default() {
         return "__ven_ghost-bg-color";
       },
     },
+    locale: {
+      type: String,
+      default() {
+        return "en"
+      },
+    }
   },
   data() {
     return {
       historicalRecord: "",
+      msg: "message",
     };
   },
   mounted() {
@@ -293,6 +300,9 @@ export default {
           element.readonly = false;
         }
       }
+    },
+    locale(val){
+      this.$i18n.locale = val
     },
   },
   methods: {

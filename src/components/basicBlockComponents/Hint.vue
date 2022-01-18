@@ -16,20 +16,20 @@
     </div>
 
     <el-dialog
-      title="編輯"
+      :title="$t('root.modify')"
       :visible.sync="visible"
       @closed="close"
     >
       <el-form :model="formData">
         <el-form-item
-          label="顔色"
+          :label="$t('dialog.hint.color.label')"
           label-width="120px"
         >
           <el-select
             v-model="formData.color"
             filterable
             allow-create
-            placeholder="請選擇顔色"
+            :placeholder="$t('dialog.hint.color.placeholder')"
           >
             <el-option
               v-for="item in options"
@@ -44,10 +44,10 @@
               >{{ item.value }}</span>
             </el-option>
           </el-select>
-          <el-tag style="margin-left: 5px">支援 hex 色碼</el-tag>
+          <el-tag style="margin-left: 5px">{{ $t('dialog.hint.color.tip')}}</el-tag>
         </el-form-item>
         <el-form-item
-          label="文字"
+          :label="$t('dialog.hint.text.label')"
           label-width="120px"
         >
           <el-input
@@ -58,16 +58,13 @@
         </el-form-item>
       </el-form>
 
-      <div
-        slot="footer"
-        class="dialog-footer"
-      >
-        <el-button @click="visible = false">取 消</el-button>
+      <template #footer>
+        <el-button @click="visible = false">{{ $t('root.cancel') }}</el-button>
         <el-button
           type="primary"
           @click="updateBlock(formData)"
-        >確 定</el-button>
-      </div>
+        >{{ $t('root.confirm') }}</el-button>
+      </template>
 
     </el-dialog>
   </div>

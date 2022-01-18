@@ -2,56 +2,56 @@ const state = {
   isShowAddMenu: false,
   addBlockInfoArray: [
     {
-      name: "純文本",
-      tip: "用純文本開始寫內容",
+      name: "addMenu.name.text",
+      tip: "addMenu.tip.text",
       type: "text",
       data: {
         text: "",
       },
     },
     {
-      name: "待辦清單",
-      tip: "用待辦清單去追蹤任務",
+      name: "addMenu.name.todo",
+      tip: "addMenu.tip.todo",
       type: "todo",
       data: {
         text: "",
       },
     },
     {
-      name: "標題1",
-      tip: "大字號標題",
+      name: "addMenu.name.heading1",
+      tip: "addMenu.tip.heading1",
       type: "heading1",
       data: {
         text: "",
       },
     },
     {
-      name: "標題2",
-      tip: "中字號標題",
+      name: "addMenu.name.heading2",
+      tip: "addMenu.tip.heading2",
       type: "heading2",
       data: {
         text: "",
       },
     },
     {
-      name: "標題3",
-      tip: "小字號標題",
+      name: "addMenu.name.heading3",
+      tip: "addMenu.tip.heading3",
       type: "heading3",
       data: {
         text: "",
       },
     },
     {
-      name: "符號列表",
-      tip: "大字號標題",
+      name: "addMenu.name.BulletedList",
+      tip: "addMenu.tip.BulletedList",
       type: "BulletedList",
       data: {
         text: "",
       },
     },
     {
-      name: "提示欄",
-      tip: "用於提示比較重要的信息",
+      name: "addMenu.name.hint",
+      tip: "addMenu.tip.hint",
       type: "hint",
       data: {
         text: "",
@@ -59,9 +59,9 @@ const state = {
       },
     },
     {
-      name: "程式碼",
-      tip: "程式碼編輯器",
-      type: "PrismCodeEditor",
+      name: "addMenu.name.code",
+      tip: "addMenu.tip.code",
+      type: "code",
       data: {
         text: "",
         language: "js",
@@ -69,8 +69,8 @@ const state = {
       },
     },
     {
-      name: "圖片",
-      tip: "用於提示比較重要的信息",
+      name: "addMenu.name.image",
+      tip: "addMenu.tip.image",
       type: "image",
       data: {
         src: "",

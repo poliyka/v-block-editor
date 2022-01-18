@@ -9,40 +9,37 @@
     />
 
     <el-dialog
-      title="編輯"
+      :title="$t('root.modify')"
       :visible.sync="visible"
       @closed="close"
     >
       <el-form :model="formData">
         <el-form-item
-          label="url"
+          :label="$t('dialog.image.url.label')"
           :label-width="formLabelWidth"
         >
           <el-input v-model="formData.src"></el-input>
         </el-form-item>
         <el-form-item
-          label="高度"
+          :label="$t('dialog.image.height.label')"
           :label-width="formLabelWidth"
         >
           <el-input v-model="formData.width"></el-input>
         </el-form-item>
         <el-form-item
-          label="寬度"
+          :label="$t('dialog.image.width.label')"
           :label-width="formLabelWidth"
         >
           <el-input v-model="formData.height"></el-input>
         </el-form-item>
       </el-form>
-      <div
-        slot="footer"
-        class="dialog-footer"
-      >
-        <el-button @click="visible = false">取 消</el-button>
+      <template #footer>
+        <el-button @click="visible = false">{{ $t('root.cancel') }}</el-button>
         <el-button
           type="primary"
           @click="updateBlock(formData)"
-        >確 定</el-button>
-      </div>
+        >{{ $t('root.confirm') }}</el-button>
+      </template>
     </el-dialog>
   </div>
 </template>

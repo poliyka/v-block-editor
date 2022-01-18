@@ -26,6 +26,13 @@
         inactive-text="編輯模式"
       ></el-switch>
     </div>
+    <div class="readonly-switch">
+      <el-radio-group v-model="locale">
+        <el-radio label="en">English</el-radio>
+        <el-radio label="zh-tw">繁體中文</el-radio>
+        <el-radio label="zh-cn">简体中文</el-radio>
+      </el-radio-group>
+    </div>
     <div>
       <blockEditor
         :readonly="readonly"
@@ -33,6 +40,7 @@
         @change="change"
         :maxStack="100"
         :delay="2000"
+        :locale="locale"
       ></blockEditor>
     </div>
   </div>
@@ -47,7 +55,11 @@ export default {
   name: "Home",
   components: { blockEditor },
   data() {
-    return { readonly: false, currentPageBlocks: currentPageBlocks };
+    return {
+      readonly: false,
+      currentPageBlocks: currentPageBlocks,
+      locale: "en",
+    };
   },
   computed: {},
   watch: {},

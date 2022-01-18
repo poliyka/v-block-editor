@@ -2,7 +2,7 @@ const state = {
   isShowDragMenu: false,
   dragBlockActionArray: [
     {
-      name: "刪除",
+      name: "dragMenu.name.delete",
       cmd: "Del",
       type: "button",
       action: "delete",
@@ -10,7 +10,7 @@ const state = {
       color: "block",
     },
     {
-      name: "複製",
+      name: "dragMenu.name.duplicate",
       cmd: "Ctrl + D",
       type: "button",
       action: "duplicate",
@@ -18,7 +18,7 @@ const state = {
       color: "red",
     },
     {
-      name: "轉換",
+      name: "dragMenu.name.turnInto",
       cmd: null,
       type: "list",
       action: "turnInto",
@@ -26,7 +26,7 @@ const state = {
       color: "red",
     },
     {
-      name: "顏色",
+      name: "dragMenu.name.color",
       cmd: null,
       type: "list",
       action: "color",
