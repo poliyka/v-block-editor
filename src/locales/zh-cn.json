@@ -1,0 +1,75 @@
+{
+  "root": {
+    "modify": "编 辑",
+    "cancel": "取 消",
+    "confirm": "确 定"
+  },
+  "addMenu":{
+    "name": {
+      "text": "纯文本",
+      "todo": "待办清单",
+      "heading1": "标题1",
+      "heading2": "标题2",
+      "heading3": "标题3",
+      "BulletedList": "符号列表",
+      "hint": "提示栏",
+      "code": "程序码",
+      "image": "图片"
+    },
+    "tip": {
+      "text": "用纯文本开始写内容",
+      "todo": "用待办清单去追踪任务",
+      "heading1": "大字号标题",
+      "heading2": "中字号标题",
+      "heading3": "小字号标题",
+      "BulletedList": "项目符号列表",
+      "hint": "用于提示比较重要的信息",
+      "code": "程序码编辑器",
+      "image": "上传或崁入连结"
+    },
+    "group": {
+      "baseBlocks": "基础模块",
+      "media": "媒体"
+    }
+  },
+  "dragMenu": {
+    "name": {
+      "delete": "删除",
+      "duplicate": "复制",
+      "turnInto": "转换",
+      "color": "颜色"
+    }
+  },
+  "dialog": {
+    "hint": {
+      "color": {
+        "label": "颜色",
+        "placeholder": "请输入颜色",
+        "tip": "支持 hex 色码"
+      },
+      "text": {
+        "label": "文字"
+      }
+    },
+    "code": {
+      "tabSize": {
+        "label": "缩排大小"
+      },
+      "language": {
+        "label": "程序语言",
+        "placeholder": "请选择语言"
+      }
+    },
+    "image": {
+      "url": {
+        "label": "网址"
+      },
+      "height": {
+        "label": "高度"
+      },
+      "width": {
+        "label": "宽度"
+      }
+    }
+  }
+}

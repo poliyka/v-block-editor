@@ -1,0 +1,75 @@
+{
+  "root": {
+    "modify": "編 輯",
+    "cancel": "取 消",
+    "confirm": "確 定"
+  },
+  "addMenu":{
+    "name": {
+      "text": "純文本",
+      "todo": "待辦清單",
+      "heading1": "標題1",
+      "heading2": "標題2",
+      "heading3": "標題3",
+      "BulletedList": "符號列表",
+      "hint": "提示欄",
+      "code": "程式碼",
+      "image": "圖片"
+    },
+    "tip": {
+      "text": "用純文本開始寫內容",
+      "todo": "用待辦清單去追蹤任務",
+      "heading1": "大字號標題",
+      "heading2": "中字號標題",
+      "heading3": "小字號標題",
+      "BulletedList": "項目符號列表",
+      "hint": "用於提示比較重要的信息",
+      "code": "程式碼編輯器",
+      "image": "上傳或崁入連結"
+    },
+    "group": {
+      "baseBlocks": "基本模組",
+      "media": "媒體"
+    }
+  },
+  "dragMenu": {
+    "name": {
+      "delete": "刪除",
+      "duplicate": "複製",
+      "turnInto": "轉換",
+      "color": "顏色"
+    }
+  },
+  "dialog": {
+    "hint": {
+      "color": {
+        "label": "顏色",
+        "placeholder": "請輸入顏色",
+        "tip": "支援 hex 色碼"
+      },
+      "text": {
+        "label": "文字"
+      }
+    },
+    "code": {
+      "tabSize": {
+        "label": "縮排大小"
+      },
+      "language": {
+        "label": "程式語言",
+        "placeholder": "請選擇語言"
+      }
+    },
+    "image": {
+      "url": {
+        "label": "網址"
+      },
+      "height": {
+        "label": "高度"
+      },
+      "width": {
+        "label": "寬度"
+      }
+    }
+  }
+}

@@ -121,6 +121,14 @@ module.exports = {
   pwa: {},
 
   // 可以用來傳遞任何第三方外掛選項
-  pluginOptions: {},
-
+  pluginOptions: {
+    i18n: {
+      locale: 'en',
+      fallbackLocale: 'en',
+      localeDir: 'locales',
+      enableInSFC: false,
+      includeLocales: false,
+      enableBridge: true
+    }
+  }
 };

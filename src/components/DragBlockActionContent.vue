@@ -23,7 +23,7 @@
           :style="{'color': item.color}"
         >
           <div :class="getItemIntroClass(item.type)">
-            <i :class="item.iconClass">{{ item.name }}</i>
+            <i :class="item.iconClass">{{ $t(item.name) }}</i>
             <span v-if="item.type == 'button'">{{ item.cmd }}</span>
             <i
               class="el-icon-caret-right"

@@ -10,14 +10,25 @@
 
 由於 `CedarXi` 與 `renmu123` 都長時間無維護此項目，我將它重新撿起來維護
 
-# 使用
+# 💾 Installation
 
-```
+```bash
 git clone https://github.com/poliyka/vne-block-editor.git
 cd vne-block-editor
 
 npm install
 npm run serve
+```
+
+# Quick Start
+
+```html
+<blockEditor
+  :currentPageBlocks="currentPageBlocks"
+  @change="change"
+  :maxStack="100"
+  :delay="2000"
+></blockEditor>
 ```
 
 # vne-block-editor 是什麼
@@ -28,6 +39,7 @@ vne-block-editor 是一個開源的模塊化內容構建編輯器，它不同於
 
 1. 對 draggable 組件進行重構，單擊 drag 物件可以打開 action 菜單
 2. 使用 `koca` [vue-prism-editor](https://github.com/koca/vue-prism-editor) 作為程式碼編輯器
+3. 導入 i18n
 
 ## 靈活的插拔
 
@@ -46,12 +58,13 @@ vne-block-editor 是一個開源的模塊化內容構建編輯器，它不同於
 - [x] 標題 1
 - [x] 標題 2
 - [x] 標題 3
-- [x] 符號列錶
+- [x] 符號列表
 - [x] 提示欄
 - [x] 組件的拖拽移動
 - [x] 允許使用 Ctrl+Z 和 Ctrl+Y 來執行撤銷和重做
 - [x] 圖片模塊（可以調整大小，通過黏貼事件載入剪切闆中的圖片）
 - [x] 程式碼編輯器
+- [x] i18n
 
 ### 🧑‍💻 待開發的模塊
 
@@ -62,13 +75,18 @@ vne-block-editor 是一個開源的模塊化內容構建編輯器，它不同於
 - [ ] emoji 組件
 - [ ] 插件化開發設定
 
-# API
 
-```
-    <blockEditor
-    :currentPageBlocks="currentPageBlocks"
-    @change="change"
-    maxStack="100"  //最大曆史記錄
-    delay="2000" // 兩秒保存一次曆史記錄
-    ></blockEditor>
-```
+
+# Event
+
+| Event   | Usable             | Desctiption             |
+| ------- | -------            | ----------------------- |
+| change  | :white_check_mark: | 任何操作都將返回目前文本內容 |
+| drag    | :x:                | 拖曳事件                 |
+
+# Prop
+
+| Prop     | Usable             | Desctiption             |
+| -------- | -------            | ----------------------- |
+| maxStack | :white_check_mark: | 最大保存歷史紀錄數量        |
+| delay    | :white_check_mark: | n秒保存一次歷史記錄         |
