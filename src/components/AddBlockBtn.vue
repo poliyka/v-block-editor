@@ -1,7 +1,7 @@
 <template>
-  <div class="addBlock">
+  <div class="__vne_add-block">
     <a
-      class="add-block-btn"
+      class="__vne_add-block-btn"
       @click="openMenuShow($event)"
     >
       <i class="el-icon-plus"></i>
@@ -10,8 +10,8 @@
 </template>
 
 <style lang="less">
-.addBlock {
-  .add-block-btn {
+.__vne_add-block {
+  .__vne_add-block-btn {
     padding: 5px;
     border-radius: 2px;
     .el-icon-plus {
@@ -20,7 +20,7 @@
     }
     cursor: pointer;
   }
-  .add-block-btn:hover {
+  .__vne_add-block-btn:hover {
     background: #eeeeee;
   }
 }

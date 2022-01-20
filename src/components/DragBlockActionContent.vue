@@ -18,7 +18,7 @@
         :key="index"
       >
         <div
-          class="block-item"
+          class="__vne_block-item"
           @click="blockOnClickAction(item.action, currentBlockIndex)"
           :style="{'color': item.color}"
         >
@@ -92,7 +92,7 @@ export default {
       }
     },
     getItemIntroClass(type) {
-      return `block-item-intro block-type-${type}`
+      return `__vne_block-item-intro block-type-${type}`
     }
   },
 };
@@ -124,16 +124,16 @@ export default {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 12px 0px;
     border-radius: 4px;
 
-    .block-type-tip {
+    .__vne_block-type-tip {
       font-size: 12px;
       color: #909399;
       display: block;
       padding: 10px 20px 5px 20px;
     }
-    .block-item {
+    .__vne_block-item {
       padding: 8px 20px 8px 20px;
       background: #ffffff;
-      .block-item-intro {
+      .__vne_block-item-intro {
         display: flex;
         justify-content: space-between;
         i {
@@ -148,7 +148,7 @@ export default {
         margin-left: 10px;
       }
     }
-    .block-item:hover {
+    .__vne_block-item:hover {
       background: #eeeeee;
       cursor: pointer;
     }

@@ -1,52 +1,55 @@
 <template>
-  <div
-    class="addBlock-content"
-    v-if="isShowAddMenu == true"
-    style="z-index: 2001"
-    @mousewheel.prevent
-  >
+  <transition name="__ven_fade-menu">
     <div
-      class="dropdown-menu"
-      :style="{
-        top: getterMenuContentLayerXY.y,
-        left: getterMenuContentLayerXY.x,
-      }"
-      @mousewheel.stop
+      class="__vne_mask"
+      v-if="isShowAddMenu"
+      @click="closeAddMenu"
     >
       <div
-        v-for="(item, index) in addBlockInfoArray"
-        :key="index"
+        class="__vne_add-block-dropdown-menu"
+        :style="{
+            top: getterMenuContentLayerXY.y,
+            left: getterMenuContentLayerXY.x,
+          }"
+        @mousewheel.stop
+        @click.stop
       >
-        <span
-          class="block-type-tip"
-          v-if="index == 0"
-        >{{ $t('addMenu.group.baseBlocks') }}</span>
-        <span
-          class="block-type-tip"
-          v-if="index == 8"
-        >{{ $t('addMenu.group.media') }}</span>
         <div
-          class="block-item"
-          @click="addBlock(item.type)"
+          v-for="(item, index) in addBlockInfoArray"
+          :key="index"
         >
-          <div class="block-item-img">
-            <img
-              :src="getImgUrl(item.type)"
-              style="width: 100%"
-            />
-          </div>
-          <div class="block-item-intro">
-            <h4>{{ $t(item.name) }}</h4>
-            <span>{{ $t(item.tip) }}</span>
+          <span
+            class="__vne_block-type-tip"
+            v-if="index == 0"
+          >{{ $t('addMenu.group.baseBlocks') }}</span>
+          <span
+            class="__vne_block-type-tip"
+            v-if="index == 8"
+          >{{ $t('addMenu.group.media') }}</span>
+          <div
+            class="__vne_block-item"
+            @click="addBlock(item.type)"
+          >
+            <div class="__vne_block-item-img">
+              <img
+                :src="getImgUrl(item.type)"
+                style="width: 100%"
+              />
+            </div>
+            <div class="__vne_block-item-intro">
+              <h4>{{ $t(item.name) }}</h4>
+              <span>{{ $t(item.tip) }}</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
 import AddBlockMixin from "@/components/mixin/AddBlockMixin.js";
+
 
 export default {
   name: "addBlock-content",
@@ -55,19 +58,6 @@ export default {
     return {
       isShowMenu: this.isShowAddMenu,
     };
-  },
-  watch: {
-    isShowAddMenu: function (value) {
-      if (value == true) {
-        document.addEventListener("click", e => {
-          if (event.target.getAttribute("class") != "el-icon-plus") {
-            if (event.target.getAttribute("class") != "dropdown-menu") {
-              this.$store.dispatch("addMenuStore/setIsShowAddMenu", false);
-            }
-          }
-        });
-      }
-    },
   },
   computed: {
     isShowAddMenu() {
@@ -90,6 +80,9 @@ export default {
     },
   },
   methods: {
+    closeAddMenu() {
+      this.$store.dispatch("addMenuStore/setIsShowAddMenu", false);
+    },
     getImgUrl(type) {
       return require("@/assets/img/" + type + ".png");
     },
@@ -98,62 +91,71 @@ export default {
 </script>
 
 <style lang="less">
-.addBlock-content {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  overflow: auto;
-  margin: 0;
-  .dropdown-menu {
-    background: #ffffff;
-    position: absolute;
-    // margin-left: 58px;
-    z-index: 2002;
-    width: 320px;
-    height: 360px;
-    overflow-y: auto;
-    border: 1px solid #dcdfe6;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 12px 0px;
-    border-radius: 4px;
+// transition
+.__ven_fade-menu-enter-active,
+.__ven_fade-menu-leave-active {
+  transition: opacity 0.3s;
+}
+.__ven_fade-menu-enter,
+.__ven_fade-menu-leave-to {
+  opacity: 0;
+}
 
-    .block-type-tip {
-      font-size: 12px;
-      color: #909399;
-      display: block;
-      padding: 10px 20px 5px 20px;
-    }
-    .block-item {
-      padding: 5px 20px 7px 20px;
-      display: flex;
-      align-items: center;
+.__vne_mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.__vne_add-block-dropdown-menu {
+  background: #ffffff;
+  position: absolute;
+  // margin-left: 58px;
+  width: 320px;
+  height: 360px;
+  overflow-y: auto;
+  border: 1px solid #dcdfe6;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 12px 0px;
+  border-radius: 4px;
+
+  .__vne_block-type-tip {
+    font-size: 12px;
+    color: #909399;
+    display: block;
+    padding: 10px 20px 5px 20px;
+  }
+  .__vne_block-item {
+    padding: 5px 20px 7px 20px;
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    .__vne_block-item-img {
+      width: 45px;
+      height: 45px;
       background: #ffffff;
-      .block-item-img {
-        width: 45px;
-        height: 45px;
-        background: #ffffff;
-        img {
-          border-radius: 4px;
-          border: 1px solid #dddddd;
-        }
-      }
-      .block-item-intro {
-        h4 {
-          margin: 0;
-          font-size: 14px;
-        }
-        span {
-          font-size: 12px;
-          color: #909399;
-        }
-        margin-left: 10px;
+      img {
+        border-radius: 4px;
+        border: 1px solid #dddddd;
       }
     }
-    .block-item:hover {
-      background: #eeeeee;
-      cursor: pointer;
+    .__vne_block-item-intro {
+      h4 {
+        margin: 0;
+        font-size: 14px;
+      }
+      span {
+        font-size: 12px;
+        color: #909399;
+      }
+      margin-left: 10px;
     }
+  }
+  .__vne_block-item:hover {
+    background: #eeeeee;
+    cursor: pointer;
   }
 }
 </style>

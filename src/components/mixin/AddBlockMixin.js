@@ -20,6 +20,8 @@ const AddBlockMixin = {
         };
       }
       this.$store.dispatch("mainStore/setAddCurrentPageBlocks", addBlockInfo);
+      // hide addBlock
+      this.$store.dispatch("addMenuStore/setIsShowAddMenu", false);
 
       this.$nextTick(() => {
         // 如果是觸發添加內容的面板是從text模塊顯示的模塊添加彈窗頁面的，並且內容為空

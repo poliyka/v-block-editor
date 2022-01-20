@@ -1,9 +1,7 @@
 <template>
   <!-- TODO: 不應該限制  container 大小 -->
   <!-- 不應該有固定 id -->
-  <div
-    class="container-870"
-  >
+  <div class="__vne_container">
 
     <!-- 添加組件的彈窗 -->
     <AddBlockInfoContent></AddBlockInfoContent>
@@ -17,21 +15,24 @@
       animation="300"
     >
       <div
-        class="line-wrap list-group-item"
+        class="__vne_line-wrap list-group-item"
         v-for="(item, index) in getCurrentPageBlocks"
         :key="index"
         ref="block"
       >
-        <div
-          class="line-left"
-          v-if="readonly == false"
-        >
+        <div class="__vne_line-left">
           <!-- 彈出添加組件的彈窗+號按鈕 -->
-          <AddBlockBtn :BlocksIndex="index"></AddBlockBtn>
+          <AddBlockBtn
+            :BlocksIndex="index"
+            v-if="!readonly"
+          ></AddBlockBtn>
           <!-- 拖拽組件 -->
-          <DragBlockBtn :BlocksIndex="index"></DragBlockBtn>
+          <DragBlockBtn
+            :BlocksIndex="index"
+            v-if="!readonly"
+          ></DragBlockBtn>
         </div>
-        <div class="line-medium">
+        <div class="__vne_line-medium">
           <TextBlock
             v-model="item.data"
             :BlocksIndex="index"
@@ -88,10 +89,11 @@
             class="block"
           ></BaseImage>
         </div>
-        <div class="line-right">
+        <div class="__vne_line-right">
           <a
-            class="drag-btn handle"
+            class="drag-btn"
             @click="setVisibleData(index)"
+            v-if="!readonly"
           >
             <i class="el-icon-menu"></i>
           </a>
@@ -191,6 +193,7 @@ export default {
     };
   },
   mounted() {
+
     this.$store.dispatch("mainStore/setUpdateCurrentPageBlocks", this.currentPageBlocks);
     class HistoryRecord {
       constructor(maxStack = 100, delay = 2000) {
@@ -301,7 +304,7 @@ export default {
         }
       }
     },
-    locale(val){
+    locale(val) {
       this.$i18n.locale = val
     },
   },
@@ -332,7 +335,7 @@ export default {
 };
 </script>
 <style lang="less">
-.container-870 {
+.__vne_container {
   padding-top: 100px;
   max-width: 870px;
   margin-left: auto;
@@ -343,37 +346,37 @@ export default {
   box-shadow: 0 8px 42px -8px rgba(82, 94, 102, 0.15);
   margin-bottom: 100px;
 
-  .line-wrap {
+  .__vne_line-wrap {
     display: flex;
     align-items: center;
     line-height: 20px;
-    .line-left {
+    .__vne_line-left {
+      width: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      visibility: hidden;
+    }
+    .__vne_line-right {
       width: 40px;
       display: flex;
       align-items: center;
-      margin-right: 20px;
+      justify-content: center;
       visibility: hidden;
     }
-    .line-right {
-      width: 40px;
-      display: flex;
-      align-items: center;
-      margin-right: 20px;
-      visibility: hidden;
-    }
-    .line-medium {
+    .__vne_line-medium {
       width: 100%;
     }
   }
-  .line-wrap:hover {
-    .line-left {
+  .__vne_line-wrap:hover {
+    .__vne_line-left {
       visibility: visible;
     }
-    .line-right {
+    .__vne_line-right {
       visibility: visible;
     }
   }
-  .line-wrap:focus {
+  .__vne_line-wrap:focus {
     visibility: hidden;
   }
 }
