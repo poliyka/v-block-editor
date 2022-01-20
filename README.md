@@ -39,6 +39,7 @@ vne-block-editor 是一個開源的模塊化內容構建編輯器，它不同於
 
 1. 對 draggable 組件進行重構，單擊 drag 物件可以打開 action 菜單
 2. 使用 `koca` [vue-prism-editor](https://github.com/koca/vue-prism-editor) 作為程式碼編輯器
+3. 導入 i18n
 
 ## 靈活的插拔
 
