@@ -63,7 +63,7 @@ export default {
   },
   computed: {},
   watch: {},
-  mounted() { },
+  mounted() {},
   methods: {
     change(value) {
       console.log("blockChange", value);

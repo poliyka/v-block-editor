@@ -193,7 +193,6 @@ export default {
     };
   },
   mounted() {
-
     this.$store.dispatch("mainStore/setUpdateCurrentPageBlocks", this.currentPageBlocks);
     class HistoryRecord {
       constructor(maxStack = 100, delay = 2000) {

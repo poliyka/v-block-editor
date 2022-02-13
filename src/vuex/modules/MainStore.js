@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 const state = {
   currentBlockIndex: 0,
   currentPageBlocks: [],
@@ -6,6 +8,14 @@ const state = {
     x: 0,
     y: 0,
   },
+  initBlocks: [
+    {
+      type: "text",
+      data: {
+        text: "",
+      },
+    },
+  ],
 };
 
 const getters = {
@@ -69,8 +79,16 @@ const mutations = {
   },
   mutationDeletePageBlock(state, index) {
     state.currentPageBlocks.splice(index, 1);
+    // if PageBlocks is Empty insert base textarea block
+    if (_.isEmpty(state.currentPageBlocks)) {
+      state.currentPageBlocks = [...state.initBlocks];
+    }
   },
   mutationUpdateCurrentPageBlocks(state, blocks) {
+    // if PageBlocks is Empty insert base textarea block
+    if (_.isEmpty(blocks)) {
+      blocks = [...state.initBlocks];
+    }
     state.currentPageBlocks = blocks;
   },
   mutationUpdateOneBlock(state, block) {
